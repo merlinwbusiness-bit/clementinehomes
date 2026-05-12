@@ -241,7 +241,7 @@ function Contact() {
           <a href="tel:+34620533054" className="inline-flex items-center gap-2 bg-background text-foreground px-7 py-4 rounded-full font-medium hover:opacity-90 transition">
             <Phone className="w-4 h-4" /> 620 53 30 54
           </a>
-          <a href="mailto:hola@clementinehomes.es" className="inline-flex items-center gap-2 border border-background/50 text-background px-7 py-4 rounded-full font-medium hover:bg-background/10 transition">
+          <a href="mailto:clanchier@gmail.com" className="inline-flex items-center gap-2 border border-background/50 text-background px-7 py-4 rounded-full font-medium hover:bg-background/10 transition">
             <Mail className="w-4 h-4" /> Escríbeme
           </a>
         </div>
