@@ -22,11 +22,10 @@ const reviews = [
     role: "Cliente",
   },
   {
-    name: "Constantin Clauzel",
-    text: "Clémentine no se limita a poner en valor tu propiedad y proponer anuncios de calidad; está lejos del agente inmobiliario «clásico» interesado únicamente en el dinero. Se desvive para que entiendas cada etapa y te acompaña mucho más allá de la simple transacción.",
-    role: "7 reseñas",
+    name: "Sophie Corvaisier",
+    text: "Clémentine es una profesional increíblemente entregada que me ha sido de gran ayuda durante todo el proceso de venta. Tiene un talento excepcional para crear espacios cautivadores y demuestra una gran eficacia en su gestión. La recomiendo sin dudarlo.",
+    role: "Kret Real Estate",
   },
-  // (entry below replaces previous Constantin review per client request)
 ];
 
 const services = [
