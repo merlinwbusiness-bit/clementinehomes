@@ -143,7 +143,7 @@ function Services() {
           <h2 className="text-4xl md:text-5xl mb-4">Todo lo que tu propiedad necesita.</h2>
           <p className="text-muted-foreground text-lg">De la consultoría inicial al reportaje fotográfico final, te acompaño en cada paso.</p>
         </div>
-        <div className="grid md:grid-cols-3 gap-6">
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
           {services.map((s) => (
             <div key={s.title} className="bg-card p-8 rounded-2xl border border-border hover:shadow-[var(--shadow-soft)] transition group">
               <div className="w-12 h-12 rounded-full bg-accent flex items-center justify-center mb-6 text-primary group-hover:bg-primary group-hover:text-primary-foreground transition">
