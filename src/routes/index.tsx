@@ -38,7 +38,7 @@ function Nav() {
   return (
     <nav className="absolute top-0 left-0 right-0 z-20 px-6 lg:px-12 py-6 flex items-center justify-between">
       <a href="#" className="flex items-center gap-3">
-        <img src={logo} alt="Clementine Home Staging" className="h-12 w-auto bg-background/90 rounded-md p-1.5" />
+        <img src={logo} alt="Clementine Homes" className="h-12 w-auto bg-background/90 rounded-md p-1.5" />
       </a>
       <div className="hidden md:flex items-center gap-8 text-sm text-background/90">
         <a href="#servicios" className="hover:text-background transition">Servicios</a>
@@ -267,7 +267,7 @@ function Footer() {
       <div className="max-w-6xl mx-auto flex flex-wrap items-center justify-between gap-4 text-sm">
         <div className="flex items-center gap-3">
           <img src={logo} alt="Clementine" className="h-10 w-auto bg-background rounded p-1" />
-          <span>© {new Date().getFullYear()} Clementine Home Staging</span>
+          <span>© {new Date().getFullYear()} Clementine Homes</span>
         </div>
         <div>Vilanova i la Geltrú · Sitges · Canyelles</div>
       </div>
