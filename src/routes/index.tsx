@@ -55,7 +55,7 @@ function Reveal({ children, delay = 0, className = "" }: { children: React.React
   );
 }
 
-function Counter({ to, suffix = "", duration = 1600 }: { to: number; suffix?: string; duration?: number }) {
+function Counter({ to, suffix = "", duration = 1600, decimals = 0 }: { to: number; suffix?: string; duration?: number; decimals?: number }) {
   const [val, setVal] = useState(0);
   const { ref, visible } = useReveal<HTMLSpanElement>();
   useEffect(() => {
@@ -71,7 +71,7 @@ function Counter({ to, suffix = "", duration = 1600 }: { to: number; suffix?: st
     raf = requestAnimationFrame(tick);
     return () => cancelAnimationFrame(raf);
   }, [visible, to, duration]);
-  const display = Number.isInteger(to) ? Math.round(val).toString() : val.toFixed(1).replace(".", ",");
+  const display = decimals > 0 ? val.toFixed(decimals).replace(".", ",") : Math.round(val).toString();
   return <span ref={ref}>{display}{suffix}</span>;
 }
 
@@ -166,10 +166,10 @@ function Hero() {
 
 function Stats() {
   const stats = [
-    { v: 5, suffix: "", l: "Valoración Google", float: true },
-    { v: 10, suffix: "+", l: "Reseñas verificadas" },
-    { v: 3, suffix: "x", l: "Más rápido en venderse" },
-    { v: 100, suffix: "%", l: "Atención personalizada" },
+    { v: 5, suffix: "", l: "Valoración Google", decimals: 1 },
+    { v: 10, suffix: "+", l: "Reseñas verificadas", decimals: 0 },
+    { v: 3, suffix: "x", l: "Más rápido en venderse", decimals: 0 },
+    { v: 100, suffix: "%", l: "Atención personalizada", decimals: 0 },
   ];
   return (
     <section className="bg-background py-16 px-6 lg:px-12">
@@ -177,8 +177,7 @@ function Stats() {
         {stats.map((s, i) => (
           <Reveal key={s.l} delay={i * 80}>
             <div className="font-display text-4xl md:text-5xl text-primary mb-2">
-              <Counter to={s.float ? 5 : s.v} suffix={s.suffix} />
-              {s.float ? "" : ""}
+              <Counter to={s.v} suffix={s.suffix} decimals={s.decimals} />
             </div>
             <div className="text-sm text-muted-foreground uppercase tracking-wider">{s.l}</div>
           </Reveal>
