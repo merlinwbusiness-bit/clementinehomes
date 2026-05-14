@@ -4,7 +4,7 @@ import bedroom from "@/assets/bedroom.png";
 import kitchen1 from "@/assets/kitchen-1.png";
 import kitchen2 from "@/assets/kitchen-2.png";
 import pool from "@/assets/pool.png";
-import { Instagram, Linkedin, Phone, Star, Sparkles, Camera, Home, MapPin, Mail, ArrowRight } from "lucide-react";
+import { Instagram, Linkedin, Phone, Star, Sparkles, Camera, Home, MapPin, Mail, ArrowRight, Key } from "lucide-react";
 
 export const Route = createFileRoute("/")({
   component: Index,
@@ -32,6 +32,7 @@ const services = [
   { icon: Home, title: "Home Staging Completo", desc: "Transformamos cada estancia para destacar el potencial real de tu propiedad y atraer más compradores." },
   { icon: Sparkles, title: "Consultoría Express", desc: "Visita y diagnóstico con recomendaciones concretas para preparar tu vivienda antes de venderla o alquilarla." },
   { icon: Camera, title: "Reportaje Fotográfico", desc: "Fotografías profesionales que multiplican las visitas online de tu anuncio inmobiliario." },
+  { icon: Key, title: "Venta y Alquiler", desc: "Como agente API, gestiono la venta y el alquiler de tu propiedad de principio a fin, con total profesionalidad." },
 ];
 
 function Nav() {
