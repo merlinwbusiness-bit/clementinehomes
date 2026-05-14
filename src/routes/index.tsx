@@ -26,6 +26,7 @@ const reviews = [
     text: "Clémentine no se limita a poner en valor tu propiedad y proponer anuncios de calidad; está lejos del agente inmobiliario «clásico» interesado únicamente en el dinero. Se desvive para que entiendas cada etapa y te acompaña mucho más allá de la simple transacción.",
     role: "7 reseñas",
   },
+  // (entry below replaces previous Constantin review per client request)
 ];
 
 const services = [
