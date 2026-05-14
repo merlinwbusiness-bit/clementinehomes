@@ -4,7 +4,7 @@ import bedroom from "@/assets/bedroom.png";
 import kitchen1 from "@/assets/kitchen-1.png";
 import kitchen2 from "@/assets/kitchen-2.png";
 import pool from "@/assets/pool.png";
-import { Instagram, Linkedin, Phone, Star, Sparkles, Camera, Home, MapPin, Mail, ArrowRight } from "lucide-react";
+import { Instagram, Linkedin, Phone, Star, Sparkles, Camera, Home, MapPin, Mail, ArrowRight, Key } from "lucide-react";
 
 export const Route = createFileRoute("/")({
   component: Index,
@@ -22,9 +22,9 @@ const reviews = [
     role: "Cliente",
   },
   {
-    name: "Constantin Clauzel",
-    text: "Clémentine no se limita a poner en valor tu propiedad y proponer anuncios de calidad; está lejos del agente inmobiliario «clásico» interesado únicamente en el dinero. Se desvive para que entiendas cada etapa y te acompaña mucho más allá de la simple transacción.",
-    role: "7 reseñas",
+    name: "Sophie Corvaisier",
+    text: "Clémentine es una profesional increíblemente entregada que me ha sido de gran ayuda durante todo el proceso de venta. Tiene un talento excepcional para crear espacios cautivadores y demuestra una gran eficacia en su gestión. La recomiendo sin dudarlo.",
+    role: "Kret Real Estate",
   },
 ];
 
@@ -32,13 +32,14 @@ const services = [
   { icon: Home, title: "Home Staging Completo", desc: "Transformamos cada estancia para destacar el potencial real de tu propiedad y atraer más compradores." },
   { icon: Sparkles, title: "Consultoría Express", desc: "Visita y diagnóstico con recomendaciones concretas para preparar tu vivienda antes de venderla o alquilarla." },
   { icon: Camera, title: "Reportaje Fotográfico", desc: "Fotografías profesionales que multiplican las visitas online de tu anuncio inmobiliario." },
+  { icon: Key, title: "Venta y Alquiler", desc: "Como agente API, gestiono la venta y el alquiler de tu propiedad de principio a fin, con total profesionalidad." },
 ];
 
 function Nav() {
   return (
     <nav className="absolute top-0 left-0 right-0 z-20 px-6 lg:px-12 py-6 flex items-center justify-between">
       <a href="#" className="flex items-center gap-3">
-        <img src={logo} alt="Clementine Home Staging" className="h-12 w-auto bg-background/90 rounded-md p-1.5" />
+        <img src={logo} alt="Clementine Homes" className="h-12 w-auto bg-background/90 rounded-md p-1.5" />
       </a>
       <div className="hidden md:flex items-center gap-8 text-sm text-background/90">
         <a href="#servicios" className="hover:text-background transition">Servicios</a>
@@ -142,7 +143,7 @@ function Services() {
           <h2 className="text-4xl md:text-5xl mb-4">Todo lo que tu propiedad necesita.</h2>
           <p className="text-muted-foreground text-lg">De la consultoría inicial al reportaje fotográfico final, te acompaño en cada paso.</p>
         </div>
-        <div className="grid md:grid-cols-3 gap-6">
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
           {services.map((s) => (
             <div key={s.title} className="bg-card p-8 rounded-2xl border border-border hover:shadow-[var(--shadow-soft)] transition group">
               <div className="w-12 h-12 rounded-full bg-accent flex items-center justify-center mb-6 text-primary group-hover:bg-primary group-hover:text-primary-foreground transition">
@@ -241,8 +242,11 @@ function Contact() {
           <a href="tel:+34620533054" className="inline-flex items-center gap-2 bg-background text-foreground px-7 py-4 rounded-full font-medium hover:opacity-90 transition">
             <Phone className="w-4 h-4" /> 620 53 30 54
           </a>
-          <a href="mailto:clanchier@gmail.com" className="inline-flex items-center gap-2 border border-background/50 text-background px-7 py-4 rounded-full font-medium hover:bg-background/10 transition">
-            <Mail className="w-4 h-4" /> Escríbeme
+          <a href="mailto:clementinehomestaging@gmail.com" className="inline-flex items-center gap-2 border border-background/50 text-background px-7 py-4 rounded-full font-medium hover:bg-background/10 transition">
+            <Mail className="w-4 h-4" /> Home Staging
+          </a>
+          <a href="mailto:realestate@clementinehomes.es" className="inline-flex items-center gap-2 border border-background/50 text-background px-7 py-4 rounded-full font-medium hover:bg-background/10 transition">
+            <Mail className="w-4 h-4" /> Real Estate
           </a>
         </div>
         <div className="flex justify-center gap-4">
@@ -267,7 +271,7 @@ function Footer() {
       <div className="max-w-6xl mx-auto flex flex-wrap items-center justify-between gap-4 text-sm">
         <div className="flex items-center gap-3">
           <img src={logo} alt="Clementine" className="h-10 w-auto bg-background rounded p-1" />
-          <span>© {new Date().getFullYear()} Clementine Home Staging</span>
+          <span>© {new Date().getFullYear()} Clementine Homes</span>
         </div>
         <div>Vilanova i la Geltrú · Sitges · Canyelles</div>
       </div>
