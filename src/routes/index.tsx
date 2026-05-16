@@ -364,10 +364,22 @@ function Services() {
 }
 
 function Projects() {
-  const items = [
-    { img: kitchen1, alt: "Cocina mediterránea con isla", tag: "Casa rural · Canyelles", title: "Cocina abierta con alma", big: true },
-    { img: kitchen2, alt: "Cocina moderna minimalista", tag: "Apartamento · Vilanova", title: "Líneas limpias, luz natural" },
-    { img: bedroom, alt: "Dormitorio con terraza", tag: "Ático · Sitges", title: "Serenidad mediterránea" },
+  const items: GalleryItem[] = [
+    { img: kitchen1, alt: "Cocina mediterránea con isla", tag: "Casa rural · Canyelles", title: "Cocina abierta con alma", desc: "Una isla central que convierte la cocina en el corazón social de la casa. Materiales cálidos y luz natural para acercar al comprador a su nueva vida." },
+    { img: kitchen2, alt: "Cocina moderna minimalista", tag: "Apartamento · Vilanova", title: "Líneas limpias, luz natural", desc: "Paleta neutra y mobiliario depurado para potenciar amplitud y luminosidad. Resultado: visitas multiplicadas en pocos días." },
+    { img: bedroom, alt: "Dormitorio con terraza", tag: "Ático · Sitges", title: "Serenidad mediterránea", desc: "Textiles naturales y una paleta serena que invitan al descanso. La terraza se integra como una extensión del dormitorio." },
+    { img: pool, alt: "Villa con piscina al atardecer", tag: "Villa · Garraf", title: "Atardecer junto al mar", desc: "Puesta en escena exterior pensada para fotografía: mobiliario, iluminación y composición que enamoran a primera vista." },
+    { img: kitchen1, alt: "Detalle cocina", tag: "Detalle · Canyelles", title: "El detalle marca la venta", desc: "Pequeños gestos —vajilla, plantas, textiles— que humanizan el espacio y conectan emocionalmente." },
+    { img: bedroom, alt: "Suite principal", tag: "Suite · Sitges", title: "Suite lista para enamorar", desc: "Una propuesta editorial: cama vestida, mesilla curada y luces cálidas para una foto principal irresistible." },
+  ];
+  const [open, setOpen] = useState<number | null>(null);
+  const layout = [
+    "md:col-span-2 md:row-span-2",
+    "md:col-span-2",
+    "",
+    "",
+    "md:col-span-2",
+    "",
   ];
   return (
     <section id="proyectos" className="py-24 px-6 lg:px-12">
@@ -378,30 +390,44 @@ function Projects() {
               <span className="text-xs uppercase tracking-[0.25em] text-primary mb-4 block">Proyectos</span>
               <h2 className="text-4xl md:text-5xl">Espacios transformados.</h2>
             </div>
-            <p className="text-muted-foreground max-w-md">Una selección de propiedades preparadas para encontrar nuevos propietarios.</p>
+            <p className="text-muted-foreground max-w-md">Una selección de propiedades preparadas para encontrar nuevos propietarios. Haz clic en cualquier imagen para ampliarla.</p>
           </div>
         </Reveal>
-        <div className="grid md:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-4 auto-rows-[220px] md:auto-rows-[240px] gap-4">
           {items.map((it, i) => (
-            <Reveal key={it.title} delay={i * 100} className={it.big ? "md:row-span-2" : ""}>
-              <a href="#contacto" className="block relative rounded-2xl overflow-hidden group h-full">
+            <Reveal key={i} delay={i * 70} className={layout[i] ?? ""}>
+              <button
+                type="button"
+                onClick={() => setOpen(i)}
+                className="block relative rounded-2xl overflow-hidden group h-full w-full text-left focus:outline-none focus:ring-2 focus:ring-primary"
+              >
                 <img
                   src={it.img}
                   alt={it.alt}
-                  className={`w-full object-cover group-hover:scale-110 transition duration-[1200ms] ease-out ${it.big ? "h-full min-h-[500px]" : "h-72"}`}
+                  className="w-full h-full object-cover group-hover:scale-110 transition duration-[1200ms] ease-out"
                 />
-                <div className="absolute inset-0 bg-foreground/0 group-hover:bg-foreground/10 transition duration-500" />
-                <div className="absolute inset-x-0 bottom-0 p-6 bg-gradient-to-t from-foreground/85 to-transparent text-background translate-y-2 group-hover:translate-y-0 transition duration-500">
-                  <div className="text-xs uppercase tracking-wider opacity-80 mb-1">{it.tag}</div>
-                  <div className="font-display text-2xl flex items-center gap-2">
+                <div className="absolute inset-0 bg-foreground/0 group-hover:bg-foreground/20 transition duration-500" />
+                <div className="absolute top-3 right-3 w-9 h-9 rounded-full bg-background/80 backdrop-blur text-foreground flex items-center justify-center opacity-0 group-hover:opacity-100 translate-y-1 group-hover:translate-y-0 transition duration-300">
+                  <ZoomIn className="w-4 h-4" />
+                </div>
+                <div className="absolute inset-x-0 bottom-0 p-5 bg-gradient-to-t from-foreground/90 to-transparent text-background translate-y-2 group-hover:translate-y-0 transition duration-500">
+                  <div className="text-[10px] uppercase tracking-wider opacity-80 mb-1">{it.tag}</div>
+                  <div className="font-display text-xl flex items-center gap-2">
                     {it.title}
                     <ArrowRight className="w-4 h-4 opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition duration-500" />
                   </div>
                 </div>
-              </a>
+              </button>
             </Reveal>
           ))}
         </div>
+        <Lightbox
+          items={items}
+          index={open}
+          onClose={() => setOpen(null)}
+          onPrev={() => setOpen((i) => (i === null ? null : (i - 1 + items.length) % items.length))}
+          onNext={() => setOpen((i) => (i === null ? null : (i + 1) % items.length))}
+        />
       </div>
     </section>
   );
@@ -531,6 +557,7 @@ function FloatingWhatsApp() {
 function Index() {
   return (
     <main className="bg-background text-foreground scroll-smooth">
+      <ScrollProgress />
       <Hero />
       <Stats />
       <About />
