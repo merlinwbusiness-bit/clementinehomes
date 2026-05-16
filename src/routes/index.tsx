@@ -5,7 +5,7 @@ import bedroom from "@/assets/bedroom.png";
 import kitchen1 from "@/assets/kitchen-1.png";
 import kitchen2 from "@/assets/kitchen-2.png";
 import pool from "@/assets/pool.png";
-import { Instagram, Linkedin, Phone, Star, Sparkles, Camera, Home, MapPin, Mail, ArrowRight, Key, Building2, Handshake, TrendingUp } from "lucide-react";
+import { Instagram, Linkedin, Phone, Star, Sparkles, Camera, Home, MapPin, Mail, ArrowRight, Key, Building2, Handshake, TrendingUp, X, ChevronLeft, ChevronRight, ZoomIn } from "lucide-react";
 
 export const Route = createFileRoute("/")({
   component: Index,
@@ -123,6 +123,71 @@ function Nav() {
         <WhatsAppIcon className="w-4 h-4" /> WhatsApp
       </a>
     </nav>
+  );
+}
+
+type GalleryItem = { img: string; alt: string; tag: string; title: string; desc: string };
+
+function Lightbox({ items, index, onClose, onPrev, onNext }: { items: GalleryItem[]; index: number | null; onClose: () => void; onPrev: () => void; onNext: () => void }) {
+  useEffect(() => {
+    if (index === null) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") onClose();
+      if (e.key === "ArrowLeft") onPrev();
+      if (e.key === "ArrowRight") onNext();
+    };
+    document.body.style.overflow = "hidden";
+    window.addEventListener("keydown", onKey);
+    return () => {
+      document.body.style.overflow = "";
+      window.removeEventListener("keydown", onKey);
+    };
+  }, [index, onClose, onPrev, onNext]);
+
+  if (index === null) return null;
+  const item = items[index];
+  return (
+    <div className="fixed inset-0 z-[60] bg-foreground/95 backdrop-blur-sm flex items-center justify-center p-4 md:p-8 animate-[fadeIn_.25s_ease-out]">
+      <button onClick={onClose} aria-label="Cerrar" className="absolute top-5 right-5 w-11 h-11 rounded-full bg-background/10 text-background hover:bg-background/20 flex items-center justify-center transition">
+        <X className="w-5 h-5" />
+      </button>
+      <button onClick={onPrev} aria-label="Anterior" className="absolute left-3 md:left-6 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-background/10 text-background hover:bg-background/20 flex items-center justify-center transition">
+        <ChevronLeft className="w-6 h-6" />
+      </button>
+      <button onClick={onNext} aria-label="Siguiente" className="absolute right-3 md:right-6 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-background/10 text-background hover:bg-background/20 flex items-center justify-center transition">
+        <ChevronRight className="w-6 h-6" />
+      </button>
+      <div className="max-w-6xl w-full max-h-full flex flex-col items-center gap-4" onClick={(e) => e.stopPropagation()}>
+        <img key={item.img + index} src={item.img} alt={item.alt} className="max-h-[78vh] w-auto max-w-full rounded-xl shadow-2xl object-contain animate-[fadeIn_.4s_ease-out]" />
+        <div className="text-center text-background max-w-2xl">
+          <div className="text-xs uppercase tracking-[0.25em] opacity-70 mb-2">{item.tag}</div>
+          <div className="font-display text-2xl md:text-3xl mb-2">{item.title}</div>
+          <p className="text-background/75 text-sm">{item.desc}</p>
+          <div className="text-xs opacity-60 mt-4">{index + 1} / {items.length}</div>
+        </div>
+      </div>
+      <button className="absolute inset-0 -z-10" aria-label="Cerrar fondo" onClick={onClose} />
+      <style>{`@keyframes fadeIn { from { opacity: 0; transform: scale(.98); } to { opacity: 1; transform: scale(1); } }`}</style>
+    </div>
+  );
+}
+
+function ScrollProgress() {
+  const [p, setP] = useState(0);
+  useEffect(() => {
+    const onScroll = () => {
+      const h = document.documentElement;
+      const total = h.scrollHeight - h.clientHeight;
+      setP(total > 0 ? (h.scrollTop / total) * 100 : 0);
+    };
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+  return (
+    <div className="fixed top-0 left-0 right-0 z-[55] h-[3px] bg-transparent pointer-events-none">
+      <div className="h-full bg-gradient-to-r from-primary via-[oklch(0.78_0.12_60)] to-primary transition-[width] duration-100" style={{ width: `${p}%` }} />
+    </div>
   );
 }
 
