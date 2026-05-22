@@ -89,7 +89,7 @@ const reviews = [
   {
     name: "Sophie Corvaisier",
     text: "Clémentine es una profesional increíblemente entregada que me ha sido de gran ayuda durante todo el proceso de venta. Tiene un talento excepcional para crear espacios cautivadores y demuestra una gran eficacia en su gestión. La recomiendo sin dudarlo.",
-    role: "Kret Real Estate",
+    role: "Kretz Real Estate",
   },
 ];
 
