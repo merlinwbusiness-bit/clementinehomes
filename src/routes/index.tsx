@@ -1,11 +1,22 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useEffect, useRef, useState } from "react";
+import { createContext, useContext, useEffect, useRef, useState } from "react";
 import logo from "@/assets/logo.png";
+import hero from "@/assets/hero.jpg";
 import bedroom from "@/assets/bedroom.png";
 import kitchen1 from "@/assets/kitchen-1.png";
 import kitchen2 from "@/assets/kitchen-2.png";
 import pool from "@/assets/pool.png";
-import { Instagram, Linkedin, Phone, Star, Sparkles, Camera, Home, MapPin, Mail, ArrowRight, Key, Building2, Handshake, TrendingUp, X, ChevronLeft, ChevronRight, ZoomIn } from "lucide-react";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
+import {
+  Instagram, Linkedin, Phone, Star, Sparkles, Camera, Home, MapPin, Mail,
+  ArrowRight, Key, Building2, Handshake, TrendingUp, X, ChevronLeft, ChevronRight,
+  ZoomIn, Globe, ChevronDown, Menu, MoveHorizontal,
+} from "lucide-react";
 
 export const Route = createFileRoute("/")({
   component: Index,
@@ -13,6 +24,288 @@ export const Route = createFileRoute("/")({
 
 const WHATSAPP_URL = "https://wa.me/34620533054?text=Hola%20Cl%C3%A9mentine%2C%20me%20gustar%C3%ADa%20m%C3%A1s%20informaci%C3%B3n";
 
+/* ---------- i18n ---------- */
+type Lang = "es" | "en" | "fr";
+
+const LANGS: { code: Lang; label: string; flag: string }[] = [
+  { code: "es", label: "Español", flag: "🇪🇸" },
+  { code: "en", label: "English", flag: "🇬🇧" },
+  { code: "fr", label: "Français", flag: "🇫🇷" },
+];
+
+const dict = {
+  es: {
+    nav: { realEstate: "Real Estate", services: "Servicios", projects: "Proyectos", about: "Sobre mí", reviews: "Opiniones", faq: "FAQ", contact: "Contacto" },
+    hero: {
+      eyebrow: "Home Staging · Real Estate · Garraf",
+      slogan: "Making Homes Bloom",
+      sub: "Agencia inmobiliaria y servicio de home staging entre Vilanova i la Geltrú, Sitges y Canyelles. Te acompañamos en cada etapa: valoración, preparación, fotografía y venta.",
+      whatsapp: "Hablar por WhatsApp",
+      visit: "Visita gratuita",
+      seeProjects: "Ver proyectos",
+    },
+    stats: [
+      { l: "Valoración Google" }, { l: "Reseñas verificadas" },
+      { l: "Más rápido en venderse" }, { l: "Atención personalizada" },
+    ],
+    about: {
+      eyebrow: "Sobre mí",
+      title: "¿Quieres saber más?",
+      body: [
+        "Cuando tuve la oportunidad de entrar en el mundo de la moda en Paris en el cual siempre soñé de pequeña, no me enamoré solo de la moda y la Haute Couture pero también del diseño y de la decoración. El vínculo entre la moda y los interiores es muy evidente.",
+        "Así evolucioné más de 20 años como experta en la creación y organización de eventos, stands para ferias, convenciones, encuentros, desfiles, shootings de catálogos para diferentes marcas a nivel internacional, siempre vinculando la moda con la decoración.",
+        "Hoy como decoradora home stager profesional, titulada en The Home Staging School, ofrezco todas mis capacidades de creación, adaptación y organización a mis clientes. Muy atenta a los detalles, siempre busco la armonización de los espacios donde pueden fluir las energías.",
+        "Cuando entro en una casa, adoro encontrar sus puntos fuertes y pensar en lo que se pueda hacer para que resalten los espacios y que uno se sienta bien. Con el home staging hago que sea atractiva a la hora de venderla o alquilarla a un futuro cliente. Mi logro es cuando un cliente se enamora de una vivienda a primera vista.",
+      ],
+    },
+    company: {
+      eyebrow: "Una agencia con mirada de interiorista",
+      title: "Vendemos, alquilamos y realzamos tu hogar.",
+      p1: "Soy Clémentine, agente inmobiliaria API y especialista en home staging. Combino el rigor de la intermediación profesional con una sensibilidad única para realzar cada propiedad entre Vilanova i la Geltrú, Sitges y Canyelles.",
+      p2: "Cada propiedad tiene una historia. Mi trabajo es revelarla y venderla: con luz, color, mobiliario y una estrategia comercial que conecta emocionalmente con los compradores.",
+      location: "Vilanova i la Geltrú · Sitges · Canyelles",
+    },
+    realEstate: {
+      eyebrow: "Real Estate · Agente API",
+      title: "Tu agencia inmobiliaria de confianza en el Garraf.",
+      sub: "Más allá del home staging, gestiono la venta y el alquiler de tu propiedad como agente colegiada. Una sola interlocutora para toda la operación: preparación, marketing y cierre.",
+      cta: "Valorar mi propiedad",
+      pillars: [
+        { title: "Venta de propiedades", desc: "Valoración realista, marketing visual de alto impacto y red de compradores cualificados." },
+        { title: "Alquiler de larga estancia", desc: "Selección de inquilinos, contratos y gestión sin complicaciones para propietarios." },
+        { title: "Asesoramiento al comprador", desc: "Te acompañamos en la búsqueda, negociación y firma, sobre todo si es tu primera compra." },
+        { title: "Estrategia de precio", desc: "Estudio del mercado local del Garraf para vender al mejor precio en el menor tiempo." },
+      ],
+    },
+    services: {
+      eyebrow: "Servicios",
+      title: "Todo lo que tu propiedad necesita.",
+      sub: "De la consultoría inicial a la firma ante notario, te acompaño en cada paso.",
+      items: [
+        { title: "Home Staging Completo", desc: "Transformamos cada estancia para destacar el potencial real de tu propiedad y atraer más compradores." },
+        { title: "Consultoría Express", desc: "Visita y diagnóstico con recomendaciones concretas para preparar tu vivienda antes de venderla o alquilarla." },
+        { title: "Reportaje Fotográfico", desc: "Fotografías profesionales que multiplican las visitas online de tu anuncio inmobiliario." },
+        { title: "Venta y Alquiler", desc: "Como agente API colegiada, gestiono la venta y el alquiler de tu propiedad de principio a fin." },
+      ],
+    },
+    beforeAfter: {
+      eyebrow: "Antes / Después",
+      title: "Desliza para descubrir la magia.",
+      sub: "Arrastra la barra central para comparar el antes y el después de una de nuestras transformaciones.",
+      before: "Antes",
+      after: "Después",
+    },
+    projects: {
+      eyebrow: "Proyectos",
+      title: "Espacios transformados.",
+      sub: "Una selección de propiedades preparadas para encontrar nuevos propietarios. Haz clic en cualquier imagen para ampliarla.",
+    },
+    reviews: { title: "5,0 en Google", sub: "Lo que dicen quienes ya han confiado en Clementine." },
+    faq: {
+      eyebrow: "Preguntas frecuentes",
+      title: "Resolvemos tus dudas.",
+      items: [
+        { q: "¿Qué es exactamente el home staging?", a: "El home staging es una técnica de marketing inmobiliario que prepara y embellece una vivienda para venderla o alquilarla más rápido y al mejor precio, despersonalizando y resaltando sus puntos fuertes." },
+        { q: "¿Cuánto cuesta un servicio de home staging?", a: "El presupuesto se adapta a cada proyecto: superficie, estado de la vivienda y objetivo comercial. Ofrecemos una primera visita y valoración totalmente gratuita y sin compromiso." },
+        { q: "¿En qué zona trabajáis?", a: "Operamos principalmente entre Vilanova i la Geltrú, Sitges, Canyelles y todo el Garraf. Para proyectos especiales, podemos desplazarnos a otras zonas de Cataluña." },
+        { q: "¿Cuánto tiempo tarda una intervención?", a: "Una consultoría express se realiza en una sola visita. Una puesta en escena completa suele estar lista entre 3 y 7 días, según el alcance de la transformación." },
+        { q: "¿Sois también agentes inmobiliarios?", a: "Sí, Clémentine es agente API colegiada y puede gestionar la venta o el alquiler de tu propiedad de principio a fin, integrando home staging, fotografía y comercialización." },
+      ],
+    },
+    contact: {
+      eyebrow: "Contacto",
+      title: "¿Listo para vender o alquilar?",
+      sub: "Cuéntame tu proyecto. La primera visita y diagnóstico son completamente gratuitos.",
+      hsLabel: "Home Staging",
+      reLabel: "Real Estate",
+    },
+    footer: "Home Staging & Real Estate",
+  },
+  en: {
+    nav: { realEstate: "Real Estate", services: "Services", projects: "Projects", about: "About me", reviews: "Reviews", faq: "FAQ", contact: "Contact" },
+    hero: {
+      eyebrow: "Home Staging · Real Estate · Garraf",
+      slogan: "Making Homes Bloom",
+      sub: "Real estate agency and home staging service between Vilanova i la Geltrú, Sitges and Canyelles. We support you at every stage: valuation, styling, photography and sale.",
+      whatsapp: "Chat on WhatsApp",
+      visit: "Free visit",
+      seeProjects: "See projects",
+    },
+    stats: [
+      { l: "Google rating" }, { l: "Verified reviews" },
+      { l: "Faster to sell" }, { l: "Personal attention" },
+    ],
+    about: {
+      eyebrow: "About me",
+      title: "Want to know more?",
+      body: [
+        "When I had the chance to step into the Paris fashion world I had always dreamed of as a child, I fell in love not only with fashion and Haute Couture but also with design and interiors. The link between fashion and interiors is very clear.",
+        "I spent over 20 years as an expert in creating and organising events, trade-fair stands, conventions, fashion shows and catalogue shootings for international brands, always weaving fashion together with decoration.",
+        "Today, as a professional home stager certified by The Home Staging School, I bring all my creative, adaptive and organisational skills to my clients. Detail-driven, I always look for harmony in spaces so that energy can flow freely.",
+        "When I walk into a home, I love discovering its strengths and imagining what can be done to make the rooms shine and feel good. With home staging I make a property attractive to its future buyer or tenant. My greatest reward is when a client falls in love with a home at first sight.",
+      ],
+    },
+    company: {
+      eyebrow: "An agency with an interior designer's eye",
+      title: "We sell, rent and elevate your home.",
+      p1: "I'm Clémentine, licensed API real estate agent and home staging specialist. I combine professional brokerage rigour with a unique sensitivity to elevate every property between Vilanova i la Geltrú, Sitges and Canyelles.",
+      p2: "Every property has a story. My job is to reveal it and sell it: with light, colour, furniture and a commercial strategy that emotionally connects with buyers.",
+      location: "Vilanova i la Geltrú · Sitges · Canyelles",
+    },
+    realEstate: {
+      eyebrow: "Real Estate · API Agent",
+      title: "Your trusted real estate agency in the Garraf.",
+      sub: "Beyond home staging, I manage the sale and rental of your property as a licensed agent. A single point of contact for the entire operation: prep, marketing and closing.",
+      cta: "Value my property",
+      pillars: [
+        { title: "Property sales", desc: "Realistic valuation, high-impact visual marketing and a network of qualified buyers." },
+        { title: "Long-term rentals", desc: "Tenant selection, contracts and hassle-free management for owners." },
+        { title: "Buyer advisory", desc: "We guide you through search, negotiation and signing — especially if it's your first purchase." },
+        { title: "Pricing strategy", desc: "Local Garraf market study to sell at the best price in the shortest time." },
+      ],
+    },
+    services: {
+      eyebrow: "Services",
+      title: "Everything your property needs.",
+      sub: "From the initial consultation to signing at the notary, I'm with you at every step.",
+      items: [
+        { title: "Full Home Staging", desc: "We transform each room to highlight your property's real potential and attract more buyers." },
+        { title: "Express Consulting", desc: "Visit and diagnosis with concrete recommendations to prepare your home before selling or renting." },
+        { title: "Photo Reportage", desc: "Professional photography that multiplies online views of your listing." },
+        { title: "Sale & Rental", desc: "As a licensed API agent, I manage the sale and rental of your property from start to finish." },
+      ],
+    },
+    beforeAfter: {
+      eyebrow: "Before / After",
+      title: "Slide to discover the magic.",
+      sub: "Drag the centre bar to compare the before and after of one of our transformations.",
+      before: "Before",
+      after: "After",
+    },
+    projects: {
+      eyebrow: "Projects",
+      title: "Transformed spaces.",
+      sub: "A selection of properties prepared to find new owners. Click any image to enlarge.",
+    },
+    reviews: { title: "5.0 on Google", sub: "What those who already trusted Clementine say." },
+    faq: {
+      eyebrow: "Frequently asked questions",
+      title: "Your questions answered.",
+      items: [
+        { q: "What exactly is home staging?", a: "Home staging is a real-estate marketing technique that prepares and beautifies a home to sell or rent it faster and at the best price, by depersonalising it and highlighting its strengths." },
+        { q: "How much does a home staging service cost?", a: "The budget is tailored to each project: size, condition and commercial goal. We offer a free, no-commitment first visit and valuation." },
+        { q: "What area do you cover?", a: "We work mainly across Vilanova i la Geltrú, Sitges, Canyelles and the whole Garraf region. For special projects, we can travel to other parts of Catalonia." },
+        { q: "How long does an intervention take?", a: "An express consultancy is done in a single visit. A full styling is usually ready in 3 to 7 days, depending on the scope of the transformation." },
+        { q: "Are you also a real estate agent?", a: "Yes — Clémentine is a licensed API agent and can handle the sale or rental of your property end-to-end, combining home staging, photography and marketing." },
+      ],
+    },
+    contact: {
+      eyebrow: "Contact",
+      title: "Ready to sell or rent?",
+      sub: "Tell me about your project. The first visit and diagnosis are completely free.",
+      hsLabel: "Home Staging",
+      reLabel: "Real Estate",
+    },
+    footer: "Home Staging & Real Estate",
+  },
+  fr: {
+    nav: { realEstate: "Real Estate", services: "Services", projects: "Projets", about: "À propos", reviews: "Avis", faq: "FAQ", contact: "Contact" },
+    hero: {
+      eyebrow: "Home Staging · Real Estate · Garraf",
+      slogan: "Making Homes Bloom",
+      sub: "Agence immobilière et service de home staging entre Vilanova i la Geltrú, Sitges et Canyelles. Nous vous accompagnons à chaque étape : estimation, mise en scène, photographie et vente.",
+      whatsapp: "Discuter sur WhatsApp",
+      visit: "Visite gratuite",
+      seeProjects: "Voir les projets",
+    },
+    stats: [
+      { l: "Note Google" }, { l: "Avis vérifiés" },
+      { l: "Plus rapide à vendre" }, { l: "Attention personnalisée" },
+    ],
+    about: {
+      eyebrow: "À propos",
+      title: "Envie d'en savoir plus ?",
+      body: [
+        "Quand j'ai eu la chance d'entrer dans le monde de la mode à Paris dont je rêvais petite, je ne suis pas seulement tombée amoureuse de la mode et de la Haute Couture, mais aussi du design et de la décoration. Le lien entre la mode et les intérieurs est très évident.",
+        "J'ai ainsi évolué pendant plus de 20 ans comme experte dans la création et l'organisation d'événements, de stands pour salons, conventions, rencontres, défilés, shootings catalogues pour différentes marques à l'international, en reliant toujours la mode à la décoration.",
+        "Aujourd'hui, en tant que home stager professionnelle diplômée de The Home Staging School, je mets toutes mes capacités de création, d'adaptation et d'organisation au service de mes clients. Très attentive aux détails, je cherche toujours l'harmonisation des espaces où les énergies peuvent circuler.",
+        "Quand j'entre dans une maison, j'adore en trouver les points forts et imaginer ce que l'on peut faire pour mettre les espaces en valeur et que l'on s'y sente bien. Avec le home staging, je rends la maison attractive au moment de la vendre ou de la louer à un futur client. Ma réussite, c'est quand un client tombe amoureux d'un bien au premier regard.",
+      ],
+    },
+    company: {
+      eyebrow: "Une agence avec un œil de décoratrice",
+      title: "Nous vendons, louons et sublimons votre bien.",
+      p1: "Je suis Clémentine, agent immobilier API et spécialiste en home staging. J'allie la rigueur de l'intermédiation professionnelle à une sensibilité unique pour sublimer chaque bien entre Vilanova i la Geltrú, Sitges et Canyelles.",
+      p2: "Chaque bien a une histoire. Mon travail est de la révéler et de la vendre : avec la lumière, la couleur, le mobilier et une stratégie commerciale qui touche les acheteurs.",
+      location: "Vilanova i la Geltrú · Sitges · Canyelles",
+    },
+    realEstate: {
+      eyebrow: "Real Estate · Agent API",
+      title: "Votre agence immobilière de confiance dans le Garraf.",
+      sub: "Au-delà du home staging, je gère la vente et la location de votre bien en tant qu'agent agréée. Une seule interlocutrice pour toute l'opération : préparation, marketing et signature.",
+      cta: "Estimer mon bien",
+      pillars: [
+        { title: "Vente de biens", desc: "Estimation réaliste, marketing visuel à fort impact et réseau d'acheteurs qualifiés." },
+        { title: "Location longue durée", desc: "Sélection des locataires, contrats et gestion sans soucis pour les propriétaires." },
+        { title: "Conseil aux acheteurs", desc: "Nous vous accompagnons dans la recherche, la négociation et la signature, surtout pour un premier achat." },
+        { title: "Stratégie de prix", desc: "Étude du marché local du Garraf pour vendre au meilleur prix dans les meilleurs délais." },
+      ],
+    },
+    services: {
+      eyebrow: "Services",
+      title: "Tout ce dont votre bien a besoin.",
+      sub: "De la première consultation à la signature chez le notaire, je vous accompagne à chaque étape.",
+      items: [
+        { title: "Home Staging complet", desc: "Nous transformons chaque pièce pour révéler le potentiel réel de votre bien et séduire plus d'acheteurs." },
+        { title: "Consulting express", desc: "Visite et diagnostic avec des recommandations concrètes pour préparer votre logement avant de le vendre ou de le louer." },
+        { title: "Reportage photo", desc: "Des photos professionnelles qui multiplient les visites en ligne de votre annonce." },
+        { title: "Vente et location", desc: "En tant qu'agent API agréée, je gère la vente et la location de votre bien du début à la fin." },
+      ],
+    },
+    beforeAfter: {
+      eyebrow: "Avant / Après",
+      title: "Faites glisser pour découvrir la magie.",
+      sub: "Faites glisser la barre centrale pour comparer l'avant et l'après d'une de nos transformations.",
+      before: "Avant",
+      after: "Après",
+    },
+    projects: {
+      eyebrow: "Projets",
+      title: "Espaces transformés.",
+      sub: "Une sélection de biens préparés pour trouver de nouveaux propriétaires. Cliquez sur une image pour l'agrandir.",
+    },
+    reviews: { title: "5,0 sur Google", sub: "Ce que disent celles et ceux qui ont déjà fait confiance à Clementine." },
+    faq: {
+      eyebrow: "Questions fréquentes",
+      title: "Vos questions, nos réponses.",
+      items: [
+        { q: "Qu'est-ce que le home staging exactement ?", a: "Le home staging est une technique de marketing immobilier qui prépare et embellit un logement pour le vendre ou le louer plus rapidement et au meilleur prix, en le dépersonnalisant et en mettant en valeur ses atouts." },
+        { q: "Combien coûte un service de home staging ?", a: "Le budget est adapté à chaque projet : surface, état du logement et objectif commercial. Nous offrons une première visite et estimation totalement gratuites et sans engagement." },
+        { q: "Dans quelle zone intervenez-vous ?", a: "Nous travaillons principalement entre Vilanova i la Geltrú, Sitges, Canyelles et tout le Garraf. Pour des projets spéciaux, nous pouvons nous déplacer ailleurs en Catalogne." },
+        { q: "Combien de temps dure une intervention ?", a: "Une consultation express se fait en une seule visite. Une mise en scène complète est généralement prête en 3 à 7 jours, selon l'ampleur de la transformation." },
+        { q: "Êtes-vous aussi agent immobilier ?", a: "Oui, Clémentine est agent API agréée et peut gérer la vente ou la location de votre bien de A à Z, en intégrant home staging, photographie et commercialisation." },
+      ],
+    },
+    contact: {
+      eyebrow: "Contact",
+      title: "Prêt à vendre ou à louer ?",
+      sub: "Parlez-moi de votre projet. La première visite et le diagnostic sont entièrement gratuits.",
+      hsLabel: "Home Staging",
+      reLabel: "Real Estate",
+    },
+    footer: "Home Staging & Real Estate",
+  },
+} as const;
+
+type Dict = typeof dict.es;
+const I18nCtx = createContext<{ lang: Lang; setLang: (l: Lang) => void; t: Dict }>({
+  lang: "es",
+  setLang: () => {},
+  t: dict.es,
+});
+const useT = () => useContext(I18nCtx);
+
+/* ---------- WhatsApp icon ---------- */
 function WhatsAppIcon({ className = "w-5 h-5" }: { className?: string }) {
   return (
     <svg viewBox="0 0 24 24" className={className} fill="currentColor" aria-hidden="true">
@@ -21,6 +314,7 @@ function WhatsAppIcon({ className = "w-5 h-5" }: { className?: string }) {
   );
 }
 
+/* ---------- Reveal ---------- */
 function useReveal<T extends HTMLElement>() {
   const ref = useRef<T | null>(null);
   const [visible, setVisible] = useState(false);
@@ -28,12 +322,7 @@ function useReveal<T extends HTMLElement>() {
     const el = ref.current;
     if (!el) return;
     const io = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setVisible(true);
-          io.disconnect();
-        }
-      },
+      ([entry]) => { if (entry.isIntersecting) { setVisible(true); io.disconnect(); } },
       { threshold: 0.15 },
     );
     io.observe(el);
@@ -45,11 +334,8 @@ function useReveal<T extends HTMLElement>() {
 function Reveal({ children, delay = 0, className = "" }: { children: React.ReactNode; delay?: number; className?: string }) {
   const { ref, visible } = useReveal<HTMLDivElement>();
   return (
-    <div
-      ref={ref}
-      style={{ transitionDelay: `${delay}ms` }}
-      className={`transition-all duration-700 ease-out ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"} ${className}`}
-    >
+    <div ref={ref} style={{ transitionDelay: `${delay}ms` }}
+      className={`transition-all duration-700 ease-out ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"} ${className}`}>
       {children}
     </div>
   );
@@ -75,57 +361,104 @@ function Counter({ to, suffix = "", duration = 1600, decimals = 0 }: { to: numbe
   return <span ref={ref}>{display}{suffix}</span>;
 }
 
-const reviews = [
-  {
-    name: "Justine Grebaut",
-    text: "Clémentine es, sin duda, una gran profesional muy implicada. Además de tomarse el tiempo para entender las expectativas y exigencias, con mucha paciencia, aporta una mirada nueva al sector inmobiliario gracias a su experiencia inigualable en home staging. Solo puedo recomendarla enormemente.",
-    role: "Local Guide · 17 reseñas",
-  },
-  {
-    name: "Verònica Rico",
-    text: "Clémentine es una mujer realmente entregada e impecable. Su gusto excepcional por la decoración interior es una baza considerable para la venta de nuestras casas y la puesta en valor de su elegancia. Un verdadero placer trabajar con ella.",
-    role: "Cliente",
-  },
-  {
-    name: "Sophie Corvaisier",
-    text: "Clémentine es una profesional increíblemente entregada que me ha sido de gran ayuda durante todo el proceso de venta. Tiene un talento excepcional para crear espacios cautivadores y demuestra una gran eficacia en su gestión. La recomiendo sin dudarlo.",
-    role: "Kretz Real Estate",
-  },
-];
+/* ---------- Language switcher ---------- */
+function LangSwitcher({ scrolled }: { scrolled: boolean }) {
+  const { lang, setLang } = useT();
+  const [open, setOpen] = useState(false);
+  const ref = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    const onClick = (e: MouseEvent) => {
+      if (ref.current && !ref.current.contains(e.target as Node)) setOpen(false);
+    };
+    document.addEventListener("click", onClick);
+    return () => document.removeEventListener("click", onClick);
+  }, []);
+  const current = LANGS.find((l) => l.code === lang)!;
+  return (
+    <div ref={ref} className="relative">
+      <button
+        onClick={() => setOpen((o) => !o)}
+        className={`inline-flex items-center gap-2 px-3 py-2 rounded-full text-sm border transition ${
+          scrolled ? "border-border text-foreground hover:bg-secondary" : "border-background/40 text-background hover:bg-background/10"
+        }`}
+        aria-label="Change language"
+      >
+        <Globe className="w-4 h-4" />
+        <span className="hidden sm:inline">{current.flag}</span>
+        <span className="uppercase text-xs tracking-wider font-medium">{current.code}</span>
+        <ChevronDown className={`w-3 h-3 transition ${open ? "rotate-180" : ""}`} />
+      </button>
+      {open && (
+        <div className="absolute right-0 mt-2 w-44 bg-card border border-border rounded-xl shadow-[var(--shadow-soft)] overflow-hidden animate-[fadeIn_.15s_ease-out] z-50">
+          {LANGS.map((l) => (
+            <button
+              key={l.code}
+              onClick={() => { setLang(l.code); setOpen(false); }}
+              className={`w-full flex items-center gap-3 px-4 py-2.5 text-sm text-left hover:bg-secondary transition ${
+                lang === l.code ? "bg-secondary text-primary font-medium" : "text-foreground"
+              }`}
+            >
+              <span className="text-base">{l.flag}</span>
+              <span>{l.label}</span>
+            </button>
+          ))}
+        </div>
+      )}
+    </div>
+  );
+}
 
-const services = [
-  { icon: Home, title: "Home Staging Completo", desc: "Transformamos cada estancia para destacar el potencial real de tu propiedad y atraer más compradores." },
-  { icon: Sparkles, title: "Consultoría Express", desc: "Visita y diagnóstico con recomendaciones concretas para preparar tu vivienda antes de venderla o alquilarla." },
-  { icon: Camera, title: "Reportaje Fotográfico", desc: "Fotografías profesionales que multiplican las visitas online de tu anuncio inmobiliario." },
-  { icon: Key, title: "Venta y Alquiler", desc: "Como agente API colegiada, gestiono la venta y el alquiler de tu propiedad de principio a fin." },
-];
-
+/* ---------- Nav ---------- */
 function Nav() {
+  const { t } = useT();
   const [scrolled, setScrolled] = useState(false);
+  const [mobileOpen, setMobileOpen] = useState(false);
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 40);
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
+  const links = [
+    { href: "#real-estate", label: t.nav.realEstate },
+    { href: "#sobre-mi", label: t.nav.about },
+    { href: "#servicios", label: t.nav.services },
+    { href: "#proyectos", label: t.nav.projects },
+    { href: "#faq", label: t.nav.faq },
+    { href: "#contacto", label: t.nav.contact },
+  ];
   return (
-    <nav className={`fixed top-0 left-0 right-0 z-30 px-6 lg:px-12 py-4 flex items-center justify-between transition-all duration-300 ${scrolled ? "bg-background/90 backdrop-blur-md shadow-[var(--shadow-soft)]" : "bg-transparent"}`}>
+    <nav className={`fixed top-0 left-0 right-0 z-40 px-6 lg:px-12 py-4 flex items-center justify-between transition-all duration-300 ${scrolled ? "bg-background/90 backdrop-blur-md shadow-[var(--shadow-soft)]" : "bg-transparent"}`}>
       <a href="#top" className="flex items-center gap-3">
-        <img src={logo} alt="Clementine Homes" className={`h-11 w-auto rounded-md p-1.5 transition ${scrolled ? "bg-transparent" : "bg-background/90"}`} />
+        <img src={logo} alt="Clementine Homes" className={`h-12 w-auto rounded-md p-1.5 transition ${scrolled ? "bg-transparent" : "bg-background/95"}`} />
       </a>
-      <div className={`hidden md:flex items-center gap-8 text-sm transition ${scrolled ? "text-foreground" : "text-background/90"}`}>
-        <a href="#real-estate" className="hover:text-primary transition">Real Estate</a>
-        <a href="#servicios" className="hover:text-primary transition">Servicios</a>
-        <a href="#proyectos" className="hover:text-primary transition">Proyectos</a>
-        <a href="#opiniones" className="hover:text-primary transition">Opiniones</a>
-        <a href="#contacto" className="hover:text-primary transition">Contacto</a>
+      <div className={`hidden lg:flex items-center gap-7 text-sm transition ${scrolled ? "text-foreground" : "text-background/90"}`}>
+        {links.map((l) => (
+          <a key={l.href} href={l.href} className="hover:text-primary transition">{l.label}</a>
+        ))}
       </div>
-      <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" className="hidden md:inline-flex items-center gap-2 text-sm bg-primary text-primary-foreground px-4 py-2 rounded-full hover:opacity-90 transition">
-        <WhatsAppIcon className="w-4 h-4" /> WhatsApp
-      </a>
+      <div className="flex items-center gap-2">
+        <LangSwitcher scrolled={scrolled} />
+        <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" className="hidden md:inline-flex items-center gap-2 text-sm bg-primary text-primary-foreground px-4 py-2 rounded-full hover:opacity-90 transition">
+          <WhatsAppIcon className="w-4 h-4" /> WhatsApp
+        </a>
+        <button onClick={() => setMobileOpen((o) => !o)} className={`lg:hidden p-2 rounded-md transition ${scrolled ? "text-foreground hover:bg-secondary" : "text-background hover:bg-background/10"}`} aria-label="Menu">
+          <Menu className="w-5 h-5" />
+        </button>
+      </div>
+      {mobileOpen && (
+        <div className="absolute top-full left-0 right-0 bg-background border-t border-border shadow-[var(--shadow-soft)] lg:hidden">
+          <div className="flex flex-col py-2">
+            {links.map((l) => (
+              <a key={l.href} href={l.href} onClick={() => setMobileOpen(false)} className="px-6 py-3 text-sm text-foreground hover:bg-secondary">{l.label}</a>
+            ))}
+          </div>
+        </div>
+      )}
     </nav>
   );
 }
 
+/* ---------- Lightbox ---------- */
 type GalleryItem = { img: string; alt: string; tag: string; title: string; desc: string };
 
 function Lightbox({ items, index, onClose, onPrev, onNext }: { items: GalleryItem[]; index: number | null; onClose: () => void; onPrev: () => void; onNext: () => void }) {
@@ -138,25 +471,15 @@ function Lightbox({ items, index, onClose, onPrev, onNext }: { items: GalleryIte
     };
     document.body.style.overflow = "hidden";
     window.addEventListener("keydown", onKey);
-    return () => {
-      document.body.style.overflow = "";
-      window.removeEventListener("keydown", onKey);
-    };
+    return () => { document.body.style.overflow = ""; window.removeEventListener("keydown", onKey); };
   }, [index, onClose, onPrev, onNext]);
-
   if (index === null) return null;
   const item = items[index];
   return (
     <div className="fixed inset-0 z-[60] bg-foreground/95 backdrop-blur-sm flex items-center justify-center p-4 md:p-8 animate-[fadeIn_.25s_ease-out]">
-      <button onClick={onClose} aria-label="Cerrar" className="absolute top-5 right-5 w-11 h-11 rounded-full bg-background/10 text-background hover:bg-background/20 flex items-center justify-center transition">
-        <X className="w-5 h-5" />
-      </button>
-      <button onClick={onPrev} aria-label="Anterior" className="absolute left-3 md:left-6 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-background/10 text-background hover:bg-background/20 flex items-center justify-center transition">
-        <ChevronLeft className="w-6 h-6" />
-      </button>
-      <button onClick={onNext} aria-label="Siguiente" className="absolute right-3 md:right-6 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-background/10 text-background hover:bg-background/20 flex items-center justify-center transition">
-        <ChevronRight className="w-6 h-6" />
-      </button>
+      <button onClick={onClose} aria-label="Close" className="absolute top-5 right-5 w-11 h-11 rounded-full bg-background/10 text-background hover:bg-background/20 flex items-center justify-center transition"><X className="w-5 h-5" /></button>
+      <button onClick={onPrev} aria-label="Prev" className="absolute left-3 md:left-6 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-background/10 text-background hover:bg-background/20 flex items-center justify-center transition"><ChevronLeft className="w-6 h-6" /></button>
+      <button onClick={onNext} aria-label="Next" className="absolute right-3 md:right-6 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-background/10 text-background hover:bg-background/20 flex items-center justify-center transition"><ChevronRight className="w-6 h-6" /></button>
       <div className="max-w-6xl w-full max-h-full flex flex-col items-center gap-4" onClick={(e) => e.stopPropagation()}>
         <img key={item.img + index} src={item.img} alt={item.alt} className="max-h-[78vh] w-auto max-w-full rounded-xl shadow-2xl object-contain animate-[fadeIn_.4s_ease-out]" />
         <div className="text-center text-background max-w-2xl">
@@ -166,12 +489,12 @@ function Lightbox({ items, index, onClose, onPrev, onNext }: { items: GalleryIte
           <div className="text-xs opacity-60 mt-4">{index + 1} / {items.length}</div>
         </div>
       </div>
-      <button className="absolute inset-0 -z-10" aria-label="Cerrar fondo" onClick={onClose} />
-      <style>{`@keyframes fadeIn { from { opacity: 0; transform: scale(.98); } to { opacity: 1; transform: scale(1); } }`}</style>
+      <button className="absolute inset-0 -z-10" aria-label="Close background" onClick={onClose} />
     </div>
   );
 }
 
+/* ---------- ScrollProgress ---------- */
 function ScrollProgress() {
   const [p, setP] = useState(0);
   useEffect(() => {
@@ -191,37 +514,39 @@ function ScrollProgress() {
   );
 }
 
+/* ---------- Hero ---------- */
 function Hero() {
+  const { t } = useT();
   return (
     <header id="top" className="relative min-h-screen flex items-end overflow-hidden">
-      <img src={pool} alt="Villa con piscina al atardecer" className="absolute inset-0 w-full h-full object-cover scale-105 animate-[heroZoom_18s_ease-out_forwards]" />
-      <div className="absolute inset-0 bg-gradient-to-b from-foreground/50 via-foreground/20 to-foreground/85" />
+      <img src={hero} alt="Interior elegante" className="absolute inset-0 w-full h-full object-cover scale-105 animate-[heroZoom_18s_ease-out_forwards]" />
+      <div className="absolute inset-0 bg-gradient-to-b from-foreground/40 via-foreground/15 to-foreground/85" />
       <Nav />
       <div className="relative z-10 px-6 lg:px-12 pb-20 lg:pb-28 max-w-5xl">
         <span className="inline-flex items-center gap-2 text-background/90 text-xs uppercase tracking-[0.25em] mb-6 opacity-0 animate-[fadeUp_0.8s_0.1s_ease-out_forwards]">
-          <span className="h-px w-10 bg-background/60" /> Home Staging · Real Estate · Garraf
+          <span className="h-px w-10 bg-background/60" /> {t.hero.eyebrow}
         </span>
-        <h1 className="font-display text-background text-5xl md:text-7xl lg:text-8xl leading-[1.05] mb-6">
-          <span className="block opacity-0 animate-[fadeUp_0.9s_0.25s_ease-out_forwards]">Vendemos, alquilamos</span>
-          <span className="block opacity-0 animate-[fadeUp_0.9s_0.45s_ease-out_forwards]">y realzamos tu hogar.</span>
+        <h1 className="font-display italic text-background text-5xl md:text-7xl lg:text-[8rem] leading-[1.02] mb-6 opacity-0 animate-[fadeUp_0.9s_0.25s_ease-out_forwards]">
+          {t.hero.slogan}
         </h1>
-        <p className="text-background/90 text-lg md:text-xl max-w-2xl mb-10 leading-relaxed opacity-0 animate-[fadeUp_0.9s_0.65s_ease-out_forwards]">
-          Agencia inmobiliaria y servicio de home staging entre Vilanova i la Geltrú, Sitges y Canyelles. Te acompañamos en cada etapa: valoración, preparación, fotografía y venta.
+        <p className="text-background/90 text-lg md:text-xl max-w-2xl mb-10 leading-relaxed opacity-0 animate-[fadeUp_0.9s_0.55s_ease-out_forwards]">
+          {t.hero.sub}
         </p>
-        <div className="flex flex-wrap gap-4 opacity-0 animate-[fadeUp_0.9s_0.85s_ease-out_forwards]">
+        <div className="flex flex-wrap gap-4 opacity-0 animate-[fadeUp_0.9s_0.75s_ease-out_forwards]">
           <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 bg-[#25D366] text-white px-7 py-4 rounded-full font-medium hover:scale-[1.03] active:scale-100 transition shadow-[var(--shadow-soft)]">
-            <WhatsAppIcon className="w-5 h-5" /> Hablar por WhatsApp
+            <WhatsAppIcon className="w-5 h-5" /> {t.hero.whatsapp}
           </a>
           <a href="#contacto" className="inline-flex items-center gap-2 bg-primary text-primary-foreground px-7 py-4 rounded-full font-medium hover:scale-[1.03] active:scale-100 transition shadow-[var(--shadow-soft)]">
-            Visita gratuita <ArrowRight className="w-4 h-4" />
+            {t.hero.visit} <ArrowRight className="w-4 h-4" />
           </a>
           <a href="#proyectos" className="inline-flex items-center gap-2 text-background border border-background/40 px-7 py-4 rounded-full font-medium hover:bg-background/10 transition">
-            Ver proyectos
+            {t.hero.seeProjects}
           </a>
         </div>
       </div>
       <style>{`
         @keyframes fadeUp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
         @keyframes heroZoom { from { transform: scale(1.15); } to { transform: scale(1.02); } }
         @keyframes pulseRing { 0% { box-shadow: 0 0 0 0 rgba(37,211,102,.55); } 70% { box-shadow: 0 0 0 18px rgba(37,211,102,0); } 100% { box-shadow: 0 0 0 0 rgba(37,211,102,0); } }
       `}</style>
@@ -229,22 +554,24 @@ function Hero() {
   );
 }
 
+/* ---------- Stats ---------- */
 function Stats() {
-  const stats = [
-    { v: 5, suffix: "", l: "Valoración Google", decimals: 1 },
-    { v: 10, suffix: "+", l: "Reseñas verificadas", decimals: 0 },
-    { v: 3, suffix: "x", l: "Más rápido en venderse", decimals: 0 },
-    { v: 100, suffix: "%", l: "Atención personalizada", decimals: 0 },
+  const { t } = useT();
+  const values = [
+    { v: 5, suffix: "", decimals: 1 },
+    { v: 10, suffix: "+", decimals: 0 },
+    { v: 3, suffix: "x", decimals: 0 },
+    { v: 100, suffix: "%", decimals: 0 },
   ];
   return (
     <section className="bg-background py-16 px-6 lg:px-12">
       <div className="max-w-6xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
-        {stats.map((s, i) => (
-          <Reveal key={s.l} delay={i * 80}>
+        {values.map((s, i) => (
+          <Reveal key={i} delay={i * 80}>
             <div className="font-display text-4xl md:text-5xl text-primary mb-2">
               <Counter to={s.v} suffix={s.suffix} decimals={s.decimals} />
             </div>
-            <div className="text-sm text-muted-foreground uppercase tracking-wider">{s.l}</div>
+            <div className="text-sm text-muted-foreground uppercase tracking-wider">{t.stats[i].l}</div>
           </Reveal>
         ))}
       </div>
@@ -252,33 +579,69 @@ function Stats() {
   );
 }
 
-function About() {
+/* ---------- About founder ---------- */
+function AboutFounder() {
+  const { t } = useT();
+  return (
+    <section id="sobre-mi" className="py-24 px-6 lg:px-12 bg-background">
+      <div className="max-w-6xl mx-auto grid lg:grid-cols-12 gap-12 items-center">
+        <Reveal className="lg:col-span-5">
+          <div className="relative">
+            <div className="aspect-[4/5] rounded-2xl overflow-hidden bg-secondary shadow-[var(--shadow-soft)] relative">
+              <img src={bedroom} alt="Clémentine Lanchier" className="absolute inset-0 w-full h-full object-cover" />
+              <div className="absolute inset-0 bg-gradient-to-t from-foreground/40 via-transparent to-transparent" />
+              <div className="absolute bottom-5 left-5 right-5 text-background">
+                <div className="text-xs uppercase tracking-[0.25em] opacity-80 mb-1">Clémentine Lanchier</div>
+                <div className="font-display text-2xl">Home Stager & Agente API</div>
+              </div>
+            </div>
+            <div className="absolute -top-4 -left-4 w-24 h-24 rounded-full bg-primary/15 blur-2xl -z-0" />
+            <div className="absolute -bottom-6 -right-6 bg-background border border-border p-5 rounded-2xl shadow-[var(--shadow-soft)] hidden md:flex items-center gap-3">
+              <img src={logo} alt="" className="w-10 h-10 object-contain" />
+              <div className="text-xs">
+                <div className="font-display text-base">The Home Staging School</div>
+                <div className="text-muted-foreground">Certified · API agent</div>
+              </div>
+            </div>
+          </div>
+        </Reveal>
+        <Reveal delay={120} className="lg:col-span-7">
+          <span className="text-xs uppercase tracking-[0.25em] text-primary mb-4 block">{t.about.eyebrow}</span>
+          <h2 className="text-4xl md:text-5xl mb-6 italic font-display">{t.about.title}</h2>
+          <div className="space-y-4 text-muted-foreground leading-relaxed">
+            {t.about.body.map((p, i) => <p key={i}>{p}</p>)}
+          </div>
+        </Reveal>
+      </div>
+    </section>
+  );
+}
+
+/* ---------- Company short ---------- */
+function Company() {
+  const { t } = useT();
   return (
     <section className="py-24 px-6 lg:px-12 bg-secondary">
       <div className="max-w-6xl mx-auto grid lg:grid-cols-2 gap-16 items-center">
         <Reveal>
           <div className="relative group">
-            <img src={bedroom} alt="Dormitorio luminoso con vista a terraza" className="rounded-2xl shadow-[var(--shadow-soft)] w-full transition duration-700 group-hover:scale-[1.02]" />
+            <img src={hero} alt="Interior" className="rounded-2xl shadow-[var(--shadow-soft)] w-full transition duration-700 group-hover:scale-[1.02]" />
             <div className="absolute -bottom-6 -right-6 bg-background p-6 rounded-2xl shadow-[var(--shadow-soft)] hidden md:block">
               <div className="flex items-center gap-1 text-primary mb-1">
                 {[...Array(5)].map((_, i) => <Star key={i} className="w-4 h-4 fill-current" />)}
               </div>
-              <div className="text-xs text-muted-foreground">5,0 en Google · 10 reseñas</div>
+              <div className="text-xs text-muted-foreground">5,0 · Google</div>
             </div>
           </div>
         </Reveal>
         <Reveal delay={120}>
           <div>
-            <span className="text-xs uppercase tracking-[0.25em] text-primary mb-4 block">Sobre Clementine</span>
-            <h2 className="text-4xl md:text-5xl mb-6">Una agencia con mirada de interiorista.</h2>
-            <p className="text-muted-foreground leading-relaxed mb-4">
-              Soy Clémentine, agente inmobiliaria API y especialista en home staging. Combino el rigor de la intermediación profesional con una sensibilidad única para realzar cada propiedad entre Vilanova i la Geltrú, Sitges y Canyelles.
-            </p>
-            <p className="text-muted-foreground leading-relaxed mb-8">
-              Cada propiedad tiene una historia. Mi trabajo es revelarla y venderla: con luz, color, mobiliario y una estrategia comercial que conecta emocionalmente con los compradores.
-            </p>
+            <span className="text-xs uppercase tracking-[0.25em] text-primary mb-4 block">{t.company.eyebrow}</span>
+            <h2 className="text-4xl md:text-5xl mb-6">{t.company.title}</h2>
+            <p className="text-muted-foreground leading-relaxed mb-4">{t.company.p1}</p>
+            <p className="text-muted-foreground leading-relaxed mb-8">{t.company.p2}</p>
             <div className="flex items-center gap-2 text-sm text-foreground">
-              <MapPin className="w-4 h-4 text-primary" /> Vilanova i la Geltrú · Sitges · Canyelles
+              <MapPin className="w-4 h-4 text-primary" /> {t.company.location}
             </div>
           </div>
         </Reveal>
@@ -287,42 +650,40 @@ function About() {
   );
 }
 
+/* ---------- Real estate ---------- */
 function RealEstate() {
-  const pillars = [
-    { icon: Building2, title: "Venta de propiedades", desc: "Valoración realista, marketing visual de alto impacto y red de compradores cualificados." },
-    { icon: Key, title: "Alquiler de larga estancia", desc: "Selección de inquilinos, contratos y gestión sin complicaciones para propietarios." },
-    { icon: Handshake, title: "Asesoramiento al comprador", desc: "Te acompañamos en la búsqueda, negociación y firma, sobre todo si es tu primera compra." },
-    { icon: TrendingUp, title: "Estrategia de precio", desc: "Estudio del mercado local del Garraf para vender al mejor precio en el menor tiempo." },
-  ];
+  const { t } = useT();
+  const icons = [Building2, Key, Handshake, TrendingUp];
   return (
     <section id="real-estate" className="py-24 px-6 lg:px-12">
       <div className="max-w-6xl mx-auto">
         <Reveal>
           <div className="max-w-2xl mb-16">
-            <span className="text-xs uppercase tracking-[0.25em] text-primary mb-4 block">Real Estate · Agente API</span>
-            <h2 className="text-4xl md:text-5xl mb-4">Tu agencia inmobiliaria de confianza en el Garraf.</h2>
-            <p className="text-muted-foreground text-lg">
-              Más allá del home staging, gestiono la venta y el alquiler de tu propiedad como agente colegiada. Una sola interlocutora para toda la operación: preparación, marketing y cierre.
-            </p>
+            <span className="text-xs uppercase tracking-[0.25em] text-primary mb-4 block">{t.realEstate.eyebrow}</span>
+            <h2 className="text-4xl md:text-5xl mb-4">{t.realEstate.title}</h2>
+            <p className="text-muted-foreground text-lg">{t.realEstate.sub}</p>
           </div>
         </Reveal>
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {pillars.map((p, i) => (
-            <Reveal key={p.title} delay={i * 80}>
-              <div className="h-full bg-card p-8 rounded-2xl border border-border hover:-translate-y-1 hover:shadow-[var(--shadow-soft)] transition-all duration-300 group">
-                <div className="w-12 h-12 rounded-full bg-accent flex items-center justify-center mb-6 text-primary group-hover:bg-primary group-hover:text-primary-foreground transition">
-                  <p.icon className="w-5 h-5" />
+          {t.realEstate.pillars.map((p, i) => {
+            const Icon = icons[i];
+            return (
+              <Reveal key={p.title} delay={i * 80}>
+                <div className="h-full bg-card p-8 rounded-2xl border border-border hover:-translate-y-1 hover:shadow-[var(--shadow-soft)] transition-all duration-300 group">
+                  <div className="w-12 h-12 rounded-full bg-accent flex items-center justify-center mb-6 text-primary group-hover:bg-primary group-hover:text-primary-foreground transition">
+                    <Icon className="w-5 h-5" />
+                  </div>
+                  <h3 className="text-xl mb-3">{p.title}</h3>
+                  <p className="text-muted-foreground text-sm leading-relaxed">{p.desc}</p>
                 </div>
-                <h3 className="text-xl mb-3">{p.title}</h3>
-                <p className="text-muted-foreground text-sm leading-relaxed">{p.desc}</p>
-              </div>
-            </Reveal>
-          ))}
+              </Reveal>
+            );
+          })}
         </div>
         <Reveal delay={200}>
           <div className="mt-12 flex flex-wrap gap-4">
             <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 bg-[#25D366] text-white px-7 py-4 rounded-full font-medium hover:scale-[1.03] transition">
-              <WhatsAppIcon className="w-5 h-5" /> Valorar mi propiedad
+              <WhatsAppIcon className="w-5 h-5" /> {t.realEstate.cta}
             </a>
             <a href="mailto:realestate@clementinehomes.es" className="inline-flex items-center gap-2 border border-border px-7 py-4 rounded-full font-medium hover:bg-secondary transition">
               <Mail className="w-4 h-4" /> realestate@clementinehomes.es
@@ -334,78 +695,144 @@ function RealEstate() {
   );
 }
 
+/* ---------- Services ---------- */
 function Services() {
+  const { t } = useT();
+  const icons = [Home, Sparkles, Camera, Key];
   return (
     <section id="servicios" className="py-24 px-6 lg:px-12 bg-secondary">
       <div className="max-w-6xl mx-auto">
         <Reveal>
           <div className="max-w-2xl mb-16">
-            <span className="text-xs uppercase tracking-[0.25em] text-primary mb-4 block">Servicios</span>
-            <h2 className="text-4xl md:text-5xl mb-4">Todo lo que tu propiedad necesita.</h2>
-            <p className="text-muted-foreground text-lg">De la consultoría inicial a la firma ante notario, te acompaño en cada paso.</p>
+            <span className="text-xs uppercase tracking-[0.25em] text-primary mb-4 block">{t.services.eyebrow}</span>
+            <h2 className="text-4xl md:text-5xl mb-4">{t.services.title}</h2>
+            <p className="text-muted-foreground text-lg">{t.services.sub}</p>
           </div>
         </Reveal>
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {services.map((s, i) => (
-            <Reveal key={s.title} delay={i * 80}>
-              <div className="h-full bg-card p-8 rounded-2xl border border-border hover:-translate-y-1 hover:shadow-[var(--shadow-soft)] transition-all duration-300 group">
-                <div className="w-12 h-12 rounded-full bg-accent flex items-center justify-center mb-6 text-primary group-hover:bg-primary group-hover:text-primary-foreground transition">
-                  <s.icon className="w-5 h-5" />
+          {t.services.items.map((s, i) => {
+            const Icon = icons[i];
+            return (
+              <Reveal key={s.title} delay={i * 80}>
+                <div className="h-full bg-card p-8 rounded-2xl border border-border hover:-translate-y-1 hover:shadow-[var(--shadow-soft)] transition-all duration-300 group">
+                  <div className="w-12 h-12 rounded-full bg-accent flex items-center justify-center mb-6 text-primary group-hover:bg-primary group-hover:text-primary-foreground transition">
+                    <Icon className="w-5 h-5" />
+                  </div>
+                  <h3 className="text-xl mb-3">{s.title}</h3>
+                  <p className="text-muted-foreground text-sm leading-relaxed">{s.desc}</p>
                 </div>
-                <h3 className="text-xl mb-3">{s.title}</h3>
-                <p className="text-muted-foreground text-sm leading-relaxed">{s.desc}</p>
-              </div>
-            </Reveal>
-          ))}
+              </Reveal>
+            );
+          })}
         </div>
       </div>
     </section>
   );
 }
 
+/* ---------- Before / After slider ---------- */
+function BeforeAfter() {
+  const { t } = useT();
+  const [pos, setPos] = useState(50);
+  const dragging = useRef(false);
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  const updateFromClientX = (clientX: number) => {
+    const el = containerRef.current;
+    if (!el) return;
+    const rect = el.getBoundingClientRect();
+    const x = ((clientX - rect.left) / rect.width) * 100;
+    setPos(Math.max(0, Math.min(100, x)));
+  };
+
+  useEffect(() => {
+    const onMove = (e: MouseEvent | TouchEvent) => {
+      if (!dragging.current) return;
+      const cx = "touches" in e ? e.touches[0].clientX : (e as MouseEvent).clientX;
+      updateFromClientX(cx);
+    };
+    const onUp = () => { dragging.current = false; };
+    window.addEventListener("mousemove", onMove);
+    window.addEventListener("touchmove", onMove, { passive: true });
+    window.addEventListener("mouseup", onUp);
+    window.addEventListener("touchend", onUp);
+    return () => {
+      window.removeEventListener("mousemove", onMove);
+      window.removeEventListener("touchmove", onMove);
+      window.removeEventListener("mouseup", onUp);
+      window.removeEventListener("touchend", onUp);
+    };
+  }, []);
+
+  return (
+    <section className="py-24 px-6 lg:px-12 bg-background">
+      <div className="max-w-6xl mx-auto">
+        <Reveal>
+          <div className="max-w-2xl mb-12">
+            <span className="text-xs uppercase tracking-[0.25em] text-primary mb-4 block">{t.beforeAfter.eyebrow}</span>
+            <h2 className="text-4xl md:text-5xl mb-4">{t.beforeAfter.title}</h2>
+            <p className="text-muted-foreground text-lg">{t.beforeAfter.sub}</p>
+          </div>
+        </Reveal>
+        <Reveal delay={120}>
+          <div
+            ref={containerRef}
+            className="relative w-full aspect-[16/10] rounded-2xl overflow-hidden shadow-[var(--shadow-soft)] select-none cursor-ew-resize bg-secondary"
+            onMouseDown={(e) => { dragging.current = true; updateFromClientX(e.clientX); }}
+            onTouchStart={(e) => { dragging.current = true; updateFromClientX(e.touches[0].clientX); }}
+          >
+            <img src={kitchen2} alt={t.beforeAfter.before} className="absolute inset-0 w-full h-full object-cover" draggable={false} />
+            <div className="absolute top-4 left-4 bg-foreground/70 text-background text-xs uppercase tracking-[0.25em] px-3 py-1.5 rounded-full backdrop-blur">
+              {t.beforeAfter.before}
+            </div>
+            <div className="absolute inset-0 overflow-hidden" style={{ clipPath: `inset(0 0 0 ${pos}%)` }}>
+              <img src={kitchen1} alt={t.beforeAfter.after} className="absolute inset-0 w-full h-full object-cover" draggable={false} />
+              <div className="absolute top-4 right-4 bg-primary text-primary-foreground text-xs uppercase tracking-[0.25em] px-3 py-1.5 rounded-full">
+                {t.beforeAfter.after}
+              </div>
+            </div>
+            <div className="absolute top-0 bottom-0 w-px bg-background pointer-events-none" style={{ left: `${pos}%` }}>
+              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-background border-2 border-primary flex items-center justify-center shadow-lg pointer-events-auto">
+                <MoveHorizontal className="w-5 h-5 text-primary" />
+              </div>
+            </div>
+          </div>
+        </Reveal>
+      </div>
+    </section>
+  );
+}
+
+/* ---------- Projects gallery ---------- */
 function Projects() {
+  const { t } = useT();
   const items: GalleryItem[] = [
-    { img: kitchen1, alt: "Cocina mediterránea con isla", tag: "Casa rural · Canyelles", title: "Cocina abierta con alma", desc: "Una isla central que convierte la cocina en el corazón social de la casa. Materiales cálidos y luz natural para acercar al comprador a su nueva vida." },
-    { img: kitchen2, alt: "Cocina moderna minimalista", tag: "Apartamento · Vilanova", title: "Líneas limpias, luz natural", desc: "Paleta neutra y mobiliario depurado para potenciar amplitud y luminosidad. Resultado: visitas multiplicadas en pocos días." },
-    { img: bedroom, alt: "Dormitorio con terraza", tag: "Ático · Sitges", title: "Serenidad mediterránea", desc: "Textiles naturales y una paleta serena que invitan al descanso. La terraza se integra como una extensión del dormitorio." },
-    { img: pool, alt: "Villa con piscina al atardecer", tag: "Villa · Garraf", title: "Atardecer junto al mar", desc: "Puesta en escena exterior pensada para fotografía: mobiliario, iluminación y composición que enamoran a primera vista." },
-    { img: kitchen1, alt: "Detalle cocina", tag: "Detalle · Canyelles", title: "El detalle marca la venta", desc: "Pequeños gestos —vajilla, plantas, textiles— que humanizan el espacio y conectan emocionalmente." },
-    { img: bedroom, alt: "Suite principal", tag: "Suite · Sitges", title: "Suite lista para enamorar", desc: "Una propuesta editorial: cama vestida, mesilla curada y luces cálidas para una foto principal irresistible." },
+    { img: kitchen1, alt: "Cocina", tag: "Canyelles", title: "Cocina abierta con alma", desc: "Materiales cálidos y luz natural." },
+    { img: kitchen2, alt: "Cocina", tag: "Vilanova", title: "Líneas limpias", desc: "Paleta neutra y mobiliario depurado." },
+    { img: bedroom, alt: "Dormitorio", tag: "Sitges", title: "Serenidad mediterránea", desc: "Textiles naturales y paleta serena." },
+    { img: pool, alt: "Piscina", tag: "Garraf", title: "Atardecer junto al mar", desc: "Puesta en escena exterior." },
+    { img: hero, alt: "Salón", tag: "Sitges", title: "Detalles que enamoran", desc: "Composición curada para fotografía." },
+    { img: bedroom, alt: "Suite", tag: "Sitges", title: "Suite editorial", desc: "Cama vestida y luces cálidas." },
   ];
   const [open, setOpen] = useState<number | null>(null);
-  const layout = [
-    "md:col-span-2 md:row-span-2",
-    "md:col-span-2",
-    "",
-    "",
-    "md:col-span-2",
-    "",
-  ];
+  const layout = ["md:col-span-2 md:row-span-2", "md:col-span-2", "", "", "md:col-span-2", ""];
   return (
     <section id="proyectos" className="py-24 px-6 lg:px-12">
       <div className="max-w-6xl mx-auto">
         <Reveal>
           <div className="flex items-end justify-between mb-12 flex-wrap gap-4">
             <div>
-              <span className="text-xs uppercase tracking-[0.25em] text-primary mb-4 block">Proyectos</span>
-              <h2 className="text-4xl md:text-5xl">Espacios transformados.</h2>
+              <span className="text-xs uppercase tracking-[0.25em] text-primary mb-4 block">{t.projects.eyebrow}</span>
+              <h2 className="text-4xl md:text-5xl">{t.projects.title}</h2>
             </div>
-            <p className="text-muted-foreground max-w-md">Una selección de propiedades preparadas para encontrar nuevos propietarios. Haz clic en cualquier imagen para ampliarla.</p>
+            <p className="text-muted-foreground max-w-md">{t.projects.sub}</p>
           </div>
         </Reveal>
         <div className="grid grid-cols-1 md:grid-cols-4 auto-rows-[220px] md:auto-rows-[240px] gap-4">
           {items.map((it, i) => (
             <Reveal key={i} delay={i * 70} className={layout[i] ?? ""}>
-              <button
-                type="button"
-                onClick={() => setOpen(i)}
-                className="block relative rounded-2xl overflow-hidden group h-full w-full text-left focus:outline-none focus:ring-2 focus:ring-primary"
-              >
-                <img
-                  src={it.img}
-                  alt={it.alt}
-                  className="w-full h-full object-cover group-hover:scale-110 transition duration-[1200ms] ease-out"
-                />
+              <button type="button" onClick={() => setOpen(i)} className="block relative rounded-2xl overflow-hidden group h-full w-full text-left focus:outline-none focus:ring-2 focus:ring-primary">
+                <img src={it.img} alt={it.alt} className="w-full h-full object-cover group-hover:scale-110 transition duration-[1200ms] ease-out" />
                 <div className="absolute inset-0 bg-foreground/0 group-hover:bg-foreground/20 transition duration-500" />
                 <div className="absolute top-3 right-3 w-9 h-9 rounded-full bg-background/80 backdrop-blur text-foreground flex items-center justify-center opacity-0 group-hover:opacity-100 translate-y-1 group-hover:translate-y-0 transition duration-300">
                   <ZoomIn className="w-4 h-4" />
@@ -421,9 +848,7 @@ function Projects() {
             </Reveal>
           ))}
         </div>
-        <Lightbox
-          items={items}
-          index={open}
+        <Lightbox items={items} index={open}
           onClose={() => setOpen(null)}
           onPrev={() => setOpen((i) => (i === null ? null : (i - 1 + items.length) % items.length))}
           onNext={() => setOpen((i) => (i === null ? null : (i + 1) % items.length))}
@@ -433,7 +858,15 @@ function Projects() {
   );
 }
 
+/* ---------- Reviews ---------- */
+const reviews = [
+  { name: "Justine Grebaut", text: "Clémentine es, sin duda, una gran profesional muy implicada. Además de tomarse el tiempo para entender las expectativas y exigencias, con mucha paciencia, aporta una mirada nueva al sector inmobiliario gracias a su experiencia inigualable en home staging. Solo puedo recomendarla enormemente.", role: "Local Guide · 17 reseñas" },
+  { name: "Verònica Rico", text: "Clémentine es una mujer realmente entregada e impecable. Su gusto excepcional por la decoración interior es una baza considerable para la venta de nuestras casas y la puesta en valor de su elegancia.", role: "Cliente" },
+  { name: "Sophie Corvaisier", text: "Clémentine es una profesional increíblemente entregada que me ha sido de gran ayuda durante todo el proceso de venta. Tiene un talento excepcional para crear espacios cautivadores y demuestra una gran eficacia en su gestión. La recomiendo sin dudarlo.", role: "Kretz Real Estate" },
+];
+
 function Reviews() {
+  const { t } = useT();
   return (
     <section id="opiniones" className="py-24 px-6 lg:px-12 bg-secondary">
       <div className="max-w-6xl mx-auto">
@@ -442,8 +875,8 @@ function Reviews() {
             <div className="flex items-center justify-center gap-1 text-primary mb-4">
               {[...Array(5)].map((_, i) => <Star key={i} className="w-5 h-5 fill-current" />)}
             </div>
-            <h2 className="text-4xl md:text-5xl mb-3">5,0 en Google</h2>
-            <p className="text-muted-foreground">Lo que dicen quienes ya han confiado en Clementine.</p>
+            <h2 className="text-4xl md:text-5xl mb-3">{t.reviews.title}</h2>
+            <p className="text-muted-foreground">{t.reviews.sub}</p>
           </div>
         </Reveal>
         <div className="grid md:grid-cols-3 gap-6">
@@ -467,17 +900,48 @@ function Reviews() {
   );
 }
 
+/* ---------- FAQ ---------- */
+function FAQ() {
+  const { t } = useT();
+  return (
+    <section id="faq" className="py-24 px-6 lg:px-12 bg-background">
+      <div className="max-w-4xl mx-auto">
+        <Reveal>
+          <div className="text-center mb-12">
+            <span className="text-xs uppercase tracking-[0.25em] text-primary mb-4 block">{t.faq.eyebrow}</span>
+            <h2 className="text-4xl md:text-5xl">{t.faq.title}</h2>
+          </div>
+        </Reveal>
+        <Reveal delay={120}>
+          <Accordion type="single" collapsible className="w-full">
+            {t.faq.items.map((item, i) => (
+              <AccordionItem key={i} value={`item-${i}`} className="border-b border-border">
+                <AccordionTrigger className="text-left text-lg font-display py-6 hover:no-underline hover:text-primary transition">
+                  {item.q}
+                </AccordionTrigger>
+                <AccordionContent className="text-muted-foreground leading-relaxed text-base pb-6">
+                  {item.a}
+                </AccordionContent>
+              </AccordionItem>
+            ))}
+          </Accordion>
+        </Reveal>
+      </div>
+    </section>
+  );
+}
+
+/* ---------- Contact ---------- */
 function Contact() {
+  const { t } = useT();
   return (
     <section id="contacto" className="relative py-24 px-6 lg:px-12 overflow-hidden">
       <div className="absolute inset-0" style={{ background: "var(--gradient-warm)" }} />
       <div className="relative max-w-4xl mx-auto text-center text-primary-foreground">
         <Reveal>
-          <span className="text-xs uppercase tracking-[0.25em] mb-6 block opacity-90">Contacto</span>
-          <h2 className="text-4xl md:text-6xl mb-6">¿Listo para vender o alquilar?</h2>
-          <p className="text-lg opacity-90 mb-12 max-w-2xl mx-auto">
-            Cuéntame tu proyecto. La primera visita y diagnóstico son completamente gratuitos.
-          </p>
+          <span className="text-xs uppercase tracking-[0.25em] mb-6 block opacity-90">{t.contact.eyebrow}</span>
+          <h2 className="text-4xl md:text-6xl mb-6">{t.contact.title}</h2>
+          <p className="text-lg opacity-90 mb-12 max-w-2xl mx-auto">{t.contact.sub}</p>
         </Reveal>
         <Reveal delay={120}>
           <div className="flex flex-wrap justify-center gap-4 mb-10">
@@ -494,14 +958,14 @@ function Contact() {
             <a href="mailto:clementinehomestaging@gmail.com" className="flex items-center gap-3 bg-background/10 hover:bg-background/20 backdrop-blur border border-background/30 px-5 py-4 rounded-2xl transition">
               <div className="w-10 h-10 rounded-full bg-background/20 flex items-center justify-center"><Mail className="w-4 h-4" /></div>
               <div>
-                <div className="text-xs uppercase tracking-wider opacity-80">Home Staging</div>
+                <div className="text-xs uppercase tracking-wider opacity-80">{t.contact.hsLabel}</div>
                 <div className="text-sm font-medium break-all">clementinehomestaging@gmail.com</div>
               </div>
             </a>
             <a href="mailto:realestate@clementinehomes.es" className="flex items-center gap-3 bg-background/10 hover:bg-background/20 backdrop-blur border border-background/30 px-5 py-4 rounded-2xl transition">
               <div className="w-10 h-10 rounded-full bg-background/20 flex items-center justify-center"><Building2 className="w-4 h-4" /></div>
               <div>
-                <div className="text-xs uppercase tracking-wider opacity-80">Real Estate</div>
+                <div className="text-xs uppercase tracking-wider opacity-80">{t.contact.reLabel}</div>
                 <div className="text-sm font-medium break-all">realestate@clementinehomes.es</div>
               </div>
             </a>
@@ -525,13 +989,15 @@ function Contact() {
   );
 }
 
+/* ---------- Footer ---------- */
 function Footer() {
+  const { t } = useT();
   return (
     <footer className="bg-foreground text-background/70 py-10 px-6 lg:px-12">
       <div className="max-w-6xl mx-auto flex flex-wrap items-center justify-between gap-4 text-sm">
         <div className="flex items-center gap-3">
           <img src={logo} alt="Clementine" className="h-10 w-auto bg-background rounded p-1" />
-          <span>© {new Date().getFullYear()} Clementine Homes · Home Staging & Real Estate</span>
+          <span>© {new Date().getFullYear()} Clementine Homes · {t.footer}</span>
         </div>
         <div>Vilanova i la Geltrú · Sitges · Canyelles</div>
       </div>
@@ -541,33 +1007,44 @@ function Footer() {
 
 function FloatingWhatsApp() {
   return (
-    <a
-      href={WHATSAPP_URL}
-      target="_blank"
-      rel="noopener noreferrer"
-      aria-label="Chatear por WhatsApp"
+    <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" aria-label="WhatsApp"
       className="fixed bottom-6 right-6 z-50 w-14 h-14 rounded-full bg-[#25D366] text-white flex items-center justify-center shadow-xl hover:scale-110 transition"
-      style={{ animation: "pulseRing 2.4s infinite" }}
-    >
+      style={{ animation: "pulseRing 2.4s infinite" }}>
       <WhatsAppIcon className="w-7 h-7" />
     </a>
   );
 }
 
+/* ---------- Root ---------- */
 function Index() {
+  const [lang, setLang] = useState<Lang>("es");
+  useEffect(() => {
+    const saved = typeof window !== "undefined" ? (localStorage.getItem("lang") as Lang | null) : null;
+    if (saved && (saved === "es" || saved === "en" || saved === "fr")) setLang(saved);
+  }, []);
+  useEffect(() => {
+    if (typeof window !== "undefined") localStorage.setItem("lang", lang);
+    if (typeof document !== "undefined") document.documentElement.lang = lang;
+  }, [lang]);
+
   return (
-    <main className="bg-background text-foreground scroll-smooth">
-      <ScrollProgress />
-      <Hero />
-      <Stats />
-      <About />
-      <RealEstate />
-      <Services />
-      <Projects />
-      <Reviews />
-      <Contact />
-      <Footer />
-      <FloatingWhatsApp />
-    </main>
+    <I18nCtx.Provider value={{ lang, setLang, t: dict[lang] }}>
+      <main className="bg-background text-foreground scroll-smooth">
+        <ScrollProgress />
+        <Hero />
+        <Stats />
+        <AboutFounder />
+        <Company />
+        <RealEstate />
+        <Services />
+        <BeforeAfter />
+        <Projects />
+        <Reviews />
+        <FAQ />
+        <Contact />
+        <Footer />
+        <FloatingWhatsApp />
+      </main>
+    </I18nCtx.Provider>
   );
 }
