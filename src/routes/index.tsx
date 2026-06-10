@@ -498,42 +498,6 @@ function Nav() {
   );
 }
 
-/* ---------- Lightbox ---------- */
-type GalleryItem = { img: string; alt: string; tag: string; title: string; desc: string };
-
-function Lightbox({ items, index, onClose, onPrev, onNext }: { items: GalleryItem[]; index: number | null; onClose: () => void; onPrev: () => void; onNext: () => void }) {
-  useEffect(() => {
-    if (index === null) return;
-    const onKey = (e: KeyboardEvent) => {
-      if (e.key === "Escape") onClose();
-      if (e.key === "ArrowLeft") onPrev();
-      if (e.key === "ArrowRight") onNext();
-    };
-    document.body.style.overflow = "hidden";
-    window.addEventListener("keydown", onKey);
-    return () => { document.body.style.overflow = ""; window.removeEventListener("keydown", onKey); };
-  }, [index, onClose, onPrev, onNext]);
-  if (index === null) return null;
-  const item = items[index];
-  return (
-    <div className="fixed inset-0 z-[60] bg-foreground/95 backdrop-blur-sm flex items-center justify-center p-4 md:p-8 animate-[fadeIn_.25s_ease-out]">
-      <button onClick={onClose} aria-label="Close" className="absolute top-5 right-5 w-11 h-11 rounded-full bg-background/10 text-background hover:bg-background/20 flex items-center justify-center transition"><X className="w-5 h-5" /></button>
-      <button onClick={onPrev} aria-label="Prev" className="absolute left-3 md:left-6 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-background/10 text-background hover:bg-background/20 flex items-center justify-center transition"><ChevronLeft className="w-6 h-6" /></button>
-      <button onClick={onNext} aria-label="Next" className="absolute right-3 md:right-6 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-background/10 text-background hover:bg-background/20 flex items-center justify-center transition"><ChevronRight className="w-6 h-6" /></button>
-      <div className="max-w-6xl w-full max-h-full flex flex-col items-center gap-4" onClick={(e) => e.stopPropagation()}>
-        <img key={item.img + index} src={item.img} alt={item.alt} className="max-h-[78vh] w-auto max-w-full rounded-xl shadow-2xl object-contain animate-[fadeIn_.4s_ease-out]" />
-        <div className="text-center text-background max-w-2xl">
-          <div className="text-xs uppercase tracking-[0.25em] opacity-70 mb-2">{item.tag}</div>
-          <div className="font-display text-2xl md:text-3xl mb-2">{item.title}</div>
-          <p className="text-background/75 text-sm">{item.desc}</p>
-          <div className="text-xs opacity-60 mt-4">{index + 1} / {items.length}</div>
-        </div>
-      </div>
-      <button className="absolute inset-0 -z-10" aria-label="Close background" onClick={onClose} />
-    </div>
-  );
-}
-
 /* ---------- ScrollProgress ---------- */
 function ScrollProgress() {
   const [p, setP] = useState(0);
