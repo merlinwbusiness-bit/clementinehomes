@@ -591,9 +591,9 @@ function AboutFounder() {
       <div className="max-w-6xl mx-auto grid lg:grid-cols-12 gap-12 items-center">
         <Reveal className="lg:col-span-5">
           <div className="relative">
-            <div className="aspect-[4/5] rounded-2xl overflow-hidden bg-secondary shadow-[var(--shadow-soft)] relative">
-              <img src={bedroom} alt="Clémentine Lanchier" className="absolute inset-0 w-full h-full object-cover" />
-              <div className="absolute inset-0 bg-gradient-to-t from-foreground/40 via-transparent to-transparent" />
+            <div className="aspect-[4/5] rounded-2xl overflow-hidden shadow-[var(--shadow-soft)] relative" style={{ background: "var(--gradient-warm)" }}>
+              <img src={portrait} alt="Clémentine Lanchier" className="absolute inset-0 w-full h-full object-contain object-bottom" />
+              <div className="absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-foreground/55 to-transparent" />
               <div className="absolute bottom-5 left-5 right-5 text-background">
                 <div className="text-xs uppercase tracking-[0.25em] opacity-80 mb-1">Clémentine Lanchier</div>
                 <div className="font-display text-2xl">Home Stager & Agente API</div>
