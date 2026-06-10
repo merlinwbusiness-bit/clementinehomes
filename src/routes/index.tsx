@@ -2,10 +2,13 @@ import { createFileRoute } from "@tanstack/react-router";
 import { createContext, useContext, useEffect, useRef, useState } from "react";
 import logo from "@/assets/logo.png";
 import hero from "@/assets/hero.jpg";
-import bedroom from "@/assets/bedroom.png";
-import kitchen1 from "@/assets/kitchen-1.png";
-import kitchen2 from "@/assets/kitchen-2.png";
-import pool from "@/assets/pool.png";
+import portraitAsset from "@/assets/clementine-portrait.png.asset.json";
+import ba1BeforeAsset from "@/assets/ba1-before.jpeg.asset.json";
+import ba1AfterAsset from "@/assets/ba1-after.jpg.asset.json";
+import ba2BeforeAsset from "@/assets/ba2-before.png.asset.json";
+import ba2AfterAsset from "@/assets/ba2-after.jpg.asset.json";
+import ba3BeforeAsset from "@/assets/ba3-before.png.asset.json";
+import ba3AfterAsset from "@/assets/ba3-after.jpg.asset.json";
 import {
   Accordion,
   AccordionContent,
@@ -14,8 +17,8 @@ import {
 } from "@/components/ui/accordion";
 import {
   Instagram, Linkedin, Phone, Star, Sparkles, Camera, Home, MapPin, Mail,
-  ArrowRight, Key, Building2, Handshake, TrendingUp, X, ChevronLeft, ChevronRight,
-  ZoomIn, Globe, ChevronDown, Menu, MoveHorizontal,
+  ArrowRight, Key, Building2, Handshake, TrendingUp,
+  Globe, ChevronDown, Menu, MoveHorizontal,
 } from "lucide-react";
 
 export const Route = createFileRoute("/")({
@@ -23,6 +26,13 @@ export const Route = createFileRoute("/")({
 });
 
 const WHATSAPP_URL = "https://wa.me/34620533054?text=Hola%20Cl%C3%A9mentine%2C%20me%20gustar%C3%ADa%20m%C3%A1s%20informaci%C3%B3n";
+
+const portrait = portraitAsset.url;
+const beforeAfterPairs = [
+  { before: ba1BeforeAsset.url, after: ba1AfterAsset.url, key: "livingKitchen" },
+  { before: ba2BeforeAsset.url, after: ba2AfterAsset.url, key: "basement" },
+  { before: ba3BeforeAsset.url, after: ba3AfterAsset.url, key: "loungeView" },
+] as const;
 
 /* ---------- i18n ---------- */
 type Lang = "es" | "en" | "fr";
@@ -101,6 +111,16 @@ const dict = {
       sub: "Una selección de propiedades preparadas para encontrar nuevos propietarios. Haz clic en cualquier imagen para ampliarla.",
     },
     reviews: { title: "5,0 en Google", sub: "Lo que dicen quienes ya han confiado en Clementine." },
+    reviewsList: [
+      { name: "Justine Grebaut", text: "Clémentine es, sin duda, una gran profesional muy implicada. Además de tomarse el tiempo para entender las expectativas y exigencias, con mucha paciencia, aporta una mirada nueva al sector inmobiliario gracias a su experiencia inigualable en home staging. Solo puedo recomendarla enormemente.", role: "Local Guide · 17 reseñas" },
+      { name: "Verònica Rico", text: "Clémentine es una mujer realmente entregada e impecable. Su gusto excepcional por la decoración interior es una baza considerable para la venta de nuestras casas y la puesta en valor de su elegancia.", role: "Cliente" },
+      { name: "Sophie Corvaisier", text: "Clémentine es una profesional increíblemente entregada que me ha sido de gran ayuda durante todo el proceso de venta. Tiene un talento excepcional para crear espacios cautivadores y demuestra una gran eficacia en su gestión. La recomiendo sin dudarlo.", role: "Kretz Real Estate" },
+    ],
+    beforeAfterLabels: {
+      livingKitchen: "Salón con cocina abierta",
+      basement: "Sótano transformado",
+      loungeView: "Salón con vistas",
+    },
     faq: {
       eyebrow: "Preguntas frecuentes",
       title: "Resolvemos tus dudas.",
@@ -188,6 +208,16 @@ const dict = {
       sub: "A selection of properties prepared to find new owners. Click any image to enlarge.",
     },
     reviews: { title: "5.0 on Google", sub: "What those who already trusted Clementine say." },
+    reviewsList: [
+      { name: "Justine Grebaut", text: "Clémentine is undoubtedly a great, highly committed professional. Beyond taking the time to understand expectations and requirements, with great patience, she brings a fresh perspective to the real estate sector thanks to her unparalleled experience in home staging. I can only recommend her wholeheartedly.", role: "Local Guide · 17 reviews" },
+      { name: "Verònica Rico", text: "Clémentine is a truly dedicated and impeccable woman. Her exceptional taste in interior design is a considerable asset for selling our homes and showcasing their elegance.", role: "Client" },
+      { name: "Sophie Corvaisier", text: "Clémentine is an incredibly dedicated professional who has been of invaluable help throughout the sale process. She has an exceptional talent for creating captivating spaces and demonstrates great efficiency in her management. I recommend her without hesitation.", role: "Kretz Real Estate" },
+    ],
+    beforeAfterLabels: {
+      livingKitchen: "Open-plan living & kitchen",
+      basement: "Reimagined basement",
+      loungeView: "Lounge with a view",
+    },
     faq: {
       eyebrow: "Frequently asked questions",
       title: "Your questions answered.",
@@ -275,6 +305,16 @@ const dict = {
       sub: "Une sélection de biens préparés pour trouver de nouveaux propriétaires. Cliquez sur une image pour l'agrandir.",
     },
     reviews: { title: "5,0 sur Google", sub: "Ce que disent celles et ceux qui ont déjà fait confiance à Clementine." },
+    reviewsList: [
+      { name: "Justine Grebaut", text: "Clémentine est sans aucun doute une grande professionnelle très impliquée. En plus de prendre le temps de comprendre les attentes et les exigences, avec beaucoup de patience, elle apporte un regard neuf au secteur immobilier grâce à son expérience inégalée en home staging. Je ne peux que la recommander chaleureusement.", role: "Local Guide · 17 avis" },
+      { name: "Verònica Rico", text: "Clémentine est une femme réellement dévouée et impeccable. Son goût exceptionnel pour la décoration d'intérieur est un atout considérable pour la vente de nos maisons et la mise en valeur de leur élégance.", role: "Cliente" },
+      { name: "Sophie Corvaisier", text: "Clémentine est une professionnelle incroyablement dévouée qui m'a été d'une aide précieuse tout au long du processus de vente. Elle possède un talent exceptionnel pour créer des espaces captivants et fait preuve d'une grande efficacité dans sa gestion. Je la recommande sans hésiter.", role: "Kretz Real Estate" },
+    ],
+    beforeAfterLabels: {
+      livingKitchen: "Salon avec cuisine ouverte",
+      basement: "Sous-sol transformé",
+      loungeView: "Salon avec vue",
+    },
     faq: {
       eyebrow: "Questions fréquentes",
       title: "Vos questions, nos réponses.",
@@ -297,7 +337,7 @@ const dict = {
   },
 } as const;
 
-type Dict = typeof dict.es;
+type Dict = (typeof dict)[Lang];
 const I18nCtx = createContext<{ lang: Lang; setLang: (l: Lang) => void; t: Dict }>({
   lang: "es",
   setLang: () => {},
@@ -422,7 +462,7 @@ function Nav() {
     { href: "#real-estate", label: t.nav.realEstate },
     { href: "#sobre-mi", label: t.nav.about },
     { href: "#servicios", label: t.nav.services },
-    { href: "#proyectos", label: t.nav.projects },
+    { href: "#antes-despues", label: t.beforeAfter.eyebrow },
     { href: "#faq", label: t.nav.faq },
     { href: "#contacto", label: t.nav.contact },
   ];
@@ -455,42 +495,6 @@ function Nav() {
         </div>
       )}
     </nav>
-  );
-}
-
-/* ---------- Lightbox ---------- */
-type GalleryItem = { img: string; alt: string; tag: string; title: string; desc: string };
-
-function Lightbox({ items, index, onClose, onPrev, onNext }: { items: GalleryItem[]; index: number | null; onClose: () => void; onPrev: () => void; onNext: () => void }) {
-  useEffect(() => {
-    if (index === null) return;
-    const onKey = (e: KeyboardEvent) => {
-      if (e.key === "Escape") onClose();
-      if (e.key === "ArrowLeft") onPrev();
-      if (e.key === "ArrowRight") onNext();
-    };
-    document.body.style.overflow = "hidden";
-    window.addEventListener("keydown", onKey);
-    return () => { document.body.style.overflow = ""; window.removeEventListener("keydown", onKey); };
-  }, [index, onClose, onPrev, onNext]);
-  if (index === null) return null;
-  const item = items[index];
-  return (
-    <div className="fixed inset-0 z-[60] bg-foreground/95 backdrop-blur-sm flex items-center justify-center p-4 md:p-8 animate-[fadeIn_.25s_ease-out]">
-      <button onClick={onClose} aria-label="Close" className="absolute top-5 right-5 w-11 h-11 rounded-full bg-background/10 text-background hover:bg-background/20 flex items-center justify-center transition"><X className="w-5 h-5" /></button>
-      <button onClick={onPrev} aria-label="Prev" className="absolute left-3 md:left-6 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-background/10 text-background hover:bg-background/20 flex items-center justify-center transition"><ChevronLeft className="w-6 h-6" /></button>
-      <button onClick={onNext} aria-label="Next" className="absolute right-3 md:right-6 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-background/10 text-background hover:bg-background/20 flex items-center justify-center transition"><ChevronRight className="w-6 h-6" /></button>
-      <div className="max-w-6xl w-full max-h-full flex flex-col items-center gap-4" onClick={(e) => e.stopPropagation()}>
-        <img key={item.img + index} src={item.img} alt={item.alt} className="max-h-[78vh] w-auto max-w-full rounded-xl shadow-2xl object-contain animate-[fadeIn_.4s_ease-out]" />
-        <div className="text-center text-background max-w-2xl">
-          <div className="text-xs uppercase tracking-[0.25em] opacity-70 mb-2">{item.tag}</div>
-          <div className="font-display text-2xl md:text-3xl mb-2">{item.title}</div>
-          <p className="text-background/75 text-sm">{item.desc}</p>
-          <div className="text-xs opacity-60 mt-4">{index + 1} / {items.length}</div>
-        </div>
-      </div>
-      <button className="absolute inset-0 -z-10" aria-label="Close background" onClick={onClose} />
-    </div>
   );
 }
 
@@ -539,7 +543,7 @@ function Hero() {
           <a href="#contacto" className="inline-flex items-center gap-2 bg-primary text-primary-foreground px-7 py-4 rounded-full font-medium hover:scale-[1.03] active:scale-100 transition shadow-[var(--shadow-soft)]">
             {t.hero.visit} <ArrowRight className="w-4 h-4" />
           </a>
-          <a href="#proyectos" className="inline-flex items-center gap-2 text-background border border-background/40 px-7 py-4 rounded-full font-medium hover:bg-background/10 transition">
+          <a href="#antes-despues" className="inline-flex items-center gap-2 text-background border border-background/40 px-7 py-4 rounded-full font-medium hover:bg-background/10 transition">
             {t.hero.seeProjects}
           </a>
         </div>
@@ -587,9 +591,9 @@ function AboutFounder() {
       <div className="max-w-6xl mx-auto grid lg:grid-cols-12 gap-12 items-center">
         <Reveal className="lg:col-span-5">
           <div className="relative">
-            <div className="aspect-[4/5] rounded-2xl overflow-hidden bg-secondary shadow-[var(--shadow-soft)] relative">
-              <img src={bedroom} alt="Clémentine Lanchier" className="absolute inset-0 w-full h-full object-cover" />
-              <div className="absolute inset-0 bg-gradient-to-t from-foreground/40 via-transparent to-transparent" />
+            <div className="aspect-[4/5] rounded-2xl overflow-hidden shadow-[var(--shadow-soft)] relative" style={{ background: "var(--gradient-warm)" }}>
+              <img src={portrait} alt="Clémentine Lanchier" className="absolute inset-0 w-full h-full object-contain object-bottom" />
+              <div className="absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-foreground/55 to-transparent" />
               <div className="absolute bottom-5 left-5 right-5 text-background">
                 <div className="text-xs uppercase tracking-[0.25em] opacity-80 mb-1">Clémentine Lanchier</div>
                 <div className="font-display text-2xl">Home Stager & Agente API</div>
@@ -731,8 +735,7 @@ function Services() {
 }
 
 /* ---------- Before / After slider ---------- */
-function BeforeAfter() {
-  const { t } = useT();
+function BASlider({ before, after, beforeLabel, afterLabel }: { before: string; after: string; beforeLabel: string; afterLabel: string }) {
   const [pos, setPos] = useState(50);
   const dragging = useRef(false);
   const containerRef = useRef<HTMLDivElement>(null);
@@ -765,7 +768,35 @@ function BeforeAfter() {
   }, []);
 
   return (
-    <section className="py-24 px-6 lg:px-12 bg-background">
+    <div
+      ref={containerRef}
+      className="relative w-full aspect-[3/2] rounded-2xl overflow-hidden shadow-[var(--shadow-soft)] select-none cursor-ew-resize bg-secondary"
+      onMouseDown={(e) => { dragging.current = true; updateFromClientX(e.clientX); }}
+      onTouchStart={(e) => { dragging.current = true; updateFromClientX(e.touches[0].clientX); }}
+    >
+      <img src={before} alt={beforeLabel} className="absolute inset-0 w-full h-full object-cover" draggable={false} />
+      <div className="absolute top-4 left-4 bg-foreground/70 text-background text-xs uppercase tracking-[0.25em] px-3 py-1.5 rounded-full backdrop-blur">
+        {beforeLabel}
+      </div>
+      <div className="absolute inset-0 overflow-hidden" style={{ clipPath: `inset(0 0 0 ${pos}%)` }}>
+        <img src={after} alt={afterLabel} className="absolute inset-0 w-full h-full object-cover" draggable={false} />
+        <div className="absolute top-4 right-4 bg-primary text-primary-foreground text-xs uppercase tracking-[0.25em] px-3 py-1.5 rounded-full">
+          {afterLabel}
+        </div>
+      </div>
+      <div className="absolute top-0 bottom-0 w-px bg-background pointer-events-none" style={{ left: `${pos}%` }}>
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-background border-2 border-primary flex items-center justify-center shadow-lg pointer-events-auto">
+          <MoveHorizontal className="w-5 h-5 text-primary" />
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function BeforeAfter() {
+  const { t } = useT();
+  return (
+    <section id="antes-despues" className="py-24 px-6 lg:px-12 bg-background">
       <div className="max-w-6xl mx-auto">
         <Reveal>
           <div className="max-w-2xl mb-12">
@@ -774,99 +805,27 @@ function BeforeAfter() {
             <p className="text-muted-foreground text-lg">{t.beforeAfter.sub}</p>
           </div>
         </Reveal>
-        <Reveal delay={120}>
-          <div
-            ref={containerRef}
-            className="relative w-full aspect-[16/10] rounded-2xl overflow-hidden shadow-[var(--shadow-soft)] select-none cursor-ew-resize bg-secondary"
-            onMouseDown={(e) => { dragging.current = true; updateFromClientX(e.clientX); }}
-            onTouchStart={(e) => { dragging.current = true; updateFromClientX(e.touches[0].clientX); }}
-          >
-            <img src={kitchen2} alt={t.beforeAfter.before} className="absolute inset-0 w-full h-full object-cover" draggable={false} />
-            <div className="absolute top-4 left-4 bg-foreground/70 text-background text-xs uppercase tracking-[0.25em] px-3 py-1.5 rounded-full backdrop-blur">
-              {t.beforeAfter.before}
-            </div>
-            <div className="absolute inset-0 overflow-hidden" style={{ clipPath: `inset(0 0 0 ${pos}%)` }}>
-              <img src={kitchen1} alt={t.beforeAfter.after} className="absolute inset-0 w-full h-full object-cover" draggable={false} />
-              <div className="absolute top-4 right-4 bg-primary text-primary-foreground text-xs uppercase tracking-[0.25em] px-3 py-1.5 rounded-full">
-                {t.beforeAfter.after}
+        <div className="space-y-10">
+          {beforeAfterPairs.map((p, i) => (
+            <Reveal key={p.key} delay={i * 80}>
+              <div className="mb-3 flex items-center gap-3">
+                <span className="text-xs uppercase tracking-[0.25em] text-primary">0{i + 1}</span>
+                <span className="h-px flex-1 bg-border" />
+                <span className="font-display text-lg md:text-xl">{t.beforeAfterLabels[p.key]}</span>
               </div>
-            </div>
-            <div className="absolute top-0 bottom-0 w-px bg-background pointer-events-none" style={{ left: `${pos}%` }}>
-              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-background border-2 border-primary flex items-center justify-center shadow-lg pointer-events-auto">
-                <MoveHorizontal className="w-5 h-5 text-primary" />
-              </div>
-            </div>
-          </div>
-        </Reveal>
-      </div>
-    </section>
-  );
-}
-
-/* ---------- Projects gallery ---------- */
-function Projects() {
-  const { t } = useT();
-  const items: GalleryItem[] = [
-    { img: kitchen1, alt: "Cocina", tag: "Canyelles", title: "Cocina abierta con alma", desc: "Materiales cálidos y luz natural." },
-    { img: kitchen2, alt: "Cocina", tag: "Vilanova", title: "Líneas limpias", desc: "Paleta neutra y mobiliario depurado." },
-    { img: bedroom, alt: "Dormitorio", tag: "Sitges", title: "Serenidad mediterránea", desc: "Textiles naturales y paleta serena." },
-    { img: pool, alt: "Piscina", tag: "Garraf", title: "Atardecer junto al mar", desc: "Puesta en escena exterior." },
-    { img: hero, alt: "Salón", tag: "Sitges", title: "Detalles que enamoran", desc: "Composición curada para fotografía." },
-    { img: bedroom, alt: "Suite", tag: "Sitges", title: "Suite editorial", desc: "Cama vestida y luces cálidas." },
-  ];
-  const [open, setOpen] = useState<number | null>(null);
-  const layout = ["md:col-span-2 md:row-span-2", "md:col-span-2", "", "", "md:col-span-2", ""];
-  return (
-    <section id="proyectos" className="py-24 px-6 lg:px-12">
-      <div className="max-w-6xl mx-auto">
-        <Reveal>
-          <div className="flex items-end justify-between mb-12 flex-wrap gap-4">
-            <div>
-              <span className="text-xs uppercase tracking-[0.25em] text-primary mb-4 block">{t.projects.eyebrow}</span>
-              <h2 className="text-4xl md:text-5xl">{t.projects.title}</h2>
-            </div>
-            <p className="text-muted-foreground max-w-md">{t.projects.sub}</p>
-          </div>
-        </Reveal>
-        <div className="grid grid-cols-1 md:grid-cols-4 auto-rows-[220px] md:auto-rows-[240px] gap-4">
-          {items.map((it, i) => (
-            <Reveal key={i} delay={i * 70} className={layout[i] ?? ""}>
-              <button type="button" onClick={() => setOpen(i)} className="block relative rounded-2xl overflow-hidden group h-full w-full text-left focus:outline-none focus:ring-2 focus:ring-primary">
-                <img src={it.img} alt={it.alt} className="w-full h-full object-cover group-hover:scale-110 transition duration-[1200ms] ease-out" />
-                <div className="absolute inset-0 bg-foreground/0 group-hover:bg-foreground/20 transition duration-500" />
-                <div className="absolute top-3 right-3 w-9 h-9 rounded-full bg-background/80 backdrop-blur text-foreground flex items-center justify-center opacity-0 group-hover:opacity-100 translate-y-1 group-hover:translate-y-0 transition duration-300">
-                  <ZoomIn className="w-4 h-4" />
-                </div>
-                <div className="absolute inset-x-0 bottom-0 p-5 bg-gradient-to-t from-foreground/90 to-transparent text-background translate-y-2 group-hover:translate-y-0 transition duration-500">
-                  <div className="text-[10px] uppercase tracking-wider opacity-80 mb-1">{it.tag}</div>
-                  <div className="font-display text-xl flex items-center gap-2">
-                    {it.title}
-                    <ArrowRight className="w-4 h-4 opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition duration-500" />
-                  </div>
-                </div>
-              </button>
+              <BASlider before={p.before} after={p.after} beforeLabel={t.beforeAfter.before} afterLabel={t.beforeAfter.after} />
             </Reveal>
           ))}
         </div>
-        <Lightbox items={items} index={open}
-          onClose={() => setOpen(null)}
-          onPrev={() => setOpen((i) => (i === null ? null : (i - 1 + items.length) % items.length))}
-          onNext={() => setOpen((i) => (i === null ? null : (i + 1) % items.length))}
-        />
       </div>
     </section>
   );
 }
 
 /* ---------- Reviews ---------- */
-const reviews = [
-  { name: "Justine Grebaut", text: "Clémentine es, sin duda, una gran profesional muy implicada. Además de tomarse el tiempo para entender las expectativas y exigencias, con mucha paciencia, aporta una mirada nueva al sector inmobiliario gracias a su experiencia inigualable en home staging. Solo puedo recomendarla enormemente.", role: "Local Guide · 17 reseñas" },
-  { name: "Verònica Rico", text: "Clémentine es una mujer realmente entregada e impecable. Su gusto excepcional por la decoración interior es una baza considerable para la venta de nuestras casas y la puesta en valor de su elegancia.", role: "Cliente" },
-  { name: "Sophie Corvaisier", text: "Clémentine es una profesional increíblemente entregada que me ha sido de gran ayuda durante todo el proceso de venta. Tiene un talento excepcional para crear espacios cautivadores y demuestra una gran eficacia en su gestión. La recomiendo sin dudarlo.", role: "Kretz Real Estate" },
-];
-
 function Reviews() {
   const { t } = useT();
+  const reviewsList = t.reviewsList;
   return (
     <section id="opiniones" className="py-24 px-6 lg:px-12 bg-secondary">
       <div className="max-w-6xl mx-auto">
@@ -880,7 +839,7 @@ function Reviews() {
           </div>
         </Reveal>
         <div className="grid md:grid-cols-3 gap-6">
-          {reviews.map((r, i) => (
+          {reviewsList.map((r, i) => (
             <Reveal key={r.name} delay={i * 100}>
               <article className="h-full bg-card p-8 rounded-2xl border border-border hover:-translate-y-1 hover:shadow-[var(--shadow-soft)] transition-all duration-300">
                 <div className="flex gap-1 text-primary mb-4">
@@ -1038,7 +997,6 @@ function Index() {
         <RealEstate />
         <Services />
         <BeforeAfter />
-        <Projects />
         <Reviews />
         <FAQ />
         <Contact />
