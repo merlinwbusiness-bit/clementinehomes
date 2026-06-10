@@ -307,7 +307,7 @@ const dict = {
   },
 } as const;
 
-type Dict = typeof dict.es;
+type Dict = (typeof dict)[Lang];
 const I18nCtx = createContext<{ lang: Lang; setLang: (l: Lang) => void; t: Dict }>({
   lang: "es",
   setLang: () => {},
