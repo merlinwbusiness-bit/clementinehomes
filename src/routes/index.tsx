@@ -111,6 +111,16 @@ const dict = {
       sub: "Una selección de propiedades preparadas para encontrar nuevos propietarios. Haz clic en cualquier imagen para ampliarla.",
     },
     reviews: { title: "5,0 en Google", sub: "Lo que dicen quienes ya han confiado en Clementine." },
+    reviewsList: [
+      { name: "Justine Grebaut", text: "Clémentine es, sin duda, una gran profesional muy implicada. Además de tomarse el tiempo para entender las expectativas y exigencias, con mucha paciencia, aporta una mirada nueva al sector inmobiliario gracias a su experiencia inigualable en home staging. Solo puedo recomendarla enormemente.", role: "Local Guide · 17 reseñas" },
+      { name: "Verònica Rico", text: "Clémentine es una mujer realmente entregada e impecable. Su gusto excepcional por la decoración interior es una baza considerable para la venta de nuestras casas y la puesta en valor de su elegancia.", role: "Cliente" },
+      { name: "Sophie Corvaisier", text: "Clémentine es una profesional increíblemente entregada que me ha sido de gran ayuda durante todo el proceso de venta. Tiene un talento excepcional para crear espacios cautivadores y demuestra una gran eficacia en su gestión. La recomiendo sin dudarlo.", role: "Kretz Real Estate" },
+    ],
+    beforeAfterLabels: {
+      livingKitchen: "Salón con cocina abierta",
+      basement: "Sótano transformado",
+      loungeView: "Salón con vistas",
+    },
     faq: {
       eyebrow: "Preguntas frecuentes",
       title: "Resolvemos tus dudas.",
@@ -198,6 +208,16 @@ const dict = {
       sub: "A selection of properties prepared to find new owners. Click any image to enlarge.",
     },
     reviews: { title: "5.0 on Google", sub: "What those who already trusted Clementine say." },
+    reviewsList: [
+      { name: "Justine Grebaut", text: "Clémentine is undoubtedly a great, highly committed professional. Beyond taking the time to understand expectations and requirements, with great patience, she brings a fresh perspective to the real estate sector thanks to her unparalleled experience in home staging. I can only recommend her wholeheartedly.", role: "Local Guide · 17 reviews" },
+      { name: "Verònica Rico", text: "Clémentine is a truly dedicated and impeccable woman. Her exceptional taste in interior design is a considerable asset for selling our homes and showcasing their elegance.", role: "Client" },
+      { name: "Sophie Corvaisier", text: "Clémentine is an incredibly dedicated professional who has been of invaluable help throughout the sale process. She has an exceptional talent for creating captivating spaces and demonstrates great efficiency in her management. I recommend her without hesitation.", role: "Kretz Real Estate" },
+    ],
+    beforeAfterLabels: {
+      livingKitchen: "Open-plan living & kitchen",
+      basement: "Reimagined basement",
+      loungeView: "Lounge with a view",
+    },
     faq: {
       eyebrow: "Frequently asked questions",
       title: "Your questions answered.",
@@ -285,6 +305,16 @@ const dict = {
       sub: "Une sélection de biens préparés pour trouver de nouveaux propriétaires. Cliquez sur une image pour l'agrandir.",
     },
     reviews: { title: "5,0 sur Google", sub: "Ce que disent celles et ceux qui ont déjà fait confiance à Clementine." },
+    reviewsList: [
+      { name: "Justine Grebaut", text: "Clémentine est sans aucun doute une grande professionnelle très impliquée. En plus de prendre le temps de comprendre les attentes et les exigences, avec beaucoup de patience, elle apporte un regard neuf au secteur immobilier grâce à son expérience inégalée en home staging. Je ne peux que la recommander chaleureusement.", role: "Local Guide · 17 avis" },
+      { name: "Verònica Rico", text: "Clémentine est une femme réellement dévouée et impeccable. Son goût exceptionnel pour la décoration d'intérieur est un atout considérable pour la vente de nos maisons et la mise en valeur de leur élégance.", role: "Cliente" },
+      { name: "Sophie Corvaisier", text: "Clémentine est une professionnelle incroyablement dévouée qui m'a été d'une aide précieuse tout au long du processus de vente. Elle possède un talent exceptionnel pour créer des espaces captivants et fait preuve d'une grande efficacité dans sa gestion. Je la recommande sans hésiter.", role: "Kretz Real Estate" },
+    ],
+    beforeAfterLabels: {
+      livingKitchen: "Salon avec cuisine ouverte",
+      basement: "Sous-sol transformé",
+      loungeView: "Salon avec vue",
+    },
     faq: {
       eyebrow: "Questions fréquentes",
       title: "Vos questions, nos réponses.",
