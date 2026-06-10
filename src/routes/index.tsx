@@ -735,8 +735,7 @@ function Services() {
 }
 
 /* ---------- Before / After slider ---------- */
-function BeforeAfter() {
-  const { t } = useT();
+function BASlider({ before, after, beforeLabel, afterLabel }: { before: string; after: string; beforeLabel: string; afterLabel: string }) {
   const [pos, setPos] = useState(50);
   const dragging = useRef(false);
   const containerRef = useRef<HTMLDivElement>(null);
@@ -769,7 +768,35 @@ function BeforeAfter() {
   }, []);
 
   return (
-    <section className="py-24 px-6 lg:px-12 bg-background">
+    <div
+      ref={containerRef}
+      className="relative w-full aspect-[3/2] rounded-2xl overflow-hidden shadow-[var(--shadow-soft)] select-none cursor-ew-resize bg-secondary"
+      onMouseDown={(e) => { dragging.current = true; updateFromClientX(e.clientX); }}
+      onTouchStart={(e) => { dragging.current = true; updateFromClientX(e.touches[0].clientX); }}
+    >
+      <img src={before} alt={beforeLabel} className="absolute inset-0 w-full h-full object-cover" draggable={false} />
+      <div className="absolute top-4 left-4 bg-foreground/70 text-background text-xs uppercase tracking-[0.25em] px-3 py-1.5 rounded-full backdrop-blur">
+        {beforeLabel}
+      </div>
+      <div className="absolute inset-0 overflow-hidden" style={{ clipPath: `inset(0 0 0 ${pos}%)` }}>
+        <img src={after} alt={afterLabel} className="absolute inset-0 w-full h-full object-cover" draggable={false} />
+        <div className="absolute top-4 right-4 bg-primary text-primary-foreground text-xs uppercase tracking-[0.25em] px-3 py-1.5 rounded-full">
+          {afterLabel}
+        </div>
+      </div>
+      <div className="absolute top-0 bottom-0 w-px bg-background pointer-events-none" style={{ left: `${pos}%` }}>
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-background border-2 border-primary flex items-center justify-center shadow-lg pointer-events-auto">
+          <MoveHorizontal className="w-5 h-5 text-primary" />
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function BeforeAfter() {
+  const { t } = useT();
+  return (
+    <section id="antes-despues" className="py-24 px-6 lg:px-12 bg-background">
       <div className="max-w-6xl mx-auto">
         <Reveal>
           <div className="max-w-2xl mb-12">
@@ -778,85 +805,18 @@ function BeforeAfter() {
             <p className="text-muted-foreground text-lg">{t.beforeAfter.sub}</p>
           </div>
         </Reveal>
-        <Reveal delay={120}>
-          <div
-            ref={containerRef}
-            className="relative w-full aspect-[16/10] rounded-2xl overflow-hidden shadow-[var(--shadow-soft)] select-none cursor-ew-resize bg-secondary"
-            onMouseDown={(e) => { dragging.current = true; updateFromClientX(e.clientX); }}
-            onTouchStart={(e) => { dragging.current = true; updateFromClientX(e.touches[0].clientX); }}
-          >
-            <img src={kitchen2} alt={t.beforeAfter.before} className="absolute inset-0 w-full h-full object-cover" draggable={false} />
-            <div className="absolute top-4 left-4 bg-foreground/70 text-background text-xs uppercase tracking-[0.25em] px-3 py-1.5 rounded-full backdrop-blur">
-              {t.beforeAfter.before}
-            </div>
-            <div className="absolute inset-0 overflow-hidden" style={{ clipPath: `inset(0 0 0 ${pos}%)` }}>
-              <img src={kitchen1} alt={t.beforeAfter.after} className="absolute inset-0 w-full h-full object-cover" draggable={false} />
-              <div className="absolute top-4 right-4 bg-primary text-primary-foreground text-xs uppercase tracking-[0.25em] px-3 py-1.5 rounded-full">
-                {t.beforeAfter.after}
+        <div className="space-y-10">
+          {beforeAfterPairs.map((p, i) => (
+            <Reveal key={p.key} delay={i * 80}>
+              <div className="mb-3 flex items-center gap-3">
+                <span className="text-xs uppercase tracking-[0.25em] text-primary">0{i + 1}</span>
+                <span className="h-px flex-1 bg-border" />
+                <span className="font-display text-lg md:text-xl">{t.beforeAfterLabels[p.key]}</span>
               </div>
-            </div>
-            <div className="absolute top-0 bottom-0 w-px bg-background pointer-events-none" style={{ left: `${pos}%` }}>
-              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-background border-2 border-primary flex items-center justify-center shadow-lg pointer-events-auto">
-                <MoveHorizontal className="w-5 h-5 text-primary" />
-              </div>
-            </div>
-          </div>
-        </Reveal>
-      </div>
-    </section>
-  );
-}
-
-/* ---------- Projects gallery ---------- */
-function Projects() {
-  const { t } = useT();
-  const items: GalleryItem[] = [
-    { img: kitchen1, alt: "Cocina", tag: "Canyelles", title: "Cocina abierta con alma", desc: "Materiales cálidos y luz natural." },
-    { img: kitchen2, alt: "Cocina", tag: "Vilanova", title: "Líneas limpias", desc: "Paleta neutra y mobiliario depurado." },
-    { img: bedroom, alt: "Dormitorio", tag: "Sitges", title: "Serenidad mediterránea", desc: "Textiles naturales y paleta serena." },
-    { img: pool, alt: "Piscina", tag: "Garraf", title: "Atardecer junto al mar", desc: "Puesta en escena exterior." },
-    { img: hero, alt: "Salón", tag: "Sitges", title: "Detalles que enamoran", desc: "Composición curada para fotografía." },
-    { img: bedroom, alt: "Suite", tag: "Sitges", title: "Suite editorial", desc: "Cama vestida y luces cálidas." },
-  ];
-  const [open, setOpen] = useState<number | null>(null);
-  const layout = ["md:col-span-2 md:row-span-2", "md:col-span-2", "", "", "md:col-span-2", ""];
-  return (
-    <section id="proyectos" className="py-24 px-6 lg:px-12">
-      <div className="max-w-6xl mx-auto">
-        <Reveal>
-          <div className="flex items-end justify-between mb-12 flex-wrap gap-4">
-            <div>
-              <span className="text-xs uppercase tracking-[0.25em] text-primary mb-4 block">{t.projects.eyebrow}</span>
-              <h2 className="text-4xl md:text-5xl">{t.projects.title}</h2>
-            </div>
-            <p className="text-muted-foreground max-w-md">{t.projects.sub}</p>
-          </div>
-        </Reveal>
-        <div className="grid grid-cols-1 md:grid-cols-4 auto-rows-[220px] md:auto-rows-[240px] gap-4">
-          {items.map((it, i) => (
-            <Reveal key={i} delay={i * 70} className={layout[i] ?? ""}>
-              <button type="button" onClick={() => setOpen(i)} className="block relative rounded-2xl overflow-hidden group h-full w-full text-left focus:outline-none focus:ring-2 focus:ring-primary">
-                <img src={it.img} alt={it.alt} className="w-full h-full object-cover group-hover:scale-110 transition duration-[1200ms] ease-out" />
-                <div className="absolute inset-0 bg-foreground/0 group-hover:bg-foreground/20 transition duration-500" />
-                <div className="absolute top-3 right-3 w-9 h-9 rounded-full bg-background/80 backdrop-blur text-foreground flex items-center justify-center opacity-0 group-hover:opacity-100 translate-y-1 group-hover:translate-y-0 transition duration-300">
-                  <ZoomIn className="w-4 h-4" />
-                </div>
-                <div className="absolute inset-x-0 bottom-0 p-5 bg-gradient-to-t from-foreground/90 to-transparent text-background translate-y-2 group-hover:translate-y-0 transition duration-500">
-                  <div className="text-[10px] uppercase tracking-wider opacity-80 mb-1">{it.tag}</div>
-                  <div className="font-display text-xl flex items-center gap-2">
-                    {it.title}
-                    <ArrowRight className="w-4 h-4 opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition duration-500" />
-                  </div>
-                </div>
-              </button>
+              <BASlider before={p.before} after={p.after} beforeLabel={t.beforeAfter.before} afterLabel={t.beforeAfter.after} />
             </Reveal>
           ))}
         </div>
-        <Lightbox items={items} index={open}
-          onClose={() => setOpen(null)}
-          onPrev={() => setOpen((i) => (i === null ? null : (i - 1 + items.length) % items.length))}
-          onNext={() => setOpen((i) => (i === null ? null : (i + 1) % items.length))}
-        />
       </div>
     </section>
   );
