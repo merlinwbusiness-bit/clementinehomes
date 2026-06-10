@@ -462,7 +462,7 @@ function Nav() {
     { href: "#real-estate", label: t.nav.realEstate },
     { href: "#sobre-mi", label: t.nav.about },
     { href: "#servicios", label: t.nav.services },
-    { href: "#proyectos", label: t.nav.projects },
+    { href: "#antes-despues", label: t.beforeAfter.eyebrow },
     { href: "#faq", label: t.nav.faq },
     { href: "#contacto", label: t.nav.contact },
   ];
@@ -579,7 +579,7 @@ function Hero() {
           <a href="#contacto" className="inline-flex items-center gap-2 bg-primary text-primary-foreground px-7 py-4 rounded-full font-medium hover:scale-[1.03] active:scale-100 transition shadow-[var(--shadow-soft)]">
             {t.hero.visit} <ArrowRight className="w-4 h-4" />
           </a>
-          <a href="#proyectos" className="inline-flex items-center gap-2 text-background border border-background/40 px-7 py-4 rounded-full font-medium hover:bg-background/10 transition">
+          <a href="#antes-despues" className="inline-flex items-center gap-2 text-background border border-background/40 px-7 py-4 rounded-full font-medium hover:bg-background/10 transition">
             {t.hero.seeProjects}
           </a>
         </div>
