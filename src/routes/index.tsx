@@ -997,7 +997,6 @@ function Index() {
         <RealEstate />
         <Services />
         <BeforeAfter />
-        <Projects />
         <Reviews />
         <FAQ />
         <Contact />
