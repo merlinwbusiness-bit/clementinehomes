@@ -2,10 +2,13 @@ import { createFileRoute } from "@tanstack/react-router";
 import { createContext, useContext, useEffect, useRef, useState } from "react";
 import logo from "@/assets/logo.png";
 import hero from "@/assets/hero.jpg";
-import bedroom from "@/assets/bedroom.png";
-import kitchen1 from "@/assets/kitchen-1.png";
-import kitchen2 from "@/assets/kitchen-2.png";
-import pool from "@/assets/pool.png";
+import portraitAsset from "@/assets/clementine-portrait.png.asset.json";
+import ba1BeforeAsset from "@/assets/ba1-before.jpeg.asset.json";
+import ba1AfterAsset from "@/assets/ba1-after.jpg.asset.json";
+import ba2BeforeAsset from "@/assets/ba2-before.png.asset.json";
+import ba2AfterAsset from "@/assets/ba2-after.jpg.asset.json";
+import ba3BeforeAsset from "@/assets/ba3-before.png.asset.json";
+import ba3AfterAsset from "@/assets/ba3-after.jpg.asset.json";
 import {
   Accordion,
   AccordionContent,
@@ -14,8 +17,8 @@ import {
 } from "@/components/ui/accordion";
 import {
   Instagram, Linkedin, Phone, Star, Sparkles, Camera, Home, MapPin, Mail,
-  ArrowRight, Key, Building2, Handshake, TrendingUp, X, ChevronLeft, ChevronRight,
-  ZoomIn, Globe, ChevronDown, Menu, MoveHorizontal,
+  ArrowRight, Key, Building2, Handshake, TrendingUp,
+  Globe, ChevronDown, Menu, MoveHorizontal,
 } from "lucide-react";
 
 export const Route = createFileRoute("/")({
@@ -23,6 +26,13 @@ export const Route = createFileRoute("/")({
 });
 
 const WHATSAPP_URL = "https://wa.me/34620533054?text=Hola%20Cl%C3%A9mentine%2C%20me%20gustar%C3%ADa%20m%C3%A1s%20informaci%C3%B3n";
+
+const portrait = portraitAsset.url;
+const beforeAfterPairs = [
+  { before: ba1BeforeAsset.url, after: ba1AfterAsset.url, key: "livingKitchen" },
+  { before: ba2BeforeAsset.url, after: ba2AfterAsset.url, key: "basement" },
+  { before: ba3BeforeAsset.url, after: ba3AfterAsset.url, key: "loungeView" },
+] as const;
 
 /* ---------- i18n ---------- */
 type Lang = "es" | "en" | "fr";
