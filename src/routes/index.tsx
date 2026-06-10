@@ -823,14 +823,9 @@ function BeforeAfter() {
 }
 
 /* ---------- Reviews ---------- */
-const reviews = [
-  { name: "Justine Grebaut", text: "Clémentine es, sin duda, una gran profesional muy implicada. Además de tomarse el tiempo para entender las expectativas y exigencias, con mucha paciencia, aporta una mirada nueva al sector inmobiliario gracias a su experiencia inigualable en home staging. Solo puedo recomendarla enormemente.", role: "Local Guide · 17 reseñas" },
-  { name: "Verònica Rico", text: "Clémentine es una mujer realmente entregada e impecable. Su gusto excepcional por la decoración interior es una baza considerable para la venta de nuestras casas y la puesta en valor de su elegancia.", role: "Cliente" },
-  { name: "Sophie Corvaisier", text: "Clémentine es una profesional increíblemente entregada que me ha sido de gran ayuda durante todo el proceso de venta. Tiene un talento excepcional para crear espacios cautivadores y demuestra una gran eficacia en su gestión. La recomiendo sin dudarlo.", role: "Kretz Real Estate" },
-];
-
 function Reviews() {
   const { t } = useT();
+  const reviewsList = t.reviewsList;
   return (
     <section id="opiniones" className="py-24 px-6 lg:px-12 bg-secondary">
       <div className="max-w-6xl mx-auto">
@@ -844,7 +839,7 @@ function Reviews() {
           </div>
         </Reveal>
         <div className="grid md:grid-cols-3 gap-6">
-          {reviews.map((r, i) => (
+          {reviewsList.map((r, i) => (
             <Reveal key={r.name} delay={i * 100}>
               <article className="h-full bg-card p-8 rounded-2xl border border-border hover:-translate-y-1 hover:shadow-[var(--shadow-soft)] transition-all duration-300">
                 <div className="flex gap-1 text-primary mb-4">
