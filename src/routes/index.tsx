@@ -607,7 +607,7 @@ function AboutFounder() {
               </div>
             </div>
             <div className="absolute -top-4 -left-4 w-24 h-24 rounded-full bg-primary/15 blur-2xl -z-0" />
-            <div className="absolute -bottom-6 -right-6 bg-background border border-border p-5 rounded-2xl shadow-[var(--shadow-soft)] hidden md:flex items-center gap-3">
+            <div className="absolute -bottom-6 -right-6 bg-background border border-border p-4 md:p-5 rounded-2xl shadow-[var(--shadow-soft)] flex items-center gap-3">
               <img src={logo} alt="" className="w-10 h-10 object-contain" />
               <div className="text-xs">
                 <div className="font-display text-base">The Home Staging School</div>
@@ -962,10 +962,13 @@ function Footer() {
     <footer className="bg-foreground text-background/70 py-10 px-6 lg:px-12">
       <div className="max-w-6xl mx-auto flex flex-wrap items-center justify-between gap-4 text-sm">
         <div className="flex items-center gap-3">
-          <img src={logo} alt="Clementine" className="h-10 w-auto bg-background rounded p-1" />
+          <img src={logo} alt="Clementine" className="h-12 w-auto bg-background rounded p-1" />
           <span>© {new Date().getFullYear()} Clementine Homes · {t.footer}</span>
         </div>
-        <div>Vilanova i la Geltrú · Sitges · Canyelles</div>
+        <div>Secteur Garraf – Barcelone</div>
+      </div>
+      <div className="max-w-6xl mx-auto mt-6 text-center text-xs text-background/50">
+        Designed by Merlin Wiart
       </div>
     </footer>
   );
