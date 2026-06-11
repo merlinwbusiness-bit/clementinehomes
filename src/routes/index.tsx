@@ -272,14 +272,14 @@ const dict = {
     company: {
       eyebrow: "Une agence avec un œil de décoratrice",
       title: "Nous vendons, louons et sublimons votre bien.",
-      p1: "Je suis Clémentine, agent immobilier API et spécialiste en home staging. J'allie la rigueur de l'intermédiation professionnelle à une sensibilité unique pour sublimer chaque bien entre Vilanova i la Geltrú, Sitges et Canyelles.",
-      p2: "Chaque bien a une histoire. Mon travail est de la révéler et de la vendre : avec la lumière, la couleur, le mobilier et une stratégie commerciale qui touche les acheteurs.",
-      location: "Vilanova i la Geltrú · Sitges · Canyelles",
+      p1: "Nous sommes une équipe menée par Clémentine, agent immobilier API et spécialiste en home staging. Nous allions la rigueur de l'intermédiation professionnelle à une sensibilité unique pour sublimer chaque bien dans le Secteur Garraf – Barcelone.",
+      p2: "Chaque bien a une histoire. Notre travail est de la révéler et de la vendre : avec la lumière, la couleur, le mobilier et une stratégie commerciale qui touche les acheteurs.",
+      location: "Secteur Garraf – Barcelone",
     },
     realEstate: {
       eyebrow: "Real Estate · Agent API",
       title: "Votre agence immobilière de confiance dans le Garraf.",
-      sub: "Au-delà du home staging, je gère la vente et la location de votre bien en tant qu'agent agréée. Une seule interlocutrice pour toute l'opération : préparation, marketing et signature.",
+      sub: "Au-delà du home staging, nous gérons la vente et la location de votre bien en tant qu'agence agréée. Une seule interlocutrice pour toute l'opération : préparation, marketing et signature.",
       cta: "Estimer mon bien",
       pillars: [
         { title: "Vente de biens", desc: "Estimation réaliste, marketing visuel à fort impact et réseau d'acheteurs qualifiés." },
@@ -291,12 +291,12 @@ const dict = {
     services: {
       eyebrow: "Services",
       title: "Tout ce dont votre bien a besoin.",
-      sub: "De la première consultation à la signature chez le notaire, je vous accompagne à chaque étape.",
+      sub: "De la première consultation à la signature chez le notaire, nous vous accompagnons à chaque étape.",
       items: [
         { title: "Home Staging complet", desc: "Nous transformons chaque pièce pour révéler le potentiel réel de votre bien et séduire plus d'acheteurs." },
         { title: "Consulting express", desc: "Visite et diagnostic avec des recommandations concrètes pour préparer votre logement avant de le vendre ou de le louer." },
         { title: "Reportage photo", desc: "Des photos professionnelles qui multiplient les visites en ligne de votre annonce." },
-        { title: "Vente et location", desc: "En tant qu'agent API agréée, je gère la vente et la location de votre bien du début à la fin." },
+        { title: "Vente et location", desc: "En tant qu'agence API agréée, nous gérons la vente et la location de votre bien du début à la fin." },
       ],
     },
     beforeAfter: {
@@ -314,7 +314,7 @@ const dict = {
     reviews: { title: "5,0 sur Google", sub: "Ce que disent celles et ceux qui ont déjà fait confiance à Clementine." },
     reviewsList: [
       { name: "Justine Grebaut", text: "Clémentine est sans aucun doute une grande professionnelle très impliquée. En plus de prendre le temps de comprendre les attentes et les exigences, avec beaucoup de patience, elle apporte un regard neuf au secteur immobilier grâce à son expérience inégalée en home staging. Je ne peux que la recommander chaleureusement.", role: "Local Guide · 17 avis" },
-      { name: "Verònica Rico", text: "Clémentine est une femme réellement dévouée et impeccable. Son goût exceptionnel pour la décoration d'intérieur est un atout considérable pour la vente de nos maisons et la mise en valeur de leur élégance.", role: "Cliente" },
+      { name: "Verònica Rico", text: "Clémentine est une femme réellement dévouée et impeccable. Son goût exceptionnel pour la décoration d'intérieur est un atout considérable pour la vente de nos maisons et la mise en valeur de leur élégance.", role: "Agent immobilier" },
       { name: "Sophie Corvaisier", text: "Clémentine est une professionnelle incroyablement dévouée qui m'a été d'une aide précieuse tout au long du processus de vente. Elle possède un talent exceptionnel pour créer des espaces captivants et fait preuve d'une grande efficacité dans sa gestion. Je la recommande sans hésiter.", role: "Kretz Real Estate" },
     ],
     beforeAfterLabels: {
@@ -328,9 +328,9 @@ const dict = {
       items: [
         { q: "Qu'est-ce que le home staging exactement ?", a: "Le home staging est une technique de marketing immobilier qui prépare et embellit un logement pour le vendre ou le louer plus rapidement et au meilleur prix, en le dépersonnalisant et en mettant en valeur ses atouts." },
         { q: "Combien coûte un service de home staging ?", a: "Le budget est adapté à chaque projet : surface, état du logement et objectif commercial. Nous offrons une première visite et estimation totalement gratuites et sans engagement." },
-        { q: "Dans quelle zone intervenez-vous ?", a: "Nous travaillons principalement entre Vilanova i la Geltrú, Sitges, Canyelles et tout le Garraf. Pour des projets spéciaux, nous pouvons nous déplacer ailleurs en Catalogne." },
+        { q: "Dans quelle zone intervenez-vous ?", a: "Nous travaillons principalement dans le Secteur Garraf – Barcelone. Pour des projets spéciaux, nous pouvons nous déplacer ailleurs en Catalogne." },
         { q: "Combien de temps dure une intervention ?", a: "Une consultation express se fait en une seule visite. Une mise en scène complète est généralement prête en 3 à 7 jours, selon l'ampleur de la transformation." },
-        { q: "Êtes-vous aussi agent immobilier ?", a: "Oui, Clémentine est agent API agréée et peut gérer la vente ou la location de votre bien de A à Z, en intégrant home staging, photographie et commercialisation." },
+        { q: "Êtes-vous aussi agents immobiliers ?", a: "Oui, nous sommes une agence API agréée et pouvons gérer la vente ou la location de votre bien de A à Z, en intégrant home staging, photographie et commercialisation." },
       ],
     },
     contact: {
