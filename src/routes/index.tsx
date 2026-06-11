@@ -153,7 +153,7 @@ const dict = {
     hero: {
       eyebrow: "Home Staging · Real Estate · Garraf",
       slogan: "Making Homes Bloom",
-      sub: "Real estate agency and home staging service between Vilanova i la Geltrú, Sitges and Canyelles. We support you at every stage: valuation, styling, photography and sale.",
+      sub: "Real estate agency and home staging service in the Garraf area – Barcelona. We support you at every stage: valuation, styling, photography and sale.",
       whatsapp: "Chat on WhatsApp",
       visit: "Free visit",
       seeProjects: "See projects",
@@ -166,23 +166,23 @@ const dict = {
       eyebrow: "About me",
       title: "Want to know more?",
       body: [
-        "When I had the chance to step into the Paris fashion world I had always dreamed of as a child, I fell in love not only with fashion and Haute Couture but also with design and interiors. The link between fashion and interiors is very clear.",
-        "I spent over 20 years as an expert in creating and organising events, trade-fair stands, conventions, fashion shows and catalogue shootings for international brands, always weaving fashion together with decoration.",
-        "Today, as a professional home stager certified by The Home Staging School, I bring all my creative, adaptive and organisational skills to my clients. Detail-driven, I always look for harmony in spaces so that energy can flow freely.",
-        "When I walk into a home, I love discovering its strengths and imagining what can be done to make the rooms shine and feel good. With home staging I make a property attractive to its future buyer or tenant. My greatest reward is when a client falls in love with a home at first sight.",
+        "When we had the chance to step into the Paris fashion world we had always dreamed of as little girls, we fell in love not only with fashion and Haute Couture but also with design and interiors. The link between fashion and interiors is very clear.",
+        "We spent over 20 years as experts in creating and organising events, trade-fair stands, conventions, fashion shows and catalogue shootings for international brands, always weaving fashion together with decoration.",
+        "Today, as professional home stagers certified by The Home Staging School, we bring all of our creative, adaptive and organisational skills to our clients. Detail-driven, we always look for harmony in spaces so that energy can flow freely.",
+        "When we walk into a home, we love discovering its strengths and imagining what can be done to make the rooms shine and feel good. With home staging we make a property attractive to its future buyer or tenant. Our greatest reward is when a client falls in love with a home at first sight.",
       ],
     },
     company: {
       eyebrow: "An agency with an interior designer's eye",
       title: "We sell, rent and elevate your home.",
-      p1: "I'm Clémentine, licensed API real estate agent and home staging specialist. I combine professional brokerage rigour with a unique sensitivity to elevate every property between Vilanova i la Geltrú, Sitges and Canyelles.",
-      p2: "Every property has a story. My job is to reveal it and sell it: with light, colour, furniture and a commercial strategy that emotionally connects with buyers.",
-      location: "Vilanova i la Geltrú · Sitges · Canyelles",
+      p1: "We are a team led by Clémentine, licensed API real estate agent and home staging specialist. We combine professional brokerage rigour with a unique sensitivity to elevate every property in the Garraf area – Barcelona.",
+      p2: "Every property has a story. Our job is to reveal it and sell it: with light, colour, furniture and a commercial strategy that emotionally connects with buyers.",
+      location: "Garraf area – Barcelona",
     },
     realEstate: {
       eyebrow: "Real Estate · API Agent",
       title: "Your trusted real estate agency in the Garraf.",
-      sub: "Beyond home staging, I manage the sale and rental of your property as a licensed agent. A single point of contact for the entire operation: prep, marketing and closing.",
+      sub: "Beyond home staging, we manage the sale and rental of your property as a licensed agency. A single point of contact for the entire operation: prep, marketing and closing.",
       cta: "Value my property",
       pillars: [
         { title: "Property sales", desc: "Realistic valuation, high-impact visual marketing and a network of qualified buyers." },
@@ -194,12 +194,12 @@ const dict = {
     services: {
       eyebrow: "Services",
       title: "Everything your property needs.",
-      sub: "From the initial consultation to signing at the notary, I'm with you at every step.",
+      sub: "From the initial consultation to signing at the notary, we're with you at every step.",
       items: [
         { title: "Full Home Staging", desc: "We transform each room to highlight your property's real potential and attract more buyers." },
         { title: "Express Consulting", desc: "Visit and diagnosis with concrete recommendations to prepare your home before selling or renting." },
         { title: "Photo Reportage", desc: "Professional photography that multiplies online views of your listing." },
-        { title: "Sale & Rental", desc: "As a licensed API agent, I manage the sale and rental of your property from start to finish." },
+        { title: "Sale & Rental", desc: "As a licensed API agency, we manage the sale and rental of your property from start to finish." },
       ],
     },
     beforeAfter: {
@@ -217,7 +217,7 @@ const dict = {
     reviews: { title: "5.0 on Google", sub: "What those who already trusted Clementine say." },
     reviewsList: [
       { name: "Justine Grebaut", text: "Clémentine is undoubtedly a great, highly committed professional. Beyond taking the time to understand expectations and requirements, with great patience, she brings a fresh perspective to the real estate sector thanks to her unparalleled experience in home staging. I can only recommend her wholeheartedly.", role: "Local Guide · 17 reviews" },
-      { name: "Verònica Rico", text: "Clémentine is a truly dedicated and impeccable woman. Her exceptional taste in interior design is a considerable asset for selling our homes and showcasing their elegance.", role: "Client" },
+      { name: "Verònica Rico", text: "Clémentine is a truly dedicated and impeccable woman. Her exceptional taste in interior design is a considerable asset for selling our homes and showcasing their elegance.", role: "Real estate agent" },
       { name: "Sophie Corvaisier", text: "Clémentine is an incredibly dedicated professional who has been of invaluable help throughout the sale process. She has an exceptional talent for creating captivating spaces and demonstrates great efficiency in her management. I recommend her without hesitation.", role: "Kretz Real Estate" },
     ],
     beforeAfterLabels: {
@@ -231,9 +231,9 @@ const dict = {
       items: [
         { q: "What exactly is home staging?", a: "Home staging is a real-estate marketing technique that prepares and beautifies a home to sell or rent it faster and at the best price, by depersonalising it and highlighting its strengths." },
         { q: "How much does a home staging service cost?", a: "The budget is tailored to each project: size, condition and commercial goal. We offer a free, no-commitment first visit and valuation." },
-        { q: "What area do you cover?", a: "We work mainly across Vilanova i la Geltrú, Sitges, Canyelles and the whole Garraf region. For special projects, we can travel to other parts of Catalonia." },
+        { q: "What area do you cover?", a: "We work mainly across the Garraf area – Barcelona. For special projects, we can travel to other parts of Catalonia." },
         { q: "How long does an intervention take?", a: "An express consultancy is done in a single visit. A full styling is usually ready in 3 to 7 days, depending on the scope of the transformation." },
-        { q: "Are you also a real estate agent?", a: "Yes — Clémentine is a licensed API agent and can handle the sale or rental of your property end-to-end, combining home staging, photography and marketing." },
+        { q: "Are you also real estate agents?", a: "Yes — we are a licensed API agency and can handle the sale or rental of your property end-to-end, combining home staging, photography and marketing." },
       ],
     },
     contact: {
