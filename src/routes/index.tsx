@@ -25,7 +25,14 @@ export const Route = createFileRoute("/")({
   component: Index,
 });
 
-const WHATSAPP_URL = "https://wa.me/34620533054?text=Hola%20Cl%C3%A9mentine%2C%20me%20gustar%C3%ADa%20m%C3%A1s%20informaci%C3%B3n";
+const WA_PHONE = "34620533054";
+const WA_MESSAGES: Record<"es" | "en" | "fr", string> = {
+  es: "Hola Clémentine, le contacto desde la página web",
+  en: "Hello Clémentine, I am contacting you from the website",
+  fr: "Bonjour Clémentine, je vous contacte depuis le site internet",
+};
+const waUrl = (lang: "es" | "en" | "fr") =>
+  `https://wa.me/${WA_PHONE}?text=${encodeURIComponent(WA_MESSAGES[lang])}`;
 
 const portrait = portraitAsset.url;
 const beforeAfterPairs = [
@@ -49,7 +56,7 @@ const dict = {
     hero: {
       eyebrow: "Home Staging · Real Estate · Garraf",
       slogan: "Making Homes Bloom",
-      sub: "Agencia inmobiliaria y servicio de home staging entre Vilanova i la Geltrú, Sitges y Canyelles. Te acompañamos en cada etapa: valoración, preparación, fotografía y venta.",
+      sub: "Agencia inmobiliaria y servicio de home staging en el Sector Garraf – Barcelona. Te acompañamos en cada etapa: valoración, preparación, fotografía y venta.",
       whatsapp: "Hablar por WhatsApp",
       visit: "Visita gratuita",
       seeProjects: "Ver proyectos",
@@ -62,23 +69,23 @@ const dict = {
       eyebrow: "Sobre mí",
       title: "¿Quieres saber más?",
       body: [
-        "Cuando tuve la oportunidad de entrar en el mundo de la moda en Paris en el cual siempre soñé de pequeña, no me enamoré solo de la moda y la Haute Couture pero también del diseño y de la decoración. El vínculo entre la moda y los interiores es muy evidente.",
-        "Así evolucioné más de 20 años como experta en la creación y organización de eventos, stands para ferias, convenciones, encuentros, desfiles, shootings de catálogos para diferentes marcas a nivel internacional, siempre vinculando la moda con la decoración.",
-        "Hoy como decoradora home stager profesional, titulada en The Home Staging School, ofrezco todas mis capacidades de creación, adaptación y organización a mis clientes. Muy atenta a los detalles, siempre busco la armonización de los espacios donde pueden fluir las energías.",
-        "Cuando entro en una casa, adoro encontrar sus puntos fuertes y pensar en lo que se pueda hacer para que resalten los espacios y que uno se sienta bien. Con el home staging hago que sea atractiva a la hora de venderla o alquilarla a un futuro cliente. Mi logro es cuando un cliente se enamora de una vivienda a primera vista.",
+        "Cuando tuvimos la oportunidad de entrar en el mundo de la moda en París con el que siempre soñamos de pequeñas, no nos enamoramos solo de la moda y la Haute Couture, sino también del diseño y de la decoración. El vínculo entre la moda y los interiores es muy evidente.",
+        "Así evolucionamos más de 20 años como expertas en la creación y organización de eventos, stands para ferias, convenciones, encuentros, desfiles y shootings de catálogos para diferentes marcas a nivel internacional, siempre vinculando la moda con la decoración.",
+        "Hoy, como decoradoras y home stagers profesionales tituladas en The Home Staging School, ponemos todas nuestras capacidades de creación, adaptación y organización al servicio de nuestros clientes. Muy atentas a los detalles, siempre buscamos la armonización de los espacios donde pueden fluir las energías.",
+        "Cuando entramos en una casa, adoramos encontrar sus puntos fuertes y pensar en lo que se puede hacer para resaltar los espacios y que uno se sienta bien. Con el home staging la hacemos atractiva a la hora de venderla o alquilarla a un futuro cliente. Nuestro mayor logro es cuando un cliente se enamora de una vivienda a primera vista.",
       ],
     },
     company: {
       eyebrow: "Una agencia con mirada de interiorista",
       title: "Vendemos, alquilamos y realzamos tu hogar.",
-      p1: "Soy Clémentine, agente inmobiliaria API y especialista en home staging. Combino el rigor de la intermediación profesional con una sensibilidad única para realzar cada propiedad entre Vilanova i la Geltrú, Sitges y Canyelles.",
-      p2: "Cada propiedad tiene una historia. Mi trabajo es revelarla y venderla: con luz, color, mobiliario y una estrategia comercial que conecta emocionalmente con los compradores.",
-      location: "Vilanova i la Geltrú · Sitges · Canyelles",
+      p1: "Somos un equipo liderado por Clémentine, agente inmobiliaria API y especialista en home staging. Combinamos el rigor de la intermediación profesional con una sensibilidad única para realzar cada propiedad en el Sector Garraf – Barcelona.",
+      p2: "Cada propiedad tiene una historia. Nuestro trabajo es revelarla y venderla: con luz, color, mobiliario y una estrategia comercial que conecta emocionalmente con los compradores.",
+      location: "Sector Garraf – Barcelona",
     },
     realEstate: {
       eyebrow: "Real Estate · Agente API",
       title: "Tu agencia inmobiliaria de confianza en el Garraf.",
-      sub: "Más allá del home staging, gestiono la venta y el alquiler de tu propiedad como agente colegiada. Una sola interlocutora para toda la operación: preparación, marketing y cierre.",
+      sub: "Más allá del home staging, gestionamos la venta y el alquiler de tu propiedad como agencia colegiada. Una sola interlocutora para toda la operación: preparación, marketing y cierre.",
       cta: "Valorar mi propiedad",
       pillars: [
         { title: "Venta de propiedades", desc: "Valoración realista, marketing visual de alto impacto y red de compradores cualificados." },
@@ -90,12 +97,12 @@ const dict = {
     services: {
       eyebrow: "Servicios",
       title: "Todo lo que tu propiedad necesita.",
-      sub: "De la consultoría inicial a la firma ante notario, te acompaño en cada paso.",
+      sub: "De la consultoría inicial a la firma ante notario, te acompañamos en cada paso.",
       items: [
         { title: "Home Staging Completo", desc: "Transformamos cada estancia para destacar el potencial real de tu propiedad y atraer más compradores." },
         { title: "Consultoría Express", desc: "Visita y diagnóstico con recomendaciones concretas para preparar tu vivienda antes de venderla o alquilarla." },
         { title: "Reportaje Fotográfico", desc: "Fotografías profesionales que multiplican las visitas online de tu anuncio inmobiliario." },
-        { title: "Venta y Alquiler", desc: "Como agente API colegiada, gestiono la venta y el alquiler de tu propiedad de principio a fin." },
+        { title: "Venta y Alquiler", desc: "Como agencia API colegiada, gestionamos la venta y el alquiler de tu propiedad de principio a fin." },
       ],
     },
     beforeAfter: {
@@ -113,7 +120,7 @@ const dict = {
     reviews: { title: "5,0 en Google", sub: "Lo que dicen quienes ya han confiado en Clementine." },
     reviewsList: [
       { name: "Justine Grebaut", text: "Clémentine es, sin duda, una gran profesional muy implicada. Además de tomarse el tiempo para entender las expectativas y exigencias, con mucha paciencia, aporta una mirada nueva al sector inmobiliario gracias a su experiencia inigualable en home staging. Solo puedo recomendarla enormemente.", role: "Local Guide · 17 reseñas" },
-      { name: "Verònica Rico", text: "Clémentine es una mujer realmente entregada e impecable. Su gusto excepcional por la decoración interior es una baza considerable para la venta de nuestras casas y la puesta en valor de su elegancia.", role: "Cliente" },
+      { name: "Verònica Rico", text: "Clémentine es una mujer realmente entregada e impecable. Su gusto excepcional por la decoración interior es una baza considerable para la venta de nuestras casas y la puesta en valor de su elegancia.", role: "Agente inmobiliaria" },
       { name: "Sophie Corvaisier", text: "Clémentine es una profesional increíblemente entregada que me ha sido de gran ayuda durante todo el proceso de venta. Tiene un talento excepcional para crear espacios cautivadores y demuestra una gran eficacia en su gestión. La recomiendo sin dudarlo.", role: "Kretz Real Estate" },
     ],
     beforeAfterLabels: {
@@ -127,9 +134,9 @@ const dict = {
       items: [
         { q: "¿Qué es exactamente el home staging?", a: "El home staging es una técnica de marketing inmobiliario que prepara y embellece una vivienda para venderla o alquilarla más rápido y al mejor precio, despersonalizando y resaltando sus puntos fuertes." },
         { q: "¿Cuánto cuesta un servicio de home staging?", a: "El presupuesto se adapta a cada proyecto: superficie, estado de la vivienda y objetivo comercial. Ofrecemos una primera visita y valoración totalmente gratuita y sin compromiso." },
-        { q: "¿En qué zona trabajáis?", a: "Operamos principalmente entre Vilanova i la Geltrú, Sitges, Canyelles y todo el Garraf. Para proyectos especiales, podemos desplazarnos a otras zonas de Cataluña." },
+        { q: "¿En qué zona trabajáis?", a: "Operamos principalmente en el Sector Garraf – Barcelona. Para proyectos especiales, podemos desplazarnos a otras zonas de Cataluña." },
         { q: "¿Cuánto tiempo tarda una intervención?", a: "Una consultoría express se realiza en una sola visita. Una puesta en escena completa suele estar lista entre 3 y 7 días, según el alcance de la transformación." },
-        { q: "¿Sois también agentes inmobiliarios?", a: "Sí, Clémentine es agente API colegiada y puede gestionar la venta o el alquiler de tu propiedad de principio a fin, integrando home staging, fotografía y comercialización." },
+        { q: "¿Sois también agentes inmobiliarios?", a: "Sí, somos agencia API colegiada y podemos gestionar la venta o el alquiler de tu propiedad de principio a fin, integrando home staging, fotografía y comercialización." },
       ],
     },
     contact: {
