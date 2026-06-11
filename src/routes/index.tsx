@@ -263,10 +263,10 @@ const dict = {
       eyebrow: "À propos",
       title: "Envie d'en savoir plus ?",
       body: [
-        "Quand j'ai eu la chance d'entrer dans le monde de la mode à Paris dont je rêvais petite, je ne suis pas seulement tombée amoureuse de la mode et de la Haute Couture, mais aussi du design et de la décoration. Le lien entre la mode et les intérieurs est très évident.",
-        "J'ai ainsi évolué pendant plus de 20 ans comme experte dans la création et l'organisation d'événements, de stands pour salons, conventions, rencontres, défilés, shootings catalogues pour différentes marques à l'international, en reliant toujours la mode à la décoration.",
-        "Aujourd'hui, en tant que home stager professionnelle diplômée de The Home Staging School, je mets toutes mes capacités de création, d'adaptation et d'organisation au service de mes clients. Très attentive aux détails, je cherche toujours l'harmonisation des espaces où les énergies peuvent circuler.",
-        "Quand j'entre dans une maison, j'adore en trouver les points forts et imaginer ce que l'on peut faire pour mettre les espaces en valeur et que l'on s'y sente bien. Avec le home staging, je rends la maison attractive au moment de la vendre ou de la louer à un futur client. Ma réussite, c'est quand un client tombe amoureux d'un bien au premier regard.",
+        "Quand nous avons eu la chance d'entrer dans le monde de la mode à Paris dont nous rêvions petites, nous ne sommes pas seulement tombées amoureuses de la mode et de la Haute Couture, mais aussi du design et de la décoration. Le lien entre la mode et les intérieurs est très évident.",
+        "Nous avons évolué pendant plus de 20 ans comme expertes dans la création et l'organisation d'événements, de stands pour salons, conventions, rencontres, défilés et shootings catalogues pour différentes marques à l'international, en reliant toujours la mode à la décoration.",
+        "Aujourd'hui, en tant que home stagers professionnelles diplômées de The Home Staging School, nous mettons toutes nos capacités de création, d'adaptation et d'organisation au service de nos clients. Très attentives aux détails, nous cherchons toujours l'harmonisation des espaces où les énergies peuvent circuler.",
+        "Quand nous entrons dans une maison, nous adorons en trouver les points forts et imaginer ce que l'on peut faire pour mettre les espaces en valeur et que l'on s'y sente bien. Avec le home staging, nous rendons la maison attractive au moment de la vendre ou de la louer à un futur client. Notre réussite, c'est quand un client tombe amoureux d'un bien au premier regard.",
       ],
     },
     company: {
