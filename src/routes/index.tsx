@@ -250,7 +250,7 @@ const dict = {
     hero: {
       eyebrow: "Home Staging · Real Estate · Garraf",
       slogan: "Making Homes Bloom",
-      sub: "Agence immobilière et service de home staging entre Vilanova i la Geltrú, Sitges et Canyelles. Nous vous accompagnons à chaque étape : estimation, mise en scène, photographie et vente.",
+      sub: "Agence immobilière et service de home staging dans le Secteur Garraf – Barcelone. Nous vous accompagnons à chaque étape : estimation, mise en scène, photographie et vente.",
       whatsapp: "Discuter sur WhatsApp",
       visit: "Visite gratuite",
       seeProjects: "Voir les projets",
