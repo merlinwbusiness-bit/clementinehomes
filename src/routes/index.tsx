@@ -457,7 +457,7 @@ function LangSwitcher({ scrolled }: { scrolled: boolean }) {
 
 /* ---------- Nav ---------- */
 function Nav() {
-  const { t } = useT();
+  const { t, lang } = useT();
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   useEffect(() => {
@@ -476,7 +476,7 @@ function Nav() {
   return (
     <nav className={`fixed top-0 left-0 right-0 z-40 px-6 lg:px-12 py-4 flex items-center justify-between transition-all duration-300 ${scrolled ? "bg-background/90 backdrop-blur-md shadow-[var(--shadow-soft)]" : "bg-transparent"}`}>
       <a href="#top" className="flex items-center gap-3">
-        <img src={logo} alt="Clementine Homes" className={`h-12 w-auto rounded-md p-1.5 transition ${scrolled ? "bg-transparent" : "bg-background/95"}`} />
+        <img src={logo} alt="Clementine Homes" className={`h-20 md:h-24 w-auto rounded-md p-1.5 transition ${scrolled ? "bg-transparent" : "bg-background/95"}`} />
       </a>
       <div className={`hidden lg:flex items-center gap-7 text-sm transition ${scrolled ? "text-foreground" : "text-background/90"}`}>
         {links.map((l) => (
@@ -485,7 +485,7 @@ function Nav() {
       </div>
       <div className="flex items-center gap-2">
         <LangSwitcher scrolled={scrolled} />
-        <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" className="hidden md:inline-flex items-center gap-2 text-sm bg-primary text-primary-foreground px-4 py-2 rounded-full hover:opacity-90 transition">
+        <a href={waUrl(lang)} target="_blank" rel="noopener noreferrer" className="hidden md:inline-flex items-center gap-2 text-sm bg-primary text-primary-foreground px-4 py-2 rounded-full hover:opacity-90 transition">
           <WhatsAppIcon className="w-4 h-4" /> WhatsApp
         </a>
         <button onClick={() => setMobileOpen((o) => !o)} className={`lg:hidden p-2 rounded-md transition ${scrolled ? "text-foreground hover:bg-secondary" : "text-background hover:bg-background/10"}`} aria-label="Menu">
@@ -527,7 +527,7 @@ function ScrollProgress() {
 
 /* ---------- Hero ---------- */
 function Hero() {
-  const { t } = useT();
+  const { t, lang } = useT();
   return (
     <header id="top" className="relative min-h-screen flex items-end overflow-hidden">
       <img src={hero} alt="Interior elegante" className="absolute inset-0 w-full h-full object-cover scale-105 animate-[heroZoom_18s_ease-out_forwards]" />
@@ -537,14 +537,14 @@ function Hero() {
         <span className="inline-flex items-center gap-2 text-background/90 text-xs uppercase tracking-[0.25em] mb-6 opacity-0 animate-[fadeUp_0.8s_0.1s_ease-out_forwards]">
           <span className="h-px w-10 bg-background/60" /> {t.hero.eyebrow}
         </span>
-        <h1 className="font-display italic text-background text-5xl md:text-7xl lg:text-[8rem] leading-[1.02] mb-6 opacity-0 animate-[fadeUp_0.9s_0.25s_ease-out_forwards]">
+        <h1 className="font-display text-background text-5xl md:text-7xl lg:text-[8rem] leading-[1.02] mb-6 opacity-0 animate-[fadeUp_0.9s_0.25s_ease-out_forwards]">
           {t.hero.slogan}
         </h1>
         <p className="text-background/90 text-lg md:text-xl max-w-2xl mb-10 leading-relaxed opacity-0 animate-[fadeUp_0.9s_0.55s_ease-out_forwards]">
           {t.hero.sub}
         </p>
         <div className="flex flex-wrap gap-4 opacity-0 animate-[fadeUp_0.9s_0.75s_ease-out_forwards]">
-          <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 bg-[#25D366] text-white px-7 py-4 rounded-full font-medium hover:scale-[1.03] active:scale-100 transition shadow-[var(--shadow-soft)]">
+          <a href={waUrl(lang)} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 bg-[#25D366] text-white px-7 py-4 rounded-full font-medium hover:scale-[1.03] active:scale-100 transition shadow-[var(--shadow-soft)]">
             <WhatsAppIcon className="w-5 h-5" /> {t.hero.whatsapp}
           </a>
           <a href="#contacto" className="inline-flex items-center gap-2 bg-primary text-primary-foreground px-7 py-4 rounded-full font-medium hover:scale-[1.03] active:scale-100 transition shadow-[var(--shadow-soft)]">
@@ -663,7 +663,7 @@ function Company() {
 
 /* ---------- Real estate ---------- */
 function RealEstate() {
-  const { t } = useT();
+  const { t, lang } = useT();
   const icons = [Building2, Key, Handshake, TrendingUp];
   return (
     <section id="real-estate" className="py-24 px-6 lg:px-12">
@@ -693,7 +693,7 @@ function RealEstate() {
         </div>
         <Reveal delay={200}>
           <div className="mt-12 flex flex-wrap gap-4">
-            <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 bg-[#25D366] text-white px-7 py-4 rounded-full font-medium hover:scale-[1.03] transition">
+            <a href={waUrl(lang)} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 bg-[#25D366] text-white px-7 py-4 rounded-full font-medium hover:scale-[1.03] transition">
               <WhatsAppIcon className="w-5 h-5" /> {t.realEstate.cta}
             </a>
             <a href="mailto:realestate@clementinehomes.es" className="inline-flex items-center gap-2 border border-border px-7 py-4 rounded-full font-medium hover:bg-secondary transition">
@@ -899,7 +899,7 @@ function FAQ() {
 
 /* ---------- Contact ---------- */
 function Contact() {
-  const { t } = useT();
+  const { t, lang } = useT();
   return (
     <section id="contacto" className="relative py-24 px-6 lg:px-12 overflow-hidden">
       <div className="absolute inset-0" style={{ background: "var(--gradient-warm)" }} />
@@ -911,7 +911,7 @@ function Contact() {
         </Reveal>
         <Reveal delay={120}>
           <div className="flex flex-wrap justify-center gap-4 mb-10">
-            <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 bg-[#25D366] text-white px-7 py-4 rounded-full font-medium hover:scale-[1.03] transition">
+            <a href={waUrl(lang)} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 bg-[#25D366] text-white px-7 py-4 rounded-full font-medium hover:scale-[1.03] transition">
               <WhatsAppIcon className="w-5 h-5" /> WhatsApp
             </a>
             <a href="tel:+34620533054" className="inline-flex items-center gap-2 bg-background text-foreground px-7 py-4 rounded-full font-medium hover:scale-[1.03] transition">
@@ -972,8 +972,9 @@ function Footer() {
 }
 
 function FloatingWhatsApp() {
+  const { lang } = useT();
   return (
-    <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" aria-label="WhatsApp"
+    <a href={waUrl(lang)} target="_blank" rel="noopener noreferrer" aria-label="WhatsApp"
       className="fixed bottom-6 right-6 z-50 w-14 h-14 rounded-full bg-[#25D366] text-white flex items-center justify-center shadow-xl hover:scale-110 transition"
       style={{ animation: "pulseRing 2.4s infinite" }}>
       <WhatsAppIcon className="w-7 h-7" />
