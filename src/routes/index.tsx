@@ -25,7 +25,14 @@ export const Route = createFileRoute("/")({
   component: Index,
 });
 
-const WHATSAPP_URL = "https://wa.me/34620533054?text=Hola%20Cl%C3%A9mentine%2C%20me%20gustar%C3%ADa%20m%C3%A1s%20informaci%C3%B3n";
+const WA_PHONE = "34620533054";
+const WA_MESSAGES: Record<"es" | "en" | "fr", string> = {
+  es: "Hola Clémentine, le contacto desde la página web",
+  en: "Hello Clémentine, I am contacting you from the website",
+  fr: "Bonjour Clémentine, je vous contacte depuis le site internet",
+};
+const waUrl = (lang: "es" | "en" | "fr") =>
+  `https://wa.me/${WA_PHONE}?text=${encodeURIComponent(WA_MESSAGES[lang])}`;
 
 const portrait = portraitAsset.url;
 const beforeAfterPairs = [
@@ -49,7 +56,7 @@ const dict = {
     hero: {
       eyebrow: "Home Staging · Real Estate · Garraf",
       slogan: "Making Homes Bloom",
-      sub: "Agencia inmobiliaria y servicio de home staging entre Vilanova i la Geltrú, Sitges y Canyelles. Te acompañamos en cada etapa: valoración, preparación, fotografía y venta.",
+      sub: "Agencia inmobiliaria y servicio de home staging en el Sector Garraf – Barcelona. Te acompañamos en cada etapa: valoración, preparación, fotografía y venta.",
       whatsapp: "Hablar por WhatsApp",
       visit: "Visita gratuita",
       seeProjects: "Ver proyectos",
@@ -62,23 +69,23 @@ const dict = {
       eyebrow: "Sobre mí",
       title: "¿Quieres saber más?",
       body: [
-        "Cuando tuve la oportunidad de entrar en el mundo de la moda en Paris en el cual siempre soñé de pequeña, no me enamoré solo de la moda y la Haute Couture pero también del diseño y de la decoración. El vínculo entre la moda y los interiores es muy evidente.",
-        "Así evolucioné más de 20 años como experta en la creación y organización de eventos, stands para ferias, convenciones, encuentros, desfiles, shootings de catálogos para diferentes marcas a nivel internacional, siempre vinculando la moda con la decoración.",
-        "Hoy como decoradora home stager profesional, titulada en The Home Staging School, ofrezco todas mis capacidades de creación, adaptación y organización a mis clientes. Muy atenta a los detalles, siempre busco la armonización de los espacios donde pueden fluir las energías.",
-        "Cuando entro en una casa, adoro encontrar sus puntos fuertes y pensar en lo que se pueda hacer para que resalten los espacios y que uno se sienta bien. Con el home staging hago que sea atractiva a la hora de venderla o alquilarla a un futuro cliente. Mi logro es cuando un cliente se enamora de una vivienda a primera vista.",
+        "Cuando tuvimos la oportunidad de entrar en el mundo de la moda en París con el que siempre soñamos de pequeñas, no nos enamoramos solo de la moda y la Haute Couture, sino también del diseño y de la decoración. El vínculo entre la moda y los interiores es muy evidente.",
+        "Así evolucionamos más de 20 años como expertas en la creación y organización de eventos, stands para ferias, convenciones, encuentros, desfiles y shootings de catálogos para diferentes marcas a nivel internacional, siempre vinculando la moda con la decoración.",
+        "Hoy, como decoradoras y home stagers profesionales tituladas en The Home Staging School, ponemos todas nuestras capacidades de creación, adaptación y organización al servicio de nuestros clientes. Muy atentas a los detalles, siempre buscamos la armonización de los espacios donde pueden fluir las energías.",
+        "Cuando entramos en una casa, adoramos encontrar sus puntos fuertes y pensar en lo que se puede hacer para resaltar los espacios y que uno se sienta bien. Con el home staging la hacemos atractiva a la hora de venderla o alquilarla a un futuro cliente. Nuestro mayor logro es cuando un cliente se enamora de una vivienda a primera vista.",
       ],
     },
     company: {
       eyebrow: "Una agencia con mirada de interiorista",
       title: "Vendemos, alquilamos y realzamos tu hogar.",
-      p1: "Soy Clémentine, agente inmobiliaria API y especialista en home staging. Combino el rigor de la intermediación profesional con una sensibilidad única para realzar cada propiedad entre Vilanova i la Geltrú, Sitges y Canyelles.",
-      p2: "Cada propiedad tiene una historia. Mi trabajo es revelarla y venderla: con luz, color, mobiliario y una estrategia comercial que conecta emocionalmente con los compradores.",
-      location: "Vilanova i la Geltrú · Sitges · Canyelles",
+      p1: "Somos un equipo liderado por Clémentine, agente inmobiliaria API y especialista en home staging. Combinamos el rigor de la intermediación profesional con una sensibilidad única para realzar cada propiedad en el Sector Garraf – Barcelona.",
+      p2: "Cada propiedad tiene una historia. Nuestro trabajo es revelarla y venderla: con luz, color, mobiliario y una estrategia comercial que conecta emocionalmente con los compradores.",
+      location: "Sector Garraf – Barcelona",
     },
     realEstate: {
       eyebrow: "Real Estate · Agente API",
       title: "Tu agencia inmobiliaria de confianza en el Garraf.",
-      sub: "Más allá del home staging, gestiono la venta y el alquiler de tu propiedad como agente colegiada. Una sola interlocutora para toda la operación: preparación, marketing y cierre.",
+      sub: "Más allá del home staging, gestionamos la venta y el alquiler de tu propiedad como agencia colegiada. Una sola interlocutora para toda la operación: preparación, marketing y cierre.",
       cta: "Valorar mi propiedad",
       pillars: [
         { title: "Venta de propiedades", desc: "Valoración realista, marketing visual de alto impacto y red de compradores cualificados." },
@@ -90,12 +97,12 @@ const dict = {
     services: {
       eyebrow: "Servicios",
       title: "Todo lo que tu propiedad necesita.",
-      sub: "De la consultoría inicial a la firma ante notario, te acompaño en cada paso.",
+      sub: "De la consultoría inicial a la firma ante notario, te acompañamos en cada paso.",
       items: [
         { title: "Home Staging Completo", desc: "Transformamos cada estancia para destacar el potencial real de tu propiedad y atraer más compradores." },
         { title: "Consultoría Express", desc: "Visita y diagnóstico con recomendaciones concretas para preparar tu vivienda antes de venderla o alquilarla." },
         { title: "Reportaje Fotográfico", desc: "Fotografías profesionales que multiplican las visitas online de tu anuncio inmobiliario." },
-        { title: "Venta y Alquiler", desc: "Como agente API colegiada, gestiono la venta y el alquiler de tu propiedad de principio a fin." },
+        { title: "Venta y Alquiler", desc: "Como agencia API colegiada, gestionamos la venta y el alquiler de tu propiedad de principio a fin." },
       ],
     },
     beforeAfter: {
@@ -113,7 +120,7 @@ const dict = {
     reviews: { title: "5,0 en Google", sub: "Lo que dicen quienes ya han confiado en Clementine." },
     reviewsList: [
       { name: "Justine Grebaut", text: "Clémentine es, sin duda, una gran profesional muy implicada. Además de tomarse el tiempo para entender las expectativas y exigencias, con mucha paciencia, aporta una mirada nueva al sector inmobiliario gracias a su experiencia inigualable en home staging. Solo puedo recomendarla enormemente.", role: "Local Guide · 17 reseñas" },
-      { name: "Verònica Rico", text: "Clémentine es una mujer realmente entregada e impecable. Su gusto excepcional por la decoración interior es una baza considerable para la venta de nuestras casas y la puesta en valor de su elegancia.", role: "Cliente" },
+      { name: "Verònica Rico", text: "Clémentine es una mujer realmente entregada e impecable. Su gusto excepcional por la decoración interior es una baza considerable para la venta de nuestras casas y la puesta en valor de su elegancia.", role: "Agente inmobiliaria" },
       { name: "Sophie Corvaisier", text: "Clémentine es una profesional increíblemente entregada que me ha sido de gran ayuda durante todo el proceso de venta. Tiene un talento excepcional para crear espacios cautivadores y demuestra una gran eficacia en su gestión. La recomiendo sin dudarlo.", role: "Kretz Real Estate" },
     ],
     beforeAfterLabels: {
@@ -127,9 +134,9 @@ const dict = {
       items: [
         { q: "¿Qué es exactamente el home staging?", a: "El home staging es una técnica de marketing inmobiliario que prepara y embellece una vivienda para venderla o alquilarla más rápido y al mejor precio, despersonalizando y resaltando sus puntos fuertes." },
         { q: "¿Cuánto cuesta un servicio de home staging?", a: "El presupuesto se adapta a cada proyecto: superficie, estado de la vivienda y objetivo comercial. Ofrecemos una primera visita y valoración totalmente gratuita y sin compromiso." },
-        { q: "¿En qué zona trabajáis?", a: "Operamos principalmente entre Vilanova i la Geltrú, Sitges, Canyelles y todo el Garraf. Para proyectos especiales, podemos desplazarnos a otras zonas de Cataluña." },
+        { q: "¿En qué zona trabajáis?", a: "Operamos principalmente en el Sector Garraf – Barcelona. Para proyectos especiales, podemos desplazarnos a otras zonas de Cataluña." },
         { q: "¿Cuánto tiempo tarda una intervención?", a: "Una consultoría express se realiza en una sola visita. Una puesta en escena completa suele estar lista entre 3 y 7 días, según el alcance de la transformación." },
-        { q: "¿Sois también agentes inmobiliarios?", a: "Sí, Clémentine es agente API colegiada y puede gestionar la venta o el alquiler de tu propiedad de principio a fin, integrando home staging, fotografía y comercialización." },
+        { q: "¿Sois también agentes inmobiliarios?", a: "Sí, somos agencia API colegiada y podemos gestionar la venta o el alquiler de tu propiedad de principio a fin, integrando home staging, fotografía y comercialización." },
       ],
     },
     contact: {
@@ -146,7 +153,7 @@ const dict = {
     hero: {
       eyebrow: "Home Staging · Real Estate · Garraf",
       slogan: "Making Homes Bloom",
-      sub: "Real estate agency and home staging service between Vilanova i la Geltrú, Sitges and Canyelles. We support you at every stage: valuation, styling, photography and sale.",
+      sub: "Real estate agency and home staging service in the Garraf area – Barcelona. We support you at every stage: valuation, styling, photography and sale.",
       whatsapp: "Chat on WhatsApp",
       visit: "Free visit",
       seeProjects: "See projects",
@@ -159,23 +166,23 @@ const dict = {
       eyebrow: "About me",
       title: "Want to know more?",
       body: [
-        "When I had the chance to step into the Paris fashion world I had always dreamed of as a child, I fell in love not only with fashion and Haute Couture but also with design and interiors. The link between fashion and interiors is very clear.",
-        "I spent over 20 years as an expert in creating and organising events, trade-fair stands, conventions, fashion shows and catalogue shootings for international brands, always weaving fashion together with decoration.",
-        "Today, as a professional home stager certified by The Home Staging School, I bring all my creative, adaptive and organisational skills to my clients. Detail-driven, I always look for harmony in spaces so that energy can flow freely.",
-        "When I walk into a home, I love discovering its strengths and imagining what can be done to make the rooms shine and feel good. With home staging I make a property attractive to its future buyer or tenant. My greatest reward is when a client falls in love with a home at first sight.",
+        "When we had the chance to step into the Paris fashion world we had always dreamed of as little girls, we fell in love not only with fashion and Haute Couture but also with design and interiors. The link between fashion and interiors is very clear.",
+        "We spent over 20 years as experts in creating and organising events, trade-fair stands, conventions, fashion shows and catalogue shootings for international brands, always weaving fashion together with decoration.",
+        "Today, as professional home stagers certified by The Home Staging School, we bring all of our creative, adaptive and organisational skills to our clients. Detail-driven, we always look for harmony in spaces so that energy can flow freely.",
+        "When we walk into a home, we love discovering its strengths and imagining what can be done to make the rooms shine and feel good. With home staging we make a property attractive to its future buyer or tenant. Our greatest reward is when a client falls in love with a home at first sight.",
       ],
     },
     company: {
       eyebrow: "An agency with an interior designer's eye",
       title: "We sell, rent and elevate your home.",
-      p1: "I'm Clémentine, licensed API real estate agent and home staging specialist. I combine professional brokerage rigour with a unique sensitivity to elevate every property between Vilanova i la Geltrú, Sitges and Canyelles.",
-      p2: "Every property has a story. My job is to reveal it and sell it: with light, colour, furniture and a commercial strategy that emotionally connects with buyers.",
-      location: "Vilanova i la Geltrú · Sitges · Canyelles",
+      p1: "We are a team led by Clémentine, licensed API real estate agent and home staging specialist. We combine professional brokerage rigour with a unique sensitivity to elevate every property in the Garraf area – Barcelona.",
+      p2: "Every property has a story. Our job is to reveal it and sell it: with light, colour, furniture and a commercial strategy that emotionally connects with buyers.",
+      location: "Garraf area – Barcelona",
     },
     realEstate: {
       eyebrow: "Real Estate · API Agent",
       title: "Your trusted real estate agency in the Garraf.",
-      sub: "Beyond home staging, I manage the sale and rental of your property as a licensed agent. A single point of contact for the entire operation: prep, marketing and closing.",
+      sub: "Beyond home staging, we manage the sale and rental of your property as a licensed agency. A single point of contact for the entire operation: prep, marketing and closing.",
       cta: "Value my property",
       pillars: [
         { title: "Property sales", desc: "Realistic valuation, high-impact visual marketing and a network of qualified buyers." },
@@ -187,12 +194,12 @@ const dict = {
     services: {
       eyebrow: "Services",
       title: "Everything your property needs.",
-      sub: "From the initial consultation to signing at the notary, I'm with you at every step.",
+      sub: "From the initial consultation to signing at the notary, we're with you at every step.",
       items: [
         { title: "Full Home Staging", desc: "We transform each room to highlight your property's real potential and attract more buyers." },
         { title: "Express Consulting", desc: "Visit and diagnosis with concrete recommendations to prepare your home before selling or renting." },
         { title: "Photo Reportage", desc: "Professional photography that multiplies online views of your listing." },
-        { title: "Sale & Rental", desc: "As a licensed API agent, I manage the sale and rental of your property from start to finish." },
+        { title: "Sale & Rental", desc: "As a licensed API agency, we manage the sale and rental of your property from start to finish." },
       ],
     },
     beforeAfter: {
@@ -210,7 +217,7 @@ const dict = {
     reviews: { title: "5.0 on Google", sub: "What those who already trusted Clementine say." },
     reviewsList: [
       { name: "Justine Grebaut", text: "Clémentine is undoubtedly a great, highly committed professional. Beyond taking the time to understand expectations and requirements, with great patience, she brings a fresh perspective to the real estate sector thanks to her unparalleled experience in home staging. I can only recommend her wholeheartedly.", role: "Local Guide · 17 reviews" },
-      { name: "Verònica Rico", text: "Clémentine is a truly dedicated and impeccable woman. Her exceptional taste in interior design is a considerable asset for selling our homes and showcasing their elegance.", role: "Client" },
+      { name: "Verònica Rico", text: "Clémentine is a truly dedicated and impeccable woman. Her exceptional taste in interior design is a considerable asset for selling our homes and showcasing their elegance.", role: "Real estate agent" },
       { name: "Sophie Corvaisier", text: "Clémentine is an incredibly dedicated professional who has been of invaluable help throughout the sale process. She has an exceptional talent for creating captivating spaces and demonstrates great efficiency in her management. I recommend her without hesitation.", role: "Kretz Real Estate" },
     ],
     beforeAfterLabels: {
@@ -224,9 +231,9 @@ const dict = {
       items: [
         { q: "What exactly is home staging?", a: "Home staging is a real-estate marketing technique that prepares and beautifies a home to sell or rent it faster and at the best price, by depersonalising it and highlighting its strengths." },
         { q: "How much does a home staging service cost?", a: "The budget is tailored to each project: size, condition and commercial goal. We offer a free, no-commitment first visit and valuation." },
-        { q: "What area do you cover?", a: "We work mainly across Vilanova i la Geltrú, Sitges, Canyelles and the whole Garraf region. For special projects, we can travel to other parts of Catalonia." },
+        { q: "What area do you cover?", a: "We work mainly across the Garraf area – Barcelona. For special projects, we can travel to other parts of Catalonia." },
         { q: "How long does an intervention take?", a: "An express consultancy is done in a single visit. A full styling is usually ready in 3 to 7 days, depending on the scope of the transformation." },
-        { q: "Are you also a real estate agent?", a: "Yes — Clémentine is a licensed API agent and can handle the sale or rental of your property end-to-end, combining home staging, photography and marketing." },
+        { q: "Are you also real estate agents?", a: "Yes — we are a licensed API agency and can handle the sale or rental of your property end-to-end, combining home staging, photography and marketing." },
       ],
     },
     contact: {
@@ -243,7 +250,7 @@ const dict = {
     hero: {
       eyebrow: "Home Staging · Real Estate · Garraf",
       slogan: "Making Homes Bloom",
-      sub: "Agence immobilière et service de home staging entre Vilanova i la Geltrú, Sitges et Canyelles. Nous vous accompagnons à chaque étape : estimation, mise en scène, photographie et vente.",
+      sub: "Agence immobilière et service de home staging dans le Secteur Garraf – Barcelone. Nous vous accompagnons à chaque étape : estimation, mise en scène, photographie et vente.",
       whatsapp: "Discuter sur WhatsApp",
       visit: "Visite gratuite",
       seeProjects: "Voir les projets",
@@ -256,23 +263,23 @@ const dict = {
       eyebrow: "À propos",
       title: "Envie d'en savoir plus ?",
       body: [
-        "Quand j'ai eu la chance d'entrer dans le monde de la mode à Paris dont je rêvais petite, je ne suis pas seulement tombée amoureuse de la mode et de la Haute Couture, mais aussi du design et de la décoration. Le lien entre la mode et les intérieurs est très évident.",
-        "J'ai ainsi évolué pendant plus de 20 ans comme experte dans la création et l'organisation d'événements, de stands pour salons, conventions, rencontres, défilés, shootings catalogues pour différentes marques à l'international, en reliant toujours la mode à la décoration.",
-        "Aujourd'hui, en tant que home stager professionnelle diplômée de The Home Staging School, je mets toutes mes capacités de création, d'adaptation et d'organisation au service de mes clients. Très attentive aux détails, je cherche toujours l'harmonisation des espaces où les énergies peuvent circuler.",
-        "Quand j'entre dans une maison, j'adore en trouver les points forts et imaginer ce que l'on peut faire pour mettre les espaces en valeur et que l'on s'y sente bien. Avec le home staging, je rends la maison attractive au moment de la vendre ou de la louer à un futur client. Ma réussite, c'est quand un client tombe amoureux d'un bien au premier regard.",
+        "Quand nous avons eu la chance d'entrer dans le monde de la mode à Paris dont nous rêvions petites, nous ne sommes pas seulement tombées amoureuses de la mode et de la Haute Couture, mais aussi du design et de la décoration. Le lien entre la mode et les intérieurs est très évident.",
+        "Nous avons évolué pendant plus de 20 ans comme expertes dans la création et l'organisation d'événements, de stands pour salons, conventions, rencontres, défilés et shootings catalogues pour différentes marques à l'international, en reliant toujours la mode à la décoration.",
+        "Aujourd'hui, en tant que home stagers professionnelles diplômées de The Home Staging School, nous mettons toutes nos capacités de création, d'adaptation et d'organisation au service de nos clients. Très attentives aux détails, nous cherchons toujours l'harmonisation des espaces où les énergies peuvent circuler.",
+        "Quand nous entrons dans une maison, nous adorons en trouver les points forts et imaginer ce que l'on peut faire pour mettre les espaces en valeur et que l'on s'y sente bien. Avec le home staging, nous rendons la maison attractive au moment de la vendre ou de la louer à un futur client. Notre réussite, c'est quand un client tombe amoureux d'un bien au premier regard.",
       ],
     },
     company: {
       eyebrow: "Une agence avec un œil de décoratrice",
       title: "Nous vendons, louons et sublimons votre bien.",
-      p1: "Je suis Clémentine, agent immobilier API et spécialiste en home staging. J'allie la rigueur de l'intermédiation professionnelle à une sensibilité unique pour sublimer chaque bien entre Vilanova i la Geltrú, Sitges et Canyelles.",
-      p2: "Chaque bien a une histoire. Mon travail est de la révéler et de la vendre : avec la lumière, la couleur, le mobilier et une stratégie commerciale qui touche les acheteurs.",
-      location: "Vilanova i la Geltrú · Sitges · Canyelles",
+      p1: "Nous sommes une équipe menée par Clémentine, agent immobilier API et spécialiste en home staging. Nous allions la rigueur de l'intermédiation professionnelle à une sensibilité unique pour sublimer chaque bien dans le Secteur Garraf – Barcelone.",
+      p2: "Chaque bien a une histoire. Notre travail est de la révéler et de la vendre : avec la lumière, la couleur, le mobilier et une stratégie commerciale qui touche les acheteurs.",
+      location: "Secteur Garraf – Barcelone",
     },
     realEstate: {
       eyebrow: "Real Estate · Agent API",
       title: "Votre agence immobilière de confiance dans le Garraf.",
-      sub: "Au-delà du home staging, je gère la vente et la location de votre bien en tant qu'agent agréée. Une seule interlocutrice pour toute l'opération : préparation, marketing et signature.",
+      sub: "Au-delà du home staging, nous gérons la vente et la location de votre bien en tant qu'agence agréée. Une seule interlocutrice pour toute l'opération : préparation, marketing et signature.",
       cta: "Estimer mon bien",
       pillars: [
         { title: "Vente de biens", desc: "Estimation réaliste, marketing visuel à fort impact et réseau d'acheteurs qualifiés." },
@@ -284,12 +291,12 @@ const dict = {
     services: {
       eyebrow: "Services",
       title: "Tout ce dont votre bien a besoin.",
-      sub: "De la première consultation à la signature chez le notaire, je vous accompagne à chaque étape.",
+      sub: "De la première consultation à la signature chez le notaire, nous vous accompagnons à chaque étape.",
       items: [
         { title: "Home Staging complet", desc: "Nous transformons chaque pièce pour révéler le potentiel réel de votre bien et séduire plus d'acheteurs." },
         { title: "Consulting express", desc: "Visite et diagnostic avec des recommandations concrètes pour préparer votre logement avant de le vendre ou de le louer." },
         { title: "Reportage photo", desc: "Des photos professionnelles qui multiplient les visites en ligne de votre annonce." },
-        { title: "Vente et location", desc: "En tant qu'agent API agréée, je gère la vente et la location de votre bien du début à la fin." },
+        { title: "Vente et location", desc: "En tant qu'agence API agréée, nous gérons la vente et la location de votre bien du début à la fin." },
       ],
     },
     beforeAfter: {
@@ -307,7 +314,7 @@ const dict = {
     reviews: { title: "5,0 sur Google", sub: "Ce que disent celles et ceux qui ont déjà fait confiance à Clementine." },
     reviewsList: [
       { name: "Justine Grebaut", text: "Clémentine est sans aucun doute une grande professionnelle très impliquée. En plus de prendre le temps de comprendre les attentes et les exigences, avec beaucoup de patience, elle apporte un regard neuf au secteur immobilier grâce à son expérience inégalée en home staging. Je ne peux que la recommander chaleureusement.", role: "Local Guide · 17 avis" },
-      { name: "Verònica Rico", text: "Clémentine est une femme réellement dévouée et impeccable. Son goût exceptionnel pour la décoration d'intérieur est un atout considérable pour la vente de nos maisons et la mise en valeur de leur élégance.", role: "Cliente" },
+      { name: "Verònica Rico", text: "Clémentine est une femme réellement dévouée et impeccable. Son goût exceptionnel pour la décoration d'intérieur est un atout considérable pour la vente de nos maisons et la mise en valeur de leur élégance.", role: "Agent immobilier" },
       { name: "Sophie Corvaisier", text: "Clémentine est une professionnelle incroyablement dévouée qui m'a été d'une aide précieuse tout au long du processus de vente. Elle possède un talent exceptionnel pour créer des espaces captivants et fait preuve d'une grande efficacité dans sa gestion. Je la recommande sans hésiter.", role: "Kretz Real Estate" },
     ],
     beforeAfterLabels: {
@@ -321,9 +328,9 @@ const dict = {
       items: [
         { q: "Qu'est-ce que le home staging exactement ?", a: "Le home staging est une technique de marketing immobilier qui prépare et embellit un logement pour le vendre ou le louer plus rapidement et au meilleur prix, en le dépersonnalisant et en mettant en valeur ses atouts." },
         { q: "Combien coûte un service de home staging ?", a: "Le budget est adapté à chaque projet : surface, état du logement et objectif commercial. Nous offrons une première visite et estimation totalement gratuites et sans engagement." },
-        { q: "Dans quelle zone intervenez-vous ?", a: "Nous travaillons principalement entre Vilanova i la Geltrú, Sitges, Canyelles et tout le Garraf. Pour des projets spéciaux, nous pouvons nous déplacer ailleurs en Catalogne." },
+        { q: "Dans quelle zone intervenez-vous ?", a: "Nous travaillons principalement dans le Secteur Garraf – Barcelone. Pour des projets spéciaux, nous pouvons nous déplacer ailleurs en Catalogne." },
         { q: "Combien de temps dure une intervention ?", a: "Une consultation express se fait en une seule visite. Une mise en scène complète est généralement prête en 3 à 7 jours, selon l'ampleur de la transformation." },
-        { q: "Êtes-vous aussi agent immobilier ?", a: "Oui, Clémentine est agent API agréée et peut gérer la vente ou la location de votre bien de A à Z, en intégrant home staging, photographie et commercialisation." },
+        { q: "Êtes-vous aussi agents immobiliers ?", a: "Oui, nous sommes une agence API agréée et pouvons gérer la vente ou la location de votre bien de A à Z, en intégrant home staging, photographie et commercialisation." },
       ],
     },
     contact: {
@@ -450,7 +457,7 @@ function LangSwitcher({ scrolled }: { scrolled: boolean }) {
 
 /* ---------- Nav ---------- */
 function Nav() {
-  const { t } = useT();
+  const { t, lang } = useT();
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   useEffect(() => {
@@ -469,7 +476,7 @@ function Nav() {
   return (
     <nav className={`fixed top-0 left-0 right-0 z-40 px-6 lg:px-12 py-4 flex items-center justify-between transition-all duration-300 ${scrolled ? "bg-background/90 backdrop-blur-md shadow-[var(--shadow-soft)]" : "bg-transparent"}`}>
       <a href="#top" className="flex items-center gap-3">
-        <img src={logo} alt="Clementine Homes" className={`h-12 w-auto rounded-md p-1.5 transition ${scrolled ? "bg-transparent" : "bg-background/95"}`} />
+        <img src={logo} alt="Clementine Homes" className={`h-20 md:h-24 w-auto rounded-md p-1.5 transition ${scrolled ? "bg-transparent" : "bg-background/95"}`} />
       </a>
       <div className={`hidden lg:flex items-center gap-7 text-sm transition ${scrolled ? "text-foreground" : "text-background/90"}`}>
         {links.map((l) => (
@@ -478,7 +485,7 @@ function Nav() {
       </div>
       <div className="flex items-center gap-2">
         <LangSwitcher scrolled={scrolled} />
-        <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" className="hidden md:inline-flex items-center gap-2 text-sm bg-primary text-primary-foreground px-4 py-2 rounded-full hover:opacity-90 transition">
+        <a href={waUrl(lang)} target="_blank" rel="noopener noreferrer" className="hidden md:inline-flex items-center gap-2 text-sm bg-primary text-primary-foreground px-4 py-2 rounded-full hover:opacity-90 transition">
           <WhatsAppIcon className="w-4 h-4" /> WhatsApp
         </a>
         <button onClick={() => setMobileOpen((o) => !o)} className={`lg:hidden p-2 rounded-md transition ${scrolled ? "text-foreground hover:bg-secondary" : "text-background hover:bg-background/10"}`} aria-label="Menu">
@@ -520,7 +527,7 @@ function ScrollProgress() {
 
 /* ---------- Hero ---------- */
 function Hero() {
-  const { t } = useT();
+  const { t, lang } = useT();
   return (
     <header id="top" className="relative min-h-screen flex items-end overflow-hidden">
       <img src={hero} alt="Interior elegante" className="absolute inset-0 w-full h-full object-cover scale-105 animate-[heroZoom_18s_ease-out_forwards]" />
@@ -530,14 +537,14 @@ function Hero() {
         <span className="inline-flex items-center gap-2 text-background/90 text-xs uppercase tracking-[0.25em] mb-6 opacity-0 animate-[fadeUp_0.8s_0.1s_ease-out_forwards]">
           <span className="h-px w-10 bg-background/60" /> {t.hero.eyebrow}
         </span>
-        <h1 className="font-display italic text-background text-5xl md:text-7xl lg:text-[8rem] leading-[1.02] mb-6 opacity-0 animate-[fadeUp_0.9s_0.25s_ease-out_forwards]">
+        <h1 className="font-display text-background text-5xl md:text-7xl lg:text-[8rem] leading-[1.02] mb-6 opacity-0 animate-[fadeUp_0.9s_0.25s_ease-out_forwards]">
           {t.hero.slogan}
         </h1>
         <p className="text-background/90 text-lg md:text-xl max-w-2xl mb-10 leading-relaxed opacity-0 animate-[fadeUp_0.9s_0.55s_ease-out_forwards]">
           {t.hero.sub}
         </p>
         <div className="flex flex-wrap gap-4 opacity-0 animate-[fadeUp_0.9s_0.75s_ease-out_forwards]">
-          <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 bg-[#25D366] text-white px-7 py-4 rounded-full font-medium hover:scale-[1.03] active:scale-100 transition shadow-[var(--shadow-soft)]">
+          <a href={waUrl(lang)} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 bg-[#25D366] text-white px-7 py-4 rounded-full font-medium hover:scale-[1.03] active:scale-100 transition shadow-[var(--shadow-soft)]">
             <WhatsAppIcon className="w-5 h-5" /> {t.hero.whatsapp}
           </a>
           <a href="#contacto" className="inline-flex items-center gap-2 bg-primary text-primary-foreground px-7 py-4 rounded-full font-medium hover:scale-[1.03] active:scale-100 transition shadow-[var(--shadow-soft)]">
@@ -600,7 +607,7 @@ function AboutFounder() {
               </div>
             </div>
             <div className="absolute -top-4 -left-4 w-24 h-24 rounded-full bg-primary/15 blur-2xl -z-0" />
-            <div className="absolute -bottom-6 -right-6 bg-background border border-border p-5 rounded-2xl shadow-[var(--shadow-soft)] hidden md:flex items-center gap-3">
+            <div className="absolute -bottom-6 -right-6 bg-background border border-border p-4 md:p-5 rounded-2xl shadow-[var(--shadow-soft)] flex items-center gap-3">
               <img src={logo} alt="" className="w-10 h-10 object-contain" />
               <div className="text-xs">
                 <div className="font-display text-base">The Home Staging School</div>
@@ -656,7 +663,7 @@ function Company() {
 
 /* ---------- Real estate ---------- */
 function RealEstate() {
-  const { t } = useT();
+  const { t, lang } = useT();
   const icons = [Building2, Key, Handshake, TrendingUp];
   return (
     <section id="real-estate" className="py-24 px-6 lg:px-12">
@@ -686,7 +693,7 @@ function RealEstate() {
         </div>
         <Reveal delay={200}>
           <div className="mt-12 flex flex-wrap gap-4">
-            <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 bg-[#25D366] text-white px-7 py-4 rounded-full font-medium hover:scale-[1.03] transition">
+            <a href={waUrl(lang)} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 bg-[#25D366] text-white px-7 py-4 rounded-full font-medium hover:scale-[1.03] transition">
               <WhatsAppIcon className="w-5 h-5" /> {t.realEstate.cta}
             </a>
             <a href="mailto:realestate@clementinehomes.es" className="inline-flex items-center gap-2 border border-border px-7 py-4 rounded-full font-medium hover:bg-secondary transition">
@@ -892,7 +899,7 @@ function FAQ() {
 
 /* ---------- Contact ---------- */
 function Contact() {
-  const { t } = useT();
+  const { t, lang } = useT();
   return (
     <section id="contacto" className="relative py-24 px-6 lg:px-12 overflow-hidden">
       <div className="absolute inset-0" style={{ background: "var(--gradient-warm)" }} />
@@ -904,7 +911,7 @@ function Contact() {
         </Reveal>
         <Reveal delay={120}>
           <div className="flex flex-wrap justify-center gap-4 mb-10">
-            <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 bg-[#25D366] text-white px-7 py-4 rounded-full font-medium hover:scale-[1.03] transition">
+            <a href={waUrl(lang)} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 bg-[#25D366] text-white px-7 py-4 rounded-full font-medium hover:scale-[1.03] transition">
               <WhatsAppIcon className="w-5 h-5" /> WhatsApp
             </a>
             <a href="tel:+34620533054" className="inline-flex items-center gap-2 bg-background text-foreground px-7 py-4 rounded-full font-medium hover:scale-[1.03] transition">
@@ -955,18 +962,22 @@ function Footer() {
     <footer className="bg-foreground text-background/70 py-10 px-6 lg:px-12">
       <div className="max-w-6xl mx-auto flex flex-wrap items-center justify-between gap-4 text-sm">
         <div className="flex items-center gap-3">
-          <img src={logo} alt="Clementine" className="h-10 w-auto bg-background rounded p-1" />
+          <img src={logo} alt="Clementine" className="h-12 w-auto bg-background rounded p-1" />
           <span>© {new Date().getFullYear()} Clementine Homes · {t.footer}</span>
         </div>
-        <div>Vilanova i la Geltrú · Sitges · Canyelles</div>
+        <div>Secteur Garraf – Barcelone</div>
+      </div>
+      <div className="max-w-6xl mx-auto mt-6 text-center text-xs text-background/50">
+        Designed by Merlin Wiart
       </div>
     </footer>
   );
 }
 
 function FloatingWhatsApp() {
+  const { lang } = useT();
   return (
-    <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" aria-label="WhatsApp"
+    <a href={waUrl(lang)} target="_blank" rel="noopener noreferrer" aria-label="WhatsApp"
       className="fixed bottom-6 right-6 z-50 w-14 h-14 rounded-full bg-[#25D366] text-white flex items-center justify-center shadow-xl hover:scale-110 transition"
       style={{ animation: "pulseRing 2.4s infinite" }}>
       <WhatsAppIcon className="w-7 h-7" />
