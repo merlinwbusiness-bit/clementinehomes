@@ -1,6 +1,8 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { createContext, useContext, useEffect, useRef, useState } from "react";
-import logo from "@/assets/logo.png";
+import logoAsset from "@/assets/logo-clementine.jpg.asset.json";
+import logoApiAsset from "@/assets/logo-api.jpg.asset.json";
+import logoWowAsset from "@/assets/logo-wow.png.asset.json";
 import hero from "@/assets/hero.jpg";
 import portraitAsset from "@/assets/clementine-portrait.png.asset.json";
 import ba1BeforeAsset from "@/assets/ba1-before.jpeg.asset.json";
@@ -34,6 +36,9 @@ const WA_MESSAGES: Record<"es" | "en" | "fr", string> = {
 const waUrl = (lang: "es" | "en" | "fr") =>
   `https://wa.me/${WA_PHONE}?text=${encodeURIComponent(WA_MESSAGES[lang])}`;
 
+const logo = logoAsset.url;
+const logoApi = logoApiAsset.url;
+const logoWow = logoWowAsset.url;
 const portrait = portraitAsset.url;
 const beforeAfterPairs = [
   { before: ba1BeforeAsset.url, after: ba1AfterAsset.url, key: "livingKitchen" },
