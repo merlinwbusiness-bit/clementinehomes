@@ -1,6 +1,8 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { createContext, useContext, useEffect, useRef, useState } from "react";
-import logo from "@/assets/logo.png";
+import logoAsset from "@/assets/logo-clementine.jpg.asset.json";
+import logoApiAsset from "@/assets/logo-api.jpg.asset.json";
+import logoWowAsset from "@/assets/logo-wow.png.asset.json";
 import hero from "@/assets/hero.jpg";
 import portraitAsset from "@/assets/clementine-portrait.png.asset.json";
 import ba1BeforeAsset from "@/assets/ba1-before.jpeg.asset.json";
@@ -34,6 +36,9 @@ const WA_MESSAGES: Record<"es" | "en" | "fr", string> = {
 const waUrl = (lang: "es" | "en" | "fr") =>
   `https://wa.me/${WA_PHONE}?text=${encodeURIComponent(WA_MESSAGES[lang])}`;
 
+const logo = logoAsset.url;
+const logoApi = logoApiAsset.url;
+const logoWow = logoWowAsset.url;
 const portrait = portraitAsset.url;
 const beforeAfterPairs = [
   { before: ba1BeforeAsset.url, after: ba1AfterAsset.url, key: "livingKitchen" },
@@ -68,18 +73,19 @@ const dict = {
     about: {
       eyebrow: "Sobre mí",
       title: "¿Quieres saber más?",
+      memberOf: "Miembro de:",
       body: [
-        "Cuando tuvimos la oportunidad de entrar en el mundo de la moda en París con el que siempre soñamos de pequeñas, no nos enamoramos solo de la moda y la Haute Couture, sino también del diseño y de la decoración. El vínculo entre la moda y los interiores es muy evidente.",
-        "Así evolucionamos más de 20 años como expertas en la creación y organización de eventos, stands para ferias, convenciones, encuentros, desfiles y shootings de catálogos para diferentes marcas a nivel internacional, siempre vinculando la moda con la decoración.",
-        "Hoy, como decoradoras y home stagers profesionales tituladas en The Home Staging School, ponemos todas nuestras capacidades de creación, adaptación y organización al servicio de nuestros clientes. Muy atentas a los detalles, siempre buscamos la armonización de los espacios donde pueden fluir las energías.",
-        "Cuando entramos en una casa, adoramos encontrar sus puntos fuertes y pensar en lo que se puede hacer para resaltar los espacios y que uno se sienta bien. Con el home staging la hacemos atractiva a la hora de venderla o alquilarla a un futuro cliente. Nuestro mayor logro es cuando un cliente se enamora de una vivienda a primera vista.",
+        "Cuando tuve la oportunidad de entrar en el mundo de la moda en París con el que siempre soñé de pequeña, no me enamoré solo de la moda y la Haute Couture, sino también del diseño y de la decoración. El vínculo entre la moda y los interiores es muy evidente.",
+        "Así evolucioné más de 20 años como experta en la creación y organización de eventos, stands para ferias, convenciones, encuentros, desfiles y shootings de catálogos para diferentes marcas a nivel internacional, siempre vinculando la moda con la decoración.",
+        "Hoy, como decoradora y home stager profesional titulada en The Home Staging School, pongo todas mis capacidades de creación, adaptación y organización al servicio de mis clientes. Muy atenta a los detalles, siempre busco la armonización de los espacios donde pueden fluir las energías.",
+        "Cuando entro en una casa, adoro encontrar sus puntos fuertes y pensar en lo que se puede hacer para resaltar los espacios y que uno se sienta bien. Con el home staging la hago atractiva a la hora de venderla o alquilarla a un futuro cliente. Mi mayor logro es cuando un cliente se enamora de una vivienda a primera vista.",
       ],
     },
     company: {
-      eyebrow: "Una agencia con mirada de interiorista",
-      title: "Vendemos, alquilamos y realzamos tu hogar.",
-      p1: "Somos un equipo liderado por Clémentine, agente inmobiliaria API y especialista en home staging. Combinamos el rigor de la intermediación profesional con una sensibilidad única para realzar cada propiedad en el Sector Garraf – Barcelona.",
-      p2: "Cada propiedad tiene una historia. Nuestro trabajo es revelarla y venderla: con luz, color, mobiliario y una estrategia comercial que conecta emocionalmente con los compradores.",
+      eyebrow: "Un estudio con sensibilidad estética",
+      title: "Vendo, alquilo y realzo tu hogar.",
+      p1: "Soy Clémentine, agente inmobiliaria API y especialista en home staging. Combino el rigor de la intermediación profesional con una sensibilidad única para realzar cada propiedad en el Sector Garraf – Barcelona.",
+      p2: "Cada propiedad tiene una historia. Mi trabajo es revelarla y venderla: con luz, color, mobiliario y una estrategia comercial que conecta emocionalmente con los compradores.",
       location: "Sector Garraf – Barcelona",
     },
     realEstate: {
@@ -165,18 +171,19 @@ const dict = {
     about: {
       eyebrow: "About me",
       title: "Want to know more?",
+      memberOf: "Member of:",
       body: [
-        "When we had the chance to step into the Paris fashion world we had always dreamed of as little girls, we fell in love not only with fashion and Haute Couture but also with design and interiors. The link between fashion and interiors is very clear.",
-        "We spent over 20 years as experts in creating and organising events, trade-fair stands, conventions, fashion shows and catalogue shootings for international brands, always weaving fashion together with decoration.",
-        "Today, as professional home stagers certified by The Home Staging School, we bring all of our creative, adaptive and organisational skills to our clients. Detail-driven, we always look for harmony in spaces so that energy can flow freely.",
-        "When we walk into a home, we love discovering its strengths and imagining what can be done to make the rooms shine and feel good. With home staging we make a property attractive to its future buyer or tenant. Our greatest reward is when a client falls in love with a home at first sight.",
+        "When I had the chance to step into the Paris fashion world I had always dreamed of as a little girl, I fell in love not only with fashion and Haute Couture but also with design and interiors. The link between fashion and interiors is very clear.",
+        "I spent over 20 years as an expert in creating and organising events, trade-fair stands, conventions, fashion shows and catalogue shootings for international brands, always weaving fashion together with decoration.",
+        "Today, as a professional home stager certified by The Home Staging School, I bring all of my creative, adaptive and organisational skills to my clients. Detail-driven, I always look for harmony in spaces so that energy can flow freely.",
+        "When I walk into a home, I love discovering its strengths and imagining what can be done to make the rooms shine and feel good. With home staging I make a property attractive to its future buyer or tenant. My greatest reward is when a client falls in love with a home at first sight.",
       ],
     },
     company: {
-      eyebrow: "An agency with an interior designer's eye",
-      title: "We sell, rent and elevate your home.",
-      p1: "We are a team led by Clémentine, licensed API real estate agent and home staging specialist. We combine professional brokerage rigour with a unique sensitivity to elevate every property in the Garraf area – Barcelona.",
-      p2: "Every property has a story. Our job is to reveal it and sell it: with light, colour, furniture and a commercial strategy that emotionally connects with buyers.",
+      eyebrow: "A studio with an aesthetic sensibility",
+      title: "I sell, rent and elevate your home.",
+      p1: "I am Clémentine, licensed API real estate agent and home staging specialist. I combine professional brokerage rigour with a unique sensitivity to elevate every property in the Garraf area – Barcelona.",
+      p2: "Every property has a story. My job is to reveal it and sell it: with light, colour, furniture and a commercial strategy that emotionally connects with buyers.",
       location: "Garraf area – Barcelona",
     },
     realEstate: {
@@ -262,18 +269,19 @@ const dict = {
     about: {
       eyebrow: "À propos",
       title: "Envie d'en savoir plus ?",
+      memberOf: "Membre de :",
       body: [
-        "Quand nous avons eu la chance d'entrer dans le monde de la mode à Paris dont nous rêvions petites, nous ne sommes pas seulement tombées amoureuses de la mode et de la Haute Couture, mais aussi du design et de la décoration. Le lien entre la mode et les intérieurs est très évident.",
-        "Nous avons évolué pendant plus de 20 ans comme expertes dans la création et l'organisation d'événements, de stands pour salons, conventions, rencontres, défilés et shootings catalogues pour différentes marques à l'international, en reliant toujours la mode à la décoration.",
-        "Aujourd'hui, en tant que home stagers professionnelles diplômées de The Home Staging School, nous mettons toutes nos capacités de création, d'adaptation et d'organisation au service de nos clients. Très attentives aux détails, nous cherchons toujours l'harmonisation des espaces où les énergies peuvent circuler.",
-        "Quand nous entrons dans une maison, nous adorons en trouver les points forts et imaginer ce que l'on peut faire pour mettre les espaces en valeur et que l'on s'y sente bien. Avec le home staging, nous rendons la maison attractive au moment de la vendre ou de la louer à un futur client. Notre réussite, c'est quand un client tombe amoureux d'un bien au premier regard.",
+        "Quand j'ai eu la chance d'entrer dans le monde de la mode à Paris dont je rêvais petite, je ne suis pas seulement tombée amoureuse de la mode et de la Haute Couture, mais aussi du design et de la décoration. Le lien entre la mode et les intérieurs est très évident.",
+        "J'ai évolué pendant plus de 20 ans comme experte dans la création et l'organisation d'événements, de stands pour salons, conventions, rencontres, défilés et shootings catalogues pour différentes marques à l'international, en reliant toujours la mode à la décoration.",
+        "Aujourd'hui, en tant que home stager professionnelle diplômée de The Home Staging School, je mets toutes mes capacités de création, d'adaptation et d'organisation au service de mes clients. Très attentive aux détails, je cherche toujours l'harmonisation des espaces où les énergies peuvent circuler.",
+        "Quand j'entre dans une maison, j'adore en trouver les points forts et imaginer ce que l'on peut faire pour mettre les espaces en valeur et que l'on s'y sente bien. Avec le home staging, je rends la maison attractive au moment de la vendre ou de la louer à un futur client. Ma réussite, c'est quand un client tombe amoureux d'un bien au premier regard.",
       ],
     },
     company: {
-      eyebrow: "Une agence avec un œil de décoratrice",
-      title: "Nous vendons, louons et sublimons votre bien.",
-      p1: "Nous sommes une équipe menée par Clémentine, agent immobilier API et spécialiste en home staging. Nous allions la rigueur de l'intermédiation professionnelle à une sensibilité unique pour sublimer chaque bien dans le Secteur Garraf – Barcelone.",
-      p2: "Chaque bien a une histoire. Notre travail est de la révéler et de la vendre : avec la lumière, la couleur, le mobilier et une stratégie commerciale qui touche les acheteurs.",
+      eyebrow: "Un studio avec une sensibilité esthétique",
+      title: "Je vends, je loue et je sublime votre bien.",
+      p1: "Je suis Clémentine, agent immobilier API et spécialiste en home staging. J'allie la rigueur de l'intermédiation professionnelle à une sensibilité unique pour sublimer chaque bien dans le Secteur Garraf – Barcelone.",
+      p2: "Chaque bien a une histoire. Mon travail est de la révéler et de la vendre : avec la lumière, la couleur, le mobilier et une stratégie commerciale qui touche les acheteurs.",
       location: "Secteur Garraf – Barcelone",
     },
     realEstate: {
@@ -476,7 +484,7 @@ function Nav() {
   return (
     <nav className={`fixed top-0 left-0 right-0 z-40 px-6 lg:px-12 py-4 flex items-center justify-between transition-all duration-300 ${scrolled ? "bg-background/90 backdrop-blur-md shadow-[var(--shadow-soft)]" : "bg-transparent"}`}>
       <a href="#top" className="flex items-center gap-3">
-        <img src={logo} alt="Clementine Homes" className={`h-20 md:h-24 w-auto rounded-md p-1.5 transition ${scrolled ? "bg-transparent" : "bg-background/95"}`} />
+        <img src={logo} alt="Clementine Homes" className={`h-24 md:h-32 w-auto rounded-md p-1.5 transition ${scrolled ? "bg-transparent" : "bg-background/95"}`} />
       </a>
       <div className={`hidden lg:flex items-center gap-7 text-sm transition ${scrolled ? "text-foreground" : "text-background/90"}`}>
         {links.map((l) => (
@@ -618,9 +626,22 @@ function AboutFounder() {
         </Reveal>
         <Reveal delay={120} className="lg:col-span-7">
           <span className="text-xs uppercase tracking-[0.25em] text-primary mb-4 block">{t.about.eyebrow}</span>
-          <h2 className="text-4xl md:text-5xl mb-6 italic font-display">{t.about.title}</h2>
+          <h2 className="text-4xl md:text-5xl mb-6 font-display">{t.about.title}</h2>
           <div className="space-y-4 text-muted-foreground leading-relaxed">
             {t.about.body.map((p, i) => <p key={i}>{p}</p>)}
+          </div>
+          <div className="mt-10 pt-8 border-t border-border">
+            <div className="text-xs uppercase tracking-[0.25em] text-primary mb-5">{t.about.memberOf}</div>
+            <div className="flex flex-wrap items-center gap-8">
+              <img src={logoApi} alt="API · Agent Immobiliari" className="h-12 md:h-14 w-auto object-contain" />
+              <div className="h-14 px-5 flex items-center rounded-md border border-border bg-card">
+                <div className="leading-tight">
+                  <div className="font-display text-xl tracking-wider">AICAT</div>
+                  <div className="text-[10px] uppercase tracking-[0.2em] text-muted-foreground">Registre d'Agents</div>
+                </div>
+              </div>
+              <img src={logoWow} alt="Stagers WOW · Miembro VIP" className="h-16 md:h-20 w-auto object-contain" />
+            </div>
           </div>
         </Reveal>
       </div>
@@ -915,7 +936,7 @@ function Contact() {
               <WhatsAppIcon className="w-5 h-5" /> WhatsApp
             </a>
             <a href="tel:+34620533054" className="inline-flex items-center gap-2 bg-background text-foreground px-7 py-4 rounded-full font-medium hover:scale-[1.03] transition">
-              <Phone className="w-4 h-4" /> 620 53 30 54
+              <Phone className="w-4 h-4" /> +34 620 53 30 54
             </a>
           </div>
         </Reveal>
@@ -962,7 +983,7 @@ function Footer() {
     <footer className="bg-foreground text-background/70 py-10 px-6 lg:px-12">
       <div className="max-w-6xl mx-auto flex flex-wrap items-center justify-between gap-4 text-sm">
         <div className="flex items-center gap-3">
-          <img src={logo} alt="Clementine" className="h-12 w-auto bg-background rounded p-1" />
+          <img src={logo} alt="Clementine" className="h-16 w-auto bg-background rounded p-1" />
           <span>© {new Date().getFullYear()} Clementine Homes · {t.footer}</span>
         </div>
         <div>Secteur Garraf – Barcelone</div>
