@@ -484,7 +484,7 @@ function Nav() {
   return (
     <nav className={`fixed top-0 left-0 right-0 z-40 px-6 lg:px-12 py-4 flex items-center justify-between transition-all duration-300 ${scrolled ? "bg-background/90 backdrop-blur-md shadow-[var(--shadow-soft)]" : "bg-transparent"}`}>
       <a href="#top" className="flex items-center gap-3">
-        <img src={logo} alt="Clementine Homes" className={`h-20 md:h-24 w-auto rounded-md p-1.5 transition ${scrolled ? "bg-transparent" : "bg-background/95"}`} />
+        <img src={logo} alt="Clementine Homes" className={`h-24 md:h-32 w-auto rounded-md p-1.5 transition ${scrolled ? "bg-transparent" : "bg-background/95"}`} />
       </a>
       <div className={`hidden lg:flex items-center gap-7 text-sm transition ${scrolled ? "text-foreground" : "text-background/90"}`}>
         {links.map((l) => (
@@ -626,9 +626,22 @@ function AboutFounder() {
         </Reveal>
         <Reveal delay={120} className="lg:col-span-7">
           <span className="text-xs uppercase tracking-[0.25em] text-primary mb-4 block">{t.about.eyebrow}</span>
-          <h2 className="text-4xl md:text-5xl mb-6 italic font-display">{t.about.title}</h2>
+          <h2 className="text-4xl md:text-5xl mb-6 font-display">{t.about.title}</h2>
           <div className="space-y-4 text-muted-foreground leading-relaxed">
             {t.about.body.map((p, i) => <p key={i}>{p}</p>)}
+          </div>
+          <div className="mt-10 pt-8 border-t border-border">
+            <div className="text-xs uppercase tracking-[0.25em] text-primary mb-5">{t.about.memberOf}</div>
+            <div className="flex flex-wrap items-center gap-8">
+              <img src={logoApi} alt="API · Agent Immobiliari" className="h-12 md:h-14 w-auto object-contain" />
+              <div className="h-14 px-5 flex items-center rounded-md border border-border bg-card">
+                <div className="leading-tight">
+                  <div className="font-display text-xl tracking-wider">AICAT</div>
+                  <div className="text-[10px] uppercase tracking-[0.2em] text-muted-foreground">Registre d'Agents</div>
+                </div>
+              </div>
+              <img src={logoWow} alt="Stagers WOW · Miembro VIP" className="h-16 md:h-20 w-auto object-contain" />
+            </div>
           </div>
         </Reveal>
       </div>
@@ -923,7 +936,7 @@ function Contact() {
               <WhatsAppIcon className="w-5 h-5" /> WhatsApp
             </a>
             <a href="tel:+34620533054" className="inline-flex items-center gap-2 bg-background text-foreground px-7 py-4 rounded-full font-medium hover:scale-[1.03] transition">
-              <Phone className="w-4 h-4" /> 620 53 30 54
+              <Phone className="w-4 h-4" /> +34 620 53 30 54
             </a>
           </div>
         </Reveal>
@@ -970,7 +983,7 @@ function Footer() {
     <footer className="bg-foreground text-background/70 py-10 px-6 lg:px-12">
       <div className="max-w-6xl mx-auto flex flex-wrap items-center justify-between gap-4 text-sm">
         <div className="flex items-center gap-3">
-          <img src={logo} alt="Clementine" className="h-12 w-auto bg-background rounded p-1" />
+          <img src={logo} alt="Clementine" className="h-16 w-auto bg-background rounded p-1" />
           <span>© {new Date().getFullYear()} Clementine Homes · {t.footer}</span>
         </div>
         <div>Secteur Garraf – Barcelone</div>
