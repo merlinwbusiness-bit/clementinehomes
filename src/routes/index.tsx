@@ -75,28 +75,31 @@ const dict = {
       title: "¿Quieres saber más?",
       memberOf: "Miembro de:",
       body: [
-        "Cuando tuve la oportunidad de entrar en el mundo de la moda en París con el que siempre soñé de pequeña, no me enamoré solo de la moda y la Haute Couture, sino también del diseño y de la decoración. El vínculo entre la moda y los interiores es muy evidente.",
-        "Así evolucioné más de 20 años como experta en la creación y organización de eventos, stands para ferias, convenciones, encuentros, desfiles y shootings de catálogos para diferentes marcas a nivel internacional, siempre vinculando la moda con la decoración.",
-        "Hoy, como decoradora y home stager profesional titulada en The Home Staging School, pongo todas mis capacidades de creación, adaptación y organización al servicio de mis clientes. Muy atenta a los detalles, siempre busco la armonización de los espacios donde pueden fluir las energías.",
-        "Cuando entro en una casa, adoro encontrar sus puntos fuertes y pensar en lo que se puede hacer para resaltar los espacios y que uno se sienta bien. Con el home staging la hago atractiva a la hora de venderla o alquilarla a un futuro cliente. Mi mayor logro es cuando un cliente se enamora de una vivienda a primera vista.",
+        "Cuando tuve la oportunidad de entrar en el mundo de la moda en París, con el que siempre había soñado desde pequeña, no solo me enamoré de las tendencias y la Alta Costura, sino también del poder del diseño y la decoración. Para mí, el vínculo entre la moda y los interiores siempre ha sido evidente.",
+        "Así evolucioné durante más de 20 años como experta en la creación y organización de eventos, stands para ferias, convenciones, desfiles y shootings de catálogos para diferentes marcas a nivel internacional, logrando fusionar siempre la moda con el estilismo de espacios.",
+        "Hoy, fusiono esa visión estética con el rigor del sector inmobiliario. Soy home stager profesional titulada por The Home Staging School y Agente Inmobiliaria Certificada en Cataluña (AICAT), miembro de API. De esta forma, pongo toda mi capacidad de creación, estrategia y organización al servicio de mis clientes, garantizando un proceso seguro, legal y brillante.",
+        "Mi objetivo es ofrecer un servicio inmobiliario integral y a medida en el Garraf:",
+        "Como Home Stager y Vendedora: cuando entro en una casa, me apasiona descubrir sus puntos fuertes y transformar los espacios para que transmitan bienestar. Sé exactamente cómo hacer una propiedad irresistible para el mercado y cómo gestionar su venta con éxito y tranquilidad.",
+        "Como Personal Shopper Inmobiliario (Personal Buyer): me pongo al lado del comprador. Utilizo mi ojo clínico para el diseño y mi experiencia en el mercado local para encontrar, filtrar y negociar la vivienda ideal, asegurándome de que mis clientes hagan una inversión inteligente y sin sorpresas.",
+        "Soy una persona muy atenta a los detalles y busco constantemente la armonización. Al final, ya sea preparando una casa para la venta o buscando el hogar ideal para un comprador, mi mayor logro es el mismo: conseguir que las personas se enamoren de una vivienda a primera vista.",
       ],
     },
     company: {
-      eyebrow: "Un estudio con sensibilidad estética",
-      title: "Vendo, alquilo y realzo tu hogar.",
-      p1: "Soy Clémentine, agente inmobiliaria API y especialista en home staging. Combino el rigor de la intermediación profesional con una sensibilidad única para realzar cada propiedad en el Sector Garraf – Barcelona.",
-      p2: "Cada propiedad tiene una historia. Mi trabajo es revelarla y venderla: con luz, color, mobiliario y una estrategia comercial que conecta emocionalmente con los compradores.",
+      eyebrow: "Un estudio con sensibilidad estética y estratégica",
+      title: "Transformamos, vendemos y encontramos tu hogar.",
+      p1: "Soy Clémentine, Agente Inmobiliaria (Certificada API AICAT) y especialista en Home Staging. En mi estudio fusionamos el rigor legal y la estrategia de venta con una sensibilidad única para el estilismo inmobiliario.",
+      p2: "Mi trabajo es hacer florecer el potencial de tu propiedad para que destaque en el mercado y conecte emocionalmente con los compradores, o guiarte como Personal Buyer para encontrar tu inversión ideal.",
       location: "Sector Garraf – Barcelona",
     },
     realEstate: {
       eyebrow: "Real Estate · Agente API",
-      title: "Tu agencia inmobiliaria de confianza en el Garraf.",
-      sub: "Más allá del home staging, gestionamos la venta y el alquiler de tu propiedad como agencia colegiada. Una sola interlocutora para toda la operación: preparación, marketing y cierre.",
+      title: "Tu Estudio de confianza en el Garraf.",
+      sub: "Mucho más que Home Staging: gestiono la venta y el alquiler de tu propiedad con el respaldo de estar colegiada (AICAT/API). Tendrás una sola interlocutora para toda la operación: desde la preparación estética y el marketing de impacto, hasta la negociación y el cierre legal. Un servicio integral, fluido y sin intermediarios.",
       cta: "Valorar mi propiedad",
       pillars: [
         { title: "Venta de propiedades", desc: "Valoración realista, marketing visual de alto impacto y red de compradores cualificados." },
         { title: "Alquiler de larga estancia", desc: "Selección de inquilinos, contratos y gestión sin complicaciones para propietarios." },
-        { title: "Asesoramiento al comprador", desc: "Te acompañamos en la búsqueda, negociación y firma, sobre todo si es tu primera compra." },
+        { title: "Personal Buyer", desc: "Acompañamiento en la búsqueda, negociación y firma con total seguridad jurídica." },
         { title: "Estrategia de precio", desc: "Estudio del mercado local del Garraf para vender al mejor precio en el menor tiempo." },
       ],
     },
@@ -125,7 +128,7 @@ const dict = {
     },
     reviews: { title: "5,0 en Google", sub: "Lo que dicen quienes ya han confiado en Clementine." },
     reviewsList: [
-      { name: "Justine Grebaut", text: "Clémentine es, sin duda, una gran profesional muy implicada. Además de tomarse el tiempo para entender las expectativas y exigencias, con mucha paciencia, aporta una mirada nueva al sector inmobiliario gracias a su experiencia inigualable en home staging. Solo puedo recomendarla enormemente.", role: "Local Guide · 17 reseñas" },
+      { name: "Justine Grebaut", text: "Clémentine es, sin duda, una gran profesional muy implicada. Además de tomarse el tiempo para entender las expectativas y exigencias, con mucha paciencia, aporta una mirada nueva al sector inmobiliario gracias a su experiencia inigualable en home staging. Solo puedo recomendarla enormemente.", role: "Clienta Home Staging y Fotografía" },
       { name: "Verònica Rico", text: "Clémentine es una mujer realmente entregada e impecable. Su gusto excepcional por la decoración interior es una baza considerable para la venta de nuestras casas y la puesta en valor de su elegancia.", role: "Agente inmobiliaria" },
       { name: "Sophie Corvaisier", text: "Clémentine es una profesional increíblemente entregada que me ha sido de gran ayuda durante todo el proceso de venta. Tiene un talento excepcional para crear espacios cautivadores y demuestra una gran eficacia en su gestión. La recomiendo sin dudarlo.", role: "Kretz Real Estate" },
     ],
@@ -147,8 +150,8 @@ const dict = {
     },
     contact: {
       eyebrow: "Contacto",
-      title: "¿Listo para vender o alquilar?",
-      sub: "Cuéntame tu proyecto. La primera visita y diagnóstico son completamente gratuitos.",
+      title: "¿Listo para transformar y vender tu propiedad?",
+      sub: "Cuéntame tu proyecto. La primera visita y el diagnóstico inicial son completamente gratuitos.",
       hsLabel: "Home Staging",
       reLabel: "Real Estate",
     },
@@ -173,28 +176,31 @@ const dict = {
       title: "Want to know more?",
       memberOf: "Member of:",
       body: [
-        "When I had the chance to step into the Paris fashion world I had always dreamed of as a little girl, I fell in love not only with fashion and Haute Couture but also with design and interiors. The link between fashion and interiors is very clear.",
-        "I spent over 20 years as an expert in creating and organising events, trade-fair stands, conventions, fashion shows and catalogue shootings for international brands, always weaving fashion together with decoration.",
-        "Today, as a professional home stager certified by The Home Staging School, I bring all of my creative, adaptive and organisational skills to my clients. Detail-driven, I always look for harmony in spaces so that energy can flow freely.",
-        "When I walk into a home, I love discovering its strengths and imagining what can be done to make the rooms shine and feel good. With home staging I make a property attractive to its future buyer or tenant. My greatest reward is when a client falls in love with a home at first sight.",
+        "When I had the chance to step into the Paris fashion world I had dreamed of since I was a little girl, I fell in love not only with the trends and Haute Couture, but also with the power of design and decoration. For me, the link between fashion and interiors has always been obvious.",
+        "I evolved for over 20 years as an expert in the creation and organisation of events, trade-fair stands, conventions, fashion shows and catalogue shootings for international brands, always managing to blend fashion with the styling of spaces.",
+        "Today I fuse that aesthetic vision with the rigour of the real estate sector. I am a professional home stager certified by The Home Staging School and a Certified Real Estate Agent in Catalonia (AICAT), member of API. This way, I put all my creativity, strategy and organisation at my clients' service, guaranteeing a safe, legal and brilliant process.",
+        "My goal is to offer a comprehensive, tailor-made real estate service in the Garraf:",
+        "As Home Stager and Seller: when I walk into a home, I love discovering its strengths and transforming the spaces so they convey wellbeing. I know exactly how to make a property irresistible to the market and how to manage its sale successfully and calmly.",
+        "As Personal Property Shopper (Personal Buyer): I stand by the buyer's side. I use my designer's eye and my experience in the local market to find, filter and negotiate the ideal home, making sure my clients make a smart investment with no surprises.",
+        "I am very attentive to detail and constantly look for harmony. In the end, whether preparing a home for sale or finding the ideal one for a buyer, my greatest reward is the same: getting people to fall in love with a home at first sight.",
       ],
     },
     company: {
-      eyebrow: "A studio with an aesthetic sensibility",
-      title: "I sell, rent and elevate your home.",
-      p1: "I am Clémentine, licensed API real estate agent and home staging specialist. I combine professional brokerage rigour with a unique sensitivity to elevate every property in the Garraf area – Barcelona.",
-      p2: "Every property has a story. My job is to reveal it and sell it: with light, colour, furniture and a commercial strategy that emotionally connects with buyers.",
+      eyebrow: "A studio with aesthetic and strategic sensibility",
+      title: "We transform, sell and find your home.",
+      p1: "I am Clémentine, Real Estate Agent (API AICAT Certified) and Home Staging specialist. In my studio we blend legal rigour and sales strategy with a unique sensibility for real estate styling.",
+      p2: "My job is to make your property's potential bloom so it stands out in the market and connects emotionally with buyers, or to guide you as a Personal Buyer to find your ideal investment.",
       location: "Garraf area – Barcelona",
     },
     realEstate: {
       eyebrow: "Real Estate · API Agent",
-      title: "Your trusted real estate agency in the Garraf.",
-      sub: "Beyond home staging, we manage the sale and rental of your property as a licensed agency. A single point of contact for the entire operation: prep, marketing and closing.",
+      title: "Your trusted Studio in the Garraf.",
+      sub: "Much more than Home Staging: I manage the sale and rental of your property backed by my official licence (AICAT/API). You will have a single point of contact for the entire operation: from aesthetic prep and impactful marketing, to negotiation and legal closing. A comprehensive, smooth, no-middlemen service.",
       cta: "Value my property",
       pillars: [
         { title: "Property sales", desc: "Realistic valuation, high-impact visual marketing and a network of qualified buyers." },
         { title: "Long-term rentals", desc: "Tenant selection, contracts and hassle-free management for owners." },
-        { title: "Buyer advisory", desc: "We guide you through search, negotiation and signing — especially if it's your first purchase." },
+        { title: "Personal Buyer", desc: "Support throughout the search, negotiation and signing with full legal security." },
         { title: "Pricing strategy", desc: "Local Garraf market study to sell at the best price in the shortest time." },
       ],
     },
@@ -223,7 +229,7 @@ const dict = {
     },
     reviews: { title: "5.0 on Google", sub: "What those who already trusted Clementine say." },
     reviewsList: [
-      { name: "Justine Grebaut", text: "Clémentine is undoubtedly a great, highly committed professional. Beyond taking the time to understand expectations and requirements, with great patience, she brings a fresh perspective to the real estate sector thanks to her unparalleled experience in home staging. I can only recommend her wholeheartedly.", role: "Local Guide · 17 reviews" },
+      { name: "Justine Grebaut", text: "Clémentine is undoubtedly a great, highly committed professional. Beyond taking the time to understand expectations and requirements, with great patience, she brings a fresh perspective to the real estate sector thanks to her unparalleled experience in home staging. I can only recommend her wholeheartedly.", role: "Home Staging & Photography Client" },
       { name: "Verònica Rico", text: "Clémentine is a truly dedicated and impeccable woman. Her exceptional taste in interior design is a considerable asset for selling our homes and showcasing their elegance.", role: "Real estate agent" },
       { name: "Sophie Corvaisier", text: "Clémentine is an incredibly dedicated professional who has been of invaluable help throughout the sale process. She has an exceptional talent for creating captivating spaces and demonstrates great efficiency in her management. I recommend her without hesitation.", role: "Kretz Real Estate" },
     ],
@@ -245,8 +251,8 @@ const dict = {
     },
     contact: {
       eyebrow: "Contact",
-      title: "Ready to sell or rent?",
-      sub: "Tell me about your project. The first visit and diagnosis are completely free.",
+      title: "Ready to transform and sell your property?",
+      sub: "Tell me about your project. The first visit and initial diagnosis are completely free.",
       hsLabel: "Home Staging",
       reLabel: "Real Estate",
     },
@@ -271,28 +277,31 @@ const dict = {
       title: "Envie d'en savoir plus ?",
       memberOf: "Membre de :",
       body: [
-        "Quand j'ai eu la chance d'entrer dans le monde de la mode à Paris dont je rêvais petite, je ne suis pas seulement tombée amoureuse de la mode et de la Haute Couture, mais aussi du design et de la décoration. Le lien entre la mode et les intérieurs est très évident.",
-        "J'ai évolué pendant plus de 20 ans comme experte dans la création et l'organisation d'événements, de stands pour salons, conventions, rencontres, défilés et shootings catalogues pour différentes marques à l'international, en reliant toujours la mode à la décoration.",
-        "Aujourd'hui, en tant que home stager professionnelle diplômée de The Home Staging School, je mets toutes mes capacités de création, d'adaptation et d'organisation au service de mes clients. Très attentive aux détails, je cherche toujours l'harmonisation des espaces où les énergies peuvent circuler.",
-        "Quand j'entre dans une maison, j'adore en trouver les points forts et imaginer ce que l'on peut faire pour mettre les espaces en valeur et que l'on s'y sente bien. Avec le home staging, je rends la maison attractive au moment de la vendre ou de la louer à un futur client. Ma réussite, c'est quand un client tombe amoureux d'un bien au premier regard.",
+        "Quand j'ai eu la chance d'entrer dans le monde de la mode à Paris, dont je rêvais depuis toute petite, je ne suis pas seulement tombée amoureuse des tendances et de la Haute Couture, mais aussi du pouvoir du design et de la décoration. Pour moi, le lien entre la mode et les intérieurs a toujours été évident.",
+        "J'ai ainsi évolué pendant plus de 20 ans comme experte dans la création et l'organisation d'événements, stands pour salons, conventions, défilés et shootings catalogues pour différentes marques à l'international, en parvenant toujours à fusionner la mode avec le stylisme des espaces.",
+        "Aujourd'hui, je fusionne cette vision esthétique avec la rigueur du secteur immobilier. Je suis home stager professionnelle diplômée de The Home Staging School et Agent Immobilier Certifiée en Catalogne (AICAT), membre de l'API. Ainsi, je mets toute ma capacité de création, de stratégie et d'organisation au service de mes clients, en garantissant un processus sûr, légal et brillant.",
+        "Mon objectif est d'offrir un service immobilier intégral et sur mesure dans le Garraf :",
+        "En tant que Home Stager et Vendeuse : quand j'entre dans une maison, je me passionne pour découvrir ses points forts et transformer les espaces pour qu'ils transmettent du bien-être. Je sais exactement comment rendre un bien irrésistible sur le marché et comment gérer sa vente avec succès et sérénité.",
+        "En tant que Personal Shopper Immobilier (Personal Buyer) : je me place aux côtés de l'acheteur. J'utilise mon œil clinique pour le design et mon expérience du marché local pour trouver, filtrer et négocier le bien idéal, en m'assurant que mes clients fassent un investissement intelligent et sans surprises.",
+        "Je suis une personne très attentive aux détails et je recherche constamment l'harmonisation. Au final, qu'il s'agisse de préparer une maison à la vente ou de chercher le foyer idéal pour un acheteur, ma plus grande réussite est la même : faire en sorte que les gens tombent amoureux d'un bien au premier regard.",
       ],
     },
     company: {
-      eyebrow: "Un studio avec une sensibilité esthétique",
-      title: "Je vends, je loue et je sublime votre bien.",
-      p1: "Je suis Clémentine, agent immobilier API et spécialiste en home staging. J'allie la rigueur de l'intermédiation professionnelle à une sensibilité unique pour sublimer chaque bien dans le Secteur Garraf – Barcelone.",
-      p2: "Chaque bien a une histoire. Mon travail est de la révéler et de la vendre : avec la lumière, la couleur, le mobilier et une stratégie commerciale qui touche les acheteurs.",
+      eyebrow: "Un studio à la sensibilité esthétique et stratégique",
+      title: "Nous transformons, vendons et trouvons votre foyer.",
+      p1: "Je suis Clémentine, Agent Immobilier (Certifiée API AICAT) et spécialiste en Home Staging. Dans mon studio, nous allions la rigueur juridique et la stratégie de vente à une sensibilité unique pour le stylisme immobilier.",
+      p2: "Mon travail est de faire éclore le potentiel de votre bien pour qu'il se démarque sur le marché et touche les acheteurs, ou de vous guider en tant que Personal Buyer pour trouver votre investissement idéal.",
       location: "Secteur Garraf – Barcelone",
     },
     realEstate: {
       eyebrow: "Real Estate · Agent API",
-      title: "Votre agence immobilière de confiance dans le Garraf.",
-      sub: "Au-delà du home staging, nous gérons la vente et la location de votre bien en tant qu'agence agréée. Une seule interlocutrice pour toute l'opération : préparation, marketing et signature.",
+      title: "Votre Studio de confiance dans le Garraf.",
+      sub: "Bien plus que du Home Staging : je gère la vente et la location de votre bien avec la garantie d'être agréée (AICAT/API). Vous aurez une seule interlocutrice pour toute l'opération : de la préparation esthétique et du marketing d'impact, à la négociation et à la signature légale. Un service intégral, fluide et sans intermédiaires.",
       cta: "Estimer mon bien",
       pillars: [
         { title: "Vente de biens", desc: "Estimation réaliste, marketing visuel à fort impact et réseau d'acheteurs qualifiés." },
         { title: "Location longue durée", desc: "Sélection des locataires, contrats et gestion sans soucis pour les propriétaires." },
-        { title: "Conseil aux acheteurs", desc: "Nous vous accompagnons dans la recherche, la négociation et la signature, surtout pour un premier achat." },
+        { title: "Personal Buyer", desc: "Accompagnement dans la recherche, la négociation et la signature en toute sécurité juridique." },
         { title: "Stratégie de prix", desc: "Étude du marché local du Garraf pour vendre au meilleur prix dans les meilleurs délais." },
       ],
     },
@@ -321,7 +330,7 @@ const dict = {
     },
     reviews: { title: "5,0 sur Google", sub: "Ce que disent celles et ceux qui ont déjà fait confiance à Clementine." },
     reviewsList: [
-      { name: "Justine Grebaut", text: "Clémentine est sans aucun doute une grande professionnelle très impliquée. En plus de prendre le temps de comprendre les attentes et les exigences, avec beaucoup de patience, elle apporte un regard neuf au secteur immobilier grâce à son expérience inégalée en home staging. Je ne peux que la recommander chaleureusement.", role: "Local Guide · 17 avis" },
+      { name: "Justine Grebaut", text: "Clémentine est sans aucun doute une grande professionnelle très impliquée. En plus de prendre le temps de comprendre les attentes et les exigences, avec beaucoup de patience, elle apporte un regard neuf au secteur immobilier grâce à son expérience inégalée en home staging. Je ne peux que la recommander chaleureusement.", role: "Cliente Home Staging et Photographie" },
       { name: "Verònica Rico", text: "Clémentine est une femme réellement dévouée et impeccable. Son goût exceptionnel pour la décoration d'intérieur est un atout considérable pour la vente de nos maisons et la mise en valeur de leur élégance.", role: "Agent immobilier" },
       { name: "Sophie Corvaisier", text: "Clémentine est une professionnelle incroyablement dévouée qui m'a été d'une aide précieuse tout au long du processus de vente. Elle possède un talent exceptionnel pour créer des espaces captivants et fait preuve d'une grande efficacité dans sa gestion. Je la recommande sans hésiter.", role: "Kretz Real Estate" },
     ],
@@ -343,8 +352,8 @@ const dict = {
     },
     contact: {
       eyebrow: "Contact",
-      title: "Prêt à vendre ou à louer ?",
-      sub: "Parlez-moi de votre projet. La première visite et le diagnostic sont entièrement gratuits.",
+      title: "Prêt à transformer et vendre votre bien ?",
+      sub: "Parlez-moi de votre projet. La première visite et le diagnostic initial sont entièrement gratuits.",
       hsLabel: "Home Staging",
       reLabel: "Real Estate",
     },
@@ -634,12 +643,6 @@ function AboutFounder() {
             <div className="text-xs uppercase tracking-[0.25em] text-primary mb-5">{t.about.memberOf}</div>
             <div className="flex flex-wrap items-center gap-8">
               <img src={logoApi} alt="API · Agent Immobiliari" className="h-12 md:h-14 w-auto object-contain" />
-              <div className="h-14 px-5 flex items-center rounded-md border border-border bg-card">
-                <div className="leading-tight">
-                  <div className="font-display text-xl tracking-wider">AICAT</div>
-                  <div className="text-[10px] uppercase tracking-[0.2em] text-muted-foreground">Registre d'Agents</div>
-                </div>
-              </div>
               <img src={logoWow} alt="Stagers WOW · Miembro VIP" className="h-16 md:h-20 w-auto object-contain" />
             </div>
           </div>
