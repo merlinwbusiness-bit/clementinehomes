@@ -624,13 +624,6 @@ function AboutFounder() {
               </div>
             </div>
             <div className="absolute -top-4 -left-4 w-24 h-24 rounded-full bg-primary/15 blur-2xl -z-0" />
-            <div className="absolute -bottom-6 -right-6 bg-background border border-border p-4 md:p-5 rounded-2xl shadow-[var(--shadow-soft)] flex items-center gap-3">
-              <img src={logo} alt="" className="w-10 h-10 object-contain" />
-              <div className="text-xs">
-                <div className="font-display text-base">The Home Staging School</div>
-                <div className="text-muted-foreground">Certified · API agent</div>
-              </div>
-            </div>
           </div>
         </Reveal>
         <Reveal delay={120} className="lg:col-span-7">
