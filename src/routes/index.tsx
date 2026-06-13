@@ -61,7 +61,7 @@ const dict = {
     hero: {
       eyebrow: "Home Staging · Real Estate · Garraf",
       slogan: "Making Homes Bloom",
-      sub: "Agencia inmobiliaria y servicio de home staging en el Sector Garraf – Barcelona. Te acompañamos en cada etapa: valoración, preparación, fotografía y venta.",
+      sub: "Estudio de Home Staging integral y Real Estate en el Garraf. Transformamos tu propiedad para maximizar su valor y asegurar su venta. Preparamos tu casa para enamorar a los compradores y nos encargamos de todo el proceso, de principio a fin.",
       whatsapp: "Hablar por WhatsApp",
       visit: "Visita gratuita",
       seeProjects: "Ver proyectos",
@@ -162,7 +162,7 @@ const dict = {
     hero: {
       eyebrow: "Home Staging · Real Estate · Garraf",
       slogan: "Making Homes Bloom",
-      sub: "Real estate agency and home staging service in the Garraf area – Barcelona. We support you at every stage: valuation, styling, photography and sale.",
+      sub: "Comprehensive Home Staging and Real Estate studio in the Garraf. We transform your property to maximise its value and secure its sale. We prepare your home to make buyers fall in love and take care of the whole process, from start to finish.",
       whatsapp: "Chat on WhatsApp",
       visit: "Free visit",
       seeProjects: "See projects",
@@ -263,7 +263,7 @@ const dict = {
     hero: {
       eyebrow: "Home Staging · Real Estate · Garraf",
       slogan: "Making Homes Bloom",
-      sub: "Agence immobilière et service de home staging dans le Secteur Garraf – Barcelone. Nous vous accompagnons à chaque étape : estimation, mise en scène, photographie et vente.",
+      sub: "Studio de Home Staging intégral et Real Estate dans le Garraf. Nous transformons votre bien pour maximiser sa valeur et assurer sa vente. Nous préparons votre maison pour séduire les acheteurs et nous occupons de tout le processus, du début à la fin.",
       whatsapp: "Discuter sur WhatsApp",
       visit: "Visite gratuite",
       seeProjects: "Voir les projets",
@@ -624,13 +624,6 @@ function AboutFounder() {
               </div>
             </div>
             <div className="absolute -top-4 -left-4 w-24 h-24 rounded-full bg-primary/15 blur-2xl -z-0" />
-            <div className="absolute -bottom-6 -right-6 bg-background border border-border p-4 md:p-5 rounded-2xl shadow-[var(--shadow-soft)] flex items-center gap-3">
-              <img src={logo} alt="" className="w-10 h-10 object-contain" />
-              <div className="text-xs">
-                <div className="font-display text-base">The Home Staging School</div>
-                <div className="text-muted-foreground">Certified · API agent</div>
-              </div>
-            </div>
           </div>
         </Reveal>
         <Reveal delay={120} className="lg:col-span-7">
