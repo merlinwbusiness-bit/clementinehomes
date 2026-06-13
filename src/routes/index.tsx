@@ -643,12 +643,6 @@ function AboutFounder() {
             <div className="text-xs uppercase tracking-[0.25em] text-primary mb-5">{t.about.memberOf}</div>
             <div className="flex flex-wrap items-center gap-8">
               <img src={logoApi} alt="API · Agent Immobiliari" className="h-12 md:h-14 w-auto object-contain" />
-              <div className="h-14 px-5 flex items-center rounded-md border border-border bg-card">
-                <div className="leading-tight">
-                  <div className="font-display text-xl tracking-wider">AICAT</div>
-                  <div className="text-[10px] uppercase tracking-[0.2em] text-muted-foreground">Registre d'Agents</div>
-                </div>
-              </div>
               <img src={logoWow} alt="Stagers WOW · Miembro VIP" className="h-16 md:h-20 w-auto object-contain" />
             </div>
           </div>
