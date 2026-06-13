@@ -61,7 +61,7 @@ const dict = {
     hero: {
       eyebrow: "Home Staging · Real Estate · Garraf",
       slogan: "Making Homes Bloom",
-      sub: "Agencia inmobiliaria y servicio de home staging en el Sector Garraf – Barcelona. Te acompañamos en cada etapa: valoración, preparación, fotografía y venta.",
+      sub: "Estudio de Home Staging integral y Real Estate en el Garraf. Transformamos tu propiedad para maximizar su valor y asegurar su venta. Preparamos tu casa para enamorar a los compradores y nos encargamos de todo el proceso, de principio a fin.",
       whatsapp: "Hablar por WhatsApp",
       visit: "Visita gratuita",
       seeProjects: "Ver proyectos",
@@ -162,7 +162,7 @@ const dict = {
     hero: {
       eyebrow: "Home Staging · Real Estate · Garraf",
       slogan: "Making Homes Bloom",
-      sub: "Real estate agency and home staging service in the Garraf area – Barcelona. We support you at every stage: valuation, styling, photography and sale.",
+      sub: "Comprehensive Home Staging and Real Estate studio in the Garraf. We transform your property to maximise its value and secure its sale. We prepare your home to make buyers fall in love and take care of the whole process, from start to finish.",
       whatsapp: "Chat on WhatsApp",
       visit: "Free visit",
       seeProjects: "See projects",
@@ -263,7 +263,7 @@ const dict = {
     hero: {
       eyebrow: "Home Staging · Real Estate · Garraf",
       slogan: "Making Homes Bloom",
-      sub: "Agence immobilière et service de home staging dans le Secteur Garraf – Barcelone. Nous vous accompagnons à chaque étape : estimation, mise en scène, photographie et vente.",
+      sub: "Studio de Home Staging intégral et Real Estate dans le Garraf. Nous transformons votre bien pour maximiser sa valeur et assurer sa vente. Nous préparons votre maison pour séduire les acheteurs et nous occupons de tout le processus, du début à la fin.",
       whatsapp: "Discuter sur WhatsApp",
       visit: "Visite gratuite",
       seeProjects: "Voir les projets",
