@@ -4,7 +4,7 @@ import logoAsset from "@/assets/logo-clementine.jpg.asset.json";
 import logoApiAsset from "@/assets/logo-api.jpg.asset.json";
 import logoWowAsset from "@/assets/logo-wow.png.asset.json";
 import hero from "@/assets/hero.jpg";
-import portraitAsset from "@/assets/clementine-portrait.png.asset.json";
+import portraitAsset from "@/assets/clementine-portrait-new.png.asset.json";
 import ba1BeforeAsset from "@/assets/ba1-before.jpeg.asset.json";
 import ba1AfterAsset from "@/assets/ba1-after.jpg.asset.json";
 import ba2BeforeAsset from "@/assets/ba2-before.png.asset.json";
@@ -61,7 +61,7 @@ const dict = {
     hero: {
       eyebrow: "Home Staging · Real Estate · Garraf",
       slogan: "Making Homes Bloom",
-      sub: "Estudio de Home Staging integral y Real Estate en el Garraf. Transformamos tu propiedad para maximizar su valor y asegurar su venta. Preparamos tu casa para enamorar a los compradores y nos encargamos de todo el proceso, de principio a fin.",
+      sub: "Estudio de Home Staging integral y Real Estate en el Garraf - Barcelona. Transformamos tu propiedad para maximizar su valor y asegurar su venta. Preparamos tu casa para enamorar a los compradores y nos encargamos de todo el proceso, de principio a fin.",
       whatsapp: "Hablar por WhatsApp",
       visit: "Visita gratuita",
       seeProjects: "Ver proyectos",
@@ -162,7 +162,7 @@ const dict = {
     hero: {
       eyebrow: "Home Staging · Real Estate · Garraf",
       slogan: "Making Homes Bloom",
-      sub: "Comprehensive Home Staging and Real Estate studio in the Garraf. We transform your property to maximise its value and secure its sale. We prepare your home to make buyers fall in love and take care of the whole process, from start to finish.",
+      sub: "Comprehensive Home Staging and Real Estate studio in the Garraf - Barcelona. We transform your property to maximise its value and secure its sale. We prepare your home to make buyers fall in love and take care of the whole process, from start to finish.",
       whatsapp: "Chat on WhatsApp",
       visit: "Free visit",
       seeProjects: "See projects",
@@ -263,7 +263,7 @@ const dict = {
     hero: {
       eyebrow: "Home Staging · Real Estate · Garraf",
       slogan: "Making Homes Bloom",
-      sub: "Studio de Home Staging intégral et Real Estate dans le Garraf. Nous transformons votre bien pour maximiser sa valeur et assurer sa vente. Nous préparons votre maison pour séduire les acheteurs et nous occupons de tout le processus, du début à la fin.",
+      sub: "Studio de Home Staging intégral et Real Estate dans le Garraf - Barcelone. Nous transformons votre bien pour maximiser sa valeur et assurer sa vente. Nous préparons votre maison pour séduire les acheteurs et nous occupons de tout le processus, du début à la fin.",
       whatsapp: "Discuter sur WhatsApp",
       visit: "Visite gratuite",
       seeProjects: "Voir les projets",
