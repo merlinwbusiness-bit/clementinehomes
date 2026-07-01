@@ -937,19 +937,12 @@ function Contact() {
           </div>
         </Reveal>
         <Reveal delay={200}>
-          <div className="grid sm:grid-cols-2 gap-4 max-w-2xl mx-auto mb-12 text-left">
-            <a href="mailto:clementinehomestaging@gmail.com" className="flex items-center gap-3 bg-background/10 hover:bg-background/20 backdrop-blur border border-background/30 px-5 py-4 rounded-2xl transition">
+          <div className="max-w-md mx-auto mb-12 text-left">
+            <a href="mailto:info@clementinehomes.es" className="flex items-center gap-3 bg-background/10 hover:bg-background/20 backdrop-blur border border-background/30 px-5 py-4 rounded-2xl transition">
               <div className="w-10 h-10 rounded-full bg-background/20 flex items-center justify-center"><Mail className="w-4 h-4" /></div>
               <div>
-                <div className="text-xs uppercase tracking-wider opacity-80">{t.contact.hsLabel}</div>
-                <div className="text-sm font-medium break-all">clementinehomestaging@gmail.com</div>
-              </div>
-            </a>
-            <a href="mailto:realestate@clementinehomes.es" className="flex items-center gap-3 bg-background/10 hover:bg-background/20 backdrop-blur border border-background/30 px-5 py-4 rounded-2xl transition">
-              <div className="w-10 h-10 rounded-full bg-background/20 flex items-center justify-center"><Building2 className="w-4 h-4" /></div>
-              <div>
-                <div className="text-xs uppercase tracking-wider opacity-80">{t.contact.reLabel}</div>
-                <div className="text-sm font-medium break-all">realestate@clementinehomes.es</div>
+                <div className="text-xs uppercase tracking-wider opacity-80">Email</div>
+                <div className="text-sm font-medium break-all">info@clementinehomes.es</div>
               </div>
             </a>
           </div>
