@@ -713,8 +713,8 @@ function RealEstate() {
             <a href={waUrl(lang)} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 bg-[#25D366] text-white px-7 py-4 rounded-full font-medium hover:scale-[1.03] transition">
               <WhatsAppIcon className="w-5 h-5" /> {t.realEstate.cta}
             </a>
-            <a href="mailto:realestate@clementinehomes.es" className="inline-flex items-center gap-2 border border-border px-7 py-4 rounded-full font-medium hover:bg-secondary transition">
-              <Mail className="w-4 h-4" /> realestate@clementinehomes.es
+            <a href="mailto:info@clementinehomes.es" className="inline-flex items-center gap-2 border border-border px-7 py-4 rounded-full font-medium hover:bg-secondary transition">
+              <Mail className="w-4 h-4" /> info@clementinehomes.es
             </a>
           </div>
         </Reveal>
