@@ -1033,11 +1033,25 @@ function Index() {
         <ScrollProgress />
         <Hero />
         <Stats />
+        <Marquee variant="primary" items={[
+          dict[lang].marquee.a,
+          dict[lang].marquee.b,
+          dict[lang].marquee.c,
+          dict[lang].marquee.d,
+        ]} />
         <AboutFounder />
         <Company />
         <RealEstate />
         <Services />
         <BeforeAfter />
+        <Marquee variant="outline" items={[
+          "Vilanova i la Geltrú",
+          "Sitges",
+          "Canyelles",
+          "Cubelles",
+          "Sant Pere de Ribes",
+          "Garraf · Barcelona",
+        ]} />
         <Reviews />
         <FAQ />
         <Contact />
