@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { createContext, useContext, useEffect, useRef, useState } from "react";
-import logoAsset from "@/assets/logo-clementine.jpg.asset.json";
+import logoAsset from "@/assets/clementine-homes-logo.png.asset.json";
 import logoApiAsset from "@/assets/logo-api.jpg.asset.json";
 import logoWowAsset from "@/assets/logo-wow.png.asset.json";
 import hero from "@/assets/hero.jpg";
@@ -100,7 +100,7 @@ const dict = {
         { title: "Venta de propiedades", desc: "Valoración realista, marketing visual de alto impacto y red de compradores cualificados." },
         { title: "Alquiler de larga estancia", desc: "Selección de inquilinos, contratos y gestión sin complicaciones para propietarios." },
         { title: "Personal Buyer", desc: "Acompañamiento en la búsqueda, negociación y firma con total seguridad jurídica." },
-        { title: "Estrategia de precio", desc: "Estudio del mercado local del Garraf para vender al mejor precio en el menor tiempo." },
+        { title: "Estrategia de marketing", desc: "Estudio del mercado local del Garraf para vender al mejor precio en el menor tiempo." },
       ],
     },
     services: {
@@ -201,7 +201,7 @@ const dict = {
         { title: "Property sales", desc: "Realistic valuation, high-impact visual marketing and a network of qualified buyers." },
         { title: "Long-term rentals", desc: "Tenant selection, contracts and hassle-free management for owners." },
         { title: "Personal Buyer", desc: "Support throughout the search, negotiation and signing with full legal security." },
-        { title: "Pricing strategy", desc: "Local Garraf market study to sell at the best price in the shortest time." },
+        { title: "Marketing strategy", desc: "Local Garraf market study to sell at the best price in the shortest time." },
       ],
     },
     services: {
@@ -302,7 +302,7 @@ const dict = {
         { title: "Vente de biens", desc: "Estimation réaliste, marketing visuel à fort impact et réseau d'acheteurs qualifiés." },
         { title: "Location longue durée", desc: "Sélection des locataires, contrats et gestion sans soucis pour les propriétaires." },
         { title: "Personal Buyer", desc: "Accompagnement dans la recherche, la négociation et la signature en toute sécurité juridique." },
-        { title: "Stratégie de prix", desc: "Étude du marché local du Garraf pour vendre au meilleur prix dans les meilleurs délais." },
+        { title: "Stratégie marketing", desc: "Étude du marché local du Garraf pour vendre au meilleur prix dans les meilleurs délais." },
       ],
     },
     services: {
