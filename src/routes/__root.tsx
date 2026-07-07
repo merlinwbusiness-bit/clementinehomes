@@ -82,8 +82,8 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { name: "twitter:site", content: "@Lovable" },
       { name: "twitter:title", content: "Clementine Homes - Home Staging & Real Estate" },
       { name: "twitter:description", content: "Servicio profesional de home staging y agente inmobiliario API entre Vilanova i la Geltrú, Sitges y Canyelles. Vende tu propiedad más rápido y al mejor precio." },
-      { property: "og:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/VxMZwLrg0GOLYA7I5YfmgxFNy7F2/social-images/social-1783427192446-Captura_de_pantalla_2026-07-07_142552.webp" },
-      { name: "twitter:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/VxMZwLrg0GOLYA7I5YfmgxFNy7F2/social-images/social-1783427192446-Captura_de_pantalla_2026-07-07_142552.webp" },
+      { property: "og:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/VxMZwLrg0GOLYA7I5YfmgxFNy7F2/social-images/social-1783427249531-Captura_de_pantalla_2026-07-07_142703.webp" },
+      { name: "twitter:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/VxMZwLrg0GOLYA7I5YfmgxFNy7F2/social-images/social-1783427249531-Captura_de_pantalla_2026-07-07_142703.webp" },
     ],
     links: [
       {
