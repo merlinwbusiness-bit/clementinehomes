@@ -1033,12 +1033,13 @@ function Index() {
         <ScrollProgress />
         <Hero />
         <Stats />
-        <Marquee variant="primary" items={[
-          dict[lang].marquee.a,
-          dict[lang].marquee.b,
-          dict[lang].marquee.c,
-          dict[lang].marquee.d,
-        ]} />
+        <Marquee variant="primary" items={
+          lang === "es"
+            ? ["Home Staging", "Real Estate", "Personal Buyer", "Fotografía Profesional", "Making Homes Bloom"]
+            : lang === "fr"
+            ? ["Home Staging", "Real Estate", "Personal Buyer", "Photographie Professionnelle", "Making Homes Bloom"]
+            : ["Home Staging", "Real Estate", "Personal Buyer", "Professional Photography", "Making Homes Bloom"]
+        } />
         <AboutFounder />
         <Company />
         <RealEstate />
