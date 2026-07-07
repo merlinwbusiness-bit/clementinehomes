@@ -425,6 +425,26 @@ function Counter({ to, suffix = "", duration = 1600, decimals = 0 }: { to: numbe
   return <span ref={ref}>{display}{suffix}</span>;
 }
 
+/* ---------- Marquee banderole ---------- */
+function Marquee({ items, variant = "primary" }: { items: string[]; variant?: "primary" | "outline" }) {
+  const loop = [...items, ...items, ...items];
+  const bg = variant === "primary"
+    ? "bg-primary text-primary-foreground"
+    : "bg-background text-foreground border-y border-border";
+  return (
+    <div className={`relative overflow-hidden ${bg} py-4 -my-px`}>
+      <div className="flex whitespace-nowrap animate-[marquee_35s_linear_infinite] gap-12">
+        {loop.map((it, i) => (
+          <span key={i} className="inline-flex items-center gap-3 text-sm md:text-base font-medium uppercase tracking-[0.25em]">
+            <span className="opacity-70">✦</span> {it}
+          </span>
+        ))}
+      </div>
+      <style>{`@keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-33.333%); } }`}</style>
+    </div>
+  );
+}
+
 /* ---------- Language switcher ---------- */
 function LangSwitcher({ scrolled }: { scrolled: boolean }) {
   const { lang, setLang } = useT();
