@@ -405,6 +405,75 @@ function Reveal({ children, delay = 0, className = "" }: { children: React.React
   );
 }
 
+/* ---------- Parallax ---------- */
+function useParallax(speed = 0.25) {
+  const ref = useRef<HTMLDivElement | null>(null);
+  const [offset, setOffset] = useState(0);
+  useEffect(() => {
+    let raf = 0;
+    const update = () => {
+      const el = ref.current;
+      if (!el) return;
+      const rect = el.getBoundingClientRect();
+      const vh = window.innerHeight || 1;
+      const center = rect.top + rect.height / 2 - vh / 2;
+      setOffset(-center * speed);
+    };
+    const onScroll = () => {
+      cancelAnimationFrame(raf);
+      raf = requestAnimationFrame(update);
+    };
+    update();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll);
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onScroll);
+      cancelAnimationFrame(raf);
+    };
+  }, [speed]);
+  return { ref, offset };
+}
+
+function Parallax({ children, speed = 0.2, className = "" }: { children: React.ReactNode; speed?: number; className?: string }) {
+  const { ref, offset } = useParallax(speed);
+  return (
+    <div ref={ref} className={className} style={{ transform: `translate3d(0, ${offset}px, 0)`, willChange: "transform" }}>
+      {children}
+    </div>
+  );
+}
+
+/* ---------- Floating decorations between sections ---------- */
+function FloatingDecor({ variant = "a" }: { variant?: "a" | "b" | "c" | "d" }) {
+  const cfg = {
+    a: { c1: "bg-primary/15", c2: "bg-[oklch(0.78_0.12_60)]/20", c3: "bg-[oklch(0.88_0.06_60)]/30" },
+    b: { c1: "bg-[oklch(0.62_0.17_40)]/15", c2: "bg-primary/10", c3: "bg-[oklch(0.55_0.06_110)]/20" },
+    c: { c1: "bg-[oklch(0.88_0.06_60)]/25", c2: "bg-primary/12", c3: "bg-[oklch(0.68_0.16_45)]/15" },
+    d: { c1: "bg-primary/10", c2: "bg-[oklch(0.93_0.03_75)]/40", c3: "bg-[oklch(0.62_0.17_40)]/15" },
+  }[variant];
+  return (
+    <div aria-hidden="true" className="pointer-events-none absolute inset-0 overflow-hidden">
+      <div className={`absolute -top-24 -left-10 w-72 h-72 rounded-full blur-3xl ${cfg.c1} animate-[floatY_11s_ease-in-out_infinite]`} />
+      <div className={`absolute top-1/3 -right-16 w-96 h-96 rounded-full blur-3xl ${cfg.c2} animate-[floatY_14s_ease-in-out_infinite_reverse]`} />
+      <div className={`absolute bottom-0 left-1/3 w-64 h-64 rounded-full blur-3xl ${cfg.c3} animate-[drift_18s_ease-in-out_infinite]`} />
+    </div>
+  );
+}
+
+function ParallaxDivider() {
+  return (
+    <div className="relative h-40 md:h-56 overflow-hidden bg-background">
+      <FloatingDecor variant="a" />
+      <Parallax speed={0.15} className="absolute inset-0 flex items-center justify-center">
+        <div className="font-display italic text-5xl md:text-7xl text-primary/15 tracking-tight select-none whitespace-nowrap">
+          Making Homes Bloom
+        </div>
+      </Parallax>
+    </div>
+  );
+}
+
 function Counter({ to, suffix = "", duration = 1600, decimals = 0 }: { to: number; suffix?: string; duration?: number; decimals?: number }) {
   const [val, setVal] = useState(0);
   const { ref, visible } = useReveal<HTMLSpanElement>();
