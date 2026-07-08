@@ -399,7 +399,7 @@ function Reveal({ children, delay = 0, className = "" }: { children: React.React
   const { ref, visible } = useReveal<HTMLDivElement>();
   return (
     <div ref={ref} style={{ transitionDelay: `${delay}ms` }}
-      className={`transition-all duration-700 ease-out ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"} ${className}`}>
+      className={`transition-all duration-[900ms] ease-[cubic-bezier(0.22,1,0.36,1)] ${visible ? "opacity-100 translate-y-0 blur-0" : "opacity-0 translate-y-10 blur-[6px]"} ${className}`}>
       {children}
     </div>
   );
@@ -463,14 +463,49 @@ function FloatingDecor({ variant = "a" }: { variant?: "a" | "b" | "c" | "d" }) {
 
 function ParallaxDivider() {
   return (
-    <div className="relative h-40 md:h-56 overflow-hidden bg-background">
+    <div className="relative h-32 md:h-44 overflow-hidden bg-background">
       <FloatingDecor variant="a" />
       <Parallax speed={0.15} className="absolute inset-0 flex items-center justify-center">
-        <div className="font-display italic text-5xl md:text-7xl text-primary/15 tracking-tight select-none whitespace-nowrap">
-          Making Homes Bloom
-        </div>
+        <div className="h-px w-40 md:w-64 bg-gradient-to-r from-transparent via-primary/40 to-transparent" />
       </Parallax>
     </div>
+  );
+}
+
+/* ---------- Text reveal (word-by-word stagger) ---------- */
+function RevealText({
+  as: Tag = "span",
+  text,
+  className = "",
+  delay = 0,
+  stagger = 55,
+}: {
+  as?: "h1" | "h2" | "h3" | "p" | "span";
+  text: string;
+  className?: string;
+  delay?: number;
+  stagger?: number;
+}) {
+  const { ref, visible } = useReveal<HTMLElement>();
+  const words = text.split(" ");
+  return (
+    <Tag ref={ref as never} className={className} aria-label={text}>
+      {words.map((w, i) => (
+        <span key={i} className="inline-block overflow-hidden align-bottom pb-[0.12em] mr-[0.28em]">
+          <span
+            className="inline-block will-change-transform"
+            style={{
+              transform: visible ? "translateY(0) rotate(0deg)" : "translateY(110%) rotate(4deg)",
+              opacity: visible ? 1 : 0,
+              filter: visible ? "blur(0)" : "blur(6px)",
+              transition: `transform 950ms cubic-bezier(0.22,1,0.36,1) ${delay + i * stagger}ms, opacity 700ms ease ${delay + i * stagger}ms, filter 700ms ease ${delay + i * stagger}ms`,
+            }}
+          >
+            {w}
+          </span>
+        </span>
+      ))}
+    </Tag>
   );
 }
 
@@ -738,7 +773,7 @@ function AboutFounder() {
         </Reveal>
         <Reveal delay={120} className="lg:col-span-7">
           <span className="text-xs uppercase tracking-[0.25em] text-primary mb-4 block">{t.about.eyebrow}</span>
-          <h2 className="text-4xl md:text-5xl mb-6 font-display">{t.about.title}</h2>
+          <RevealText as="h2" text={t.about.title} className="text-4xl md:text-5xl mb-6 font-display block" />
           <div className="space-y-4 text-muted-foreground leading-relaxed">
             {t.about.body.map((p, i) => <p key={i}>{p}</p>)}
           </div>
@@ -776,7 +811,7 @@ function Company() {
         <Reveal delay={120}>
           <div>
             <span className="text-xs uppercase tracking-[0.25em] text-primary mb-4 block">{t.company.eyebrow}</span>
-            <h2 className="text-4xl md:text-5xl mb-6">{t.company.title}</h2>
+            <RevealText as="h2" text={t.company.title} className="text-4xl md:text-5xl mb-6 font-display block" />
             <p className="text-muted-foreground leading-relaxed mb-4">{t.company.p1}</p>
             <p className="text-muted-foreground leading-relaxed mb-8">{t.company.p2}</p>
             <div className="flex items-center gap-2 text-sm text-foreground">
@@ -800,7 +835,7 @@ function RealEstate() {
         <Reveal>
           <div className="max-w-2xl mb-16">
             <span className="text-xs uppercase tracking-[0.25em] text-primary mb-4 block">{t.realEstate.eyebrow}</span>
-            <h2 className="text-4xl md:text-5xl mb-4">{t.realEstate.title}</h2>
+            <RevealText as="h2" text={t.realEstate.title} className="text-4xl md:text-5xl mb-4 font-display block" />
             <p className="text-muted-foreground text-lg">{t.realEstate.sub}</p>
           </div>
         </Reveal>
@@ -846,7 +881,7 @@ function Services() {
         <Reveal>
           <div className="max-w-2xl mb-16">
             <span className="text-xs uppercase tracking-[0.25em] text-primary mb-4 block">{t.services.eyebrow}</span>
-            <h2 className="text-4xl md:text-5xl mb-4">{t.services.title}</h2>
+            <RevealText as="h2" text={t.services.title} className="text-4xl md:text-5xl mb-4 font-display block" />
             <p className="text-muted-foreground text-lg">{t.services.sub}</p>
           </div>
         </Reveal>
@@ -938,7 +973,7 @@ function BeforeAfter() {
         <Reveal>
           <div className="max-w-2xl mb-12">
             <span className="text-xs uppercase tracking-[0.25em] text-primary mb-4 block">{t.beforeAfter.eyebrow}</span>
-            <h2 className="text-4xl md:text-5xl mb-4">{t.beforeAfter.title}</h2>
+            <RevealText as="h2" text={t.beforeAfter.title} className="text-4xl md:text-5xl mb-4 font-display block" />
             <p className="text-muted-foreground text-lg">{t.beforeAfter.sub}</p>
           </div>
         </Reveal>
@@ -971,7 +1006,7 @@ function Reviews() {
             <div className="flex items-center justify-center gap-1 text-primary mb-4">
               {[...Array(5)].map((_, i) => <Star key={i} className="w-5 h-5 fill-current" />)}
             </div>
-            <h2 className="text-4xl md:text-5xl mb-3">{t.reviews.title}</h2>
+            <RevealText as="h2" text={t.reviews.title} className="text-4xl md:text-5xl mb-3 font-display block" />
             <p className="text-muted-foreground">{t.reviews.sub}</p>
           </div>
         </Reveal>
@@ -1005,7 +1040,7 @@ function FAQ() {
         <Reveal>
           <div className="text-center mb-12">
             <span className="text-xs uppercase tracking-[0.25em] text-primary mb-4 block">{t.faq.eyebrow}</span>
-            <h2 className="text-4xl md:text-5xl">{t.faq.title}</h2>
+            <RevealText as="h2" text={t.faq.title} className="text-4xl md:text-5xl font-display block" />
           </div>
         </Reveal>
         <Reveal delay={120}>
@@ -1036,7 +1071,7 @@ function Contact() {
       <div className="relative max-w-4xl mx-auto text-center text-primary-foreground">
         <Reveal>
           <span className="text-xs uppercase tracking-[0.25em] mb-6 block opacity-90">{t.contact.eyebrow}</span>
-          <h2 className="text-4xl md:text-6xl mb-6">{t.contact.title}</h2>
+          <RevealText as="h2" text={t.contact.title} className="text-4xl md:text-6xl mb-6 font-display block" />
           <p className="text-lg opacity-90 mb-12 max-w-2xl mx-auto">{t.contact.sub}</p>
         </Reveal>
         <Reveal delay={120}>
