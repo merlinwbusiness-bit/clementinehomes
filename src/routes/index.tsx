@@ -405,6 +405,75 @@ function Reveal({ children, delay = 0, className = "" }: { children: React.React
   );
 }
 
+/* ---------- Parallax ---------- */
+function useParallax(speed = 0.25) {
+  const ref = useRef<HTMLDivElement | null>(null);
+  const [offset, setOffset] = useState(0);
+  useEffect(() => {
+    let raf = 0;
+    const update = () => {
+      const el = ref.current;
+      if (!el) return;
+      const rect = el.getBoundingClientRect();
+      const vh = window.innerHeight || 1;
+      const center = rect.top + rect.height / 2 - vh / 2;
+      setOffset(-center * speed);
+    };
+    const onScroll = () => {
+      cancelAnimationFrame(raf);
+      raf = requestAnimationFrame(update);
+    };
+    update();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll);
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onScroll);
+      cancelAnimationFrame(raf);
+    };
+  }, [speed]);
+  return { ref, offset };
+}
+
+function Parallax({ children, speed = 0.2, className = "" }: { children: React.ReactNode; speed?: number; className?: string }) {
+  const { ref, offset } = useParallax(speed);
+  return (
+    <div ref={ref} className={className} style={{ transform: `translate3d(0, ${offset}px, 0)`, willChange: "transform" }}>
+      {children}
+    </div>
+  );
+}
+
+/* ---------- Floating decorations between sections ---------- */
+function FloatingDecor({ variant = "a" }: { variant?: "a" | "b" | "c" | "d" }) {
+  const cfg = {
+    a: { c1: "bg-primary/15", c2: "bg-[oklch(0.78_0.12_60)]/20", c3: "bg-[oklch(0.88_0.06_60)]/30" },
+    b: { c1: "bg-[oklch(0.62_0.17_40)]/15", c2: "bg-primary/10", c3: "bg-[oklch(0.55_0.06_110)]/20" },
+    c: { c1: "bg-[oklch(0.88_0.06_60)]/25", c2: "bg-primary/12", c3: "bg-[oklch(0.68_0.16_45)]/15" },
+    d: { c1: "bg-primary/10", c2: "bg-[oklch(0.93_0.03_75)]/40", c3: "bg-[oklch(0.62_0.17_40)]/15" },
+  }[variant];
+  return (
+    <div aria-hidden="true" className="pointer-events-none absolute inset-0 overflow-hidden">
+      <div className={`absolute -top-24 -left-10 w-72 h-72 rounded-full blur-3xl ${cfg.c1} animate-[floatY_11s_ease-in-out_infinite]`} />
+      <div className={`absolute top-1/3 -right-16 w-96 h-96 rounded-full blur-3xl ${cfg.c2} animate-[floatY_14s_ease-in-out_infinite_reverse]`} />
+      <div className={`absolute bottom-0 left-1/3 w-64 h-64 rounded-full blur-3xl ${cfg.c3} animate-[drift_18s_ease-in-out_infinite]`} />
+    </div>
+  );
+}
+
+function ParallaxDivider() {
+  return (
+    <div className="relative h-40 md:h-56 overflow-hidden bg-background">
+      <FloatingDecor variant="a" />
+      <Parallax speed={0.15} className="absolute inset-0 flex items-center justify-center">
+        <div className="font-display italic text-5xl md:text-7xl text-primary/15 tracking-tight select-none whitespace-nowrap">
+          Making Homes Bloom
+        </div>
+      </Parallax>
+    </div>
+  );
+}
+
 function Counter({ to, suffix = "", duration = 1600, decimals = 0 }: { to: number; suffix?: string; duration?: number; decimals?: number }) {
   const [val, setVal] = useState(0);
   const { ref, visible } = useReveal<HTMLSpanElement>();
@@ -565,10 +634,26 @@ function ScrollProgress() {
 /* ---------- Hero ---------- */
 function Hero() {
   const { t, lang } = useT();
+  const [scrollY, setScrollY] = useState(0);
+  useEffect(() => {
+    let raf = 0;
+    const on = () => {
+      cancelAnimationFrame(raf);
+      raf = requestAnimationFrame(() => setScrollY(window.scrollY));
+    };
+    window.addEventListener("scroll", on, { passive: true });
+    return () => { window.removeEventListener("scroll", on); cancelAnimationFrame(raf); };
+  }, []);
   return (
     <header id="top" className="relative min-h-screen flex items-end overflow-hidden">
-      <img src={hero} alt="Interior elegante" className="absolute inset-0 w-full h-full object-cover scale-105 animate-[heroZoom_18s_ease-out_forwards]" />
-      <div className="absolute inset-0 bg-gradient-to-b from-foreground/40 via-foreground/15 to-foreground/85" />
+      <div className="absolute inset-0" style={{ transform: `translate3d(0, ${scrollY * 0.35}px, 0) scale(${1.05 + scrollY * 0.0004})`, willChange: "transform" }}>
+        <img src={hero} alt="Interior elegante en el Garraf preparado por Clementine Homes" className="w-full h-[115%] object-cover animate-[heroZoom_18s_ease-out_forwards]" />
+      </div>
+      <div className="absolute inset-0 bg-gradient-to-b from-foreground/40 via-foreground/15 to-foreground/85" style={{ opacity: Math.min(1, 0.6 + scrollY * 0.001) }} />
+      <div aria-hidden="true" className="pointer-events-none absolute inset-0">
+        <div className="absolute top-24 right-10 w-64 h-64 rounded-full bg-primary/20 blur-3xl animate-[floatY_9s_ease-in-out_infinite]" />
+        <div className="absolute bottom-40 left-20 w-80 h-80 rounded-full bg-[oklch(0.62_0.17_40)]/15 blur-3xl animate-[drift_16s_ease-in-out_infinite]" />
+      </div>
       <Nav />
       <div className="relative z-10 px-6 lg:px-12 pb-20 lg:pb-28 max-w-5xl">
         <span className="inline-flex items-center gap-2 text-background/90 text-xs uppercase tracking-[0.25em] mb-6 opacity-0 animate-[fadeUp_0.8s_0.1s_ease-out_forwards]">
@@ -597,6 +682,10 @@ function Hero() {
         @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
         @keyframes heroZoom { from { transform: scale(1.15); } to { transform: scale(1.02); } }
         @keyframes pulseRing { 0% { box-shadow: 0 0 0 0 rgba(37,211,102,.55); } 70% { box-shadow: 0 0 0 18px rgba(37,211,102,0); } 100% { box-shadow: 0 0 0 0 rgba(37,211,102,0); } }
+        @keyframes floatY { 0%,100% { transform: translateY(0) translateX(0); } 50% { transform: translateY(-30px) translateX(10px); } }
+        @keyframes drift { 0%,100% { transform: translate(0,0) scale(1); } 33% { transform: translate(30px,-20px) scale(1.05); } 66% { transform: translate(-20px,20px) scale(0.97); } }
+        @keyframes spinSlow { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+        @keyframes shimmer { 0% { background-position: -200% 0; } 100% { background-position: 200% 0; } }
       `}</style>
     </header>
   );
@@ -631,8 +720,9 @@ function Stats() {
 function AboutFounder() {
   const { t } = useT();
   return (
-    <section id="sobre-mi" className="py-24 px-6 lg:px-12 bg-background">
-      <div className="max-w-6xl mx-auto grid lg:grid-cols-12 gap-12 items-center">
+    <section id="sobre-mi" className="relative py-24 px-6 lg:px-12 bg-background overflow-hidden">
+      <FloatingDecor variant="b" />
+      <div className="relative max-w-6xl mx-auto grid lg:grid-cols-12 gap-12 items-center">
         <Reveal className="lg:col-span-5">
           <div className="relative">
             <div className="aspect-[4/5] rounded-2xl overflow-hidden shadow-[var(--shadow-soft)] relative" style={{ background: "var(--gradient-warm)" }}>
@@ -669,8 +759,9 @@ function AboutFounder() {
 function Company() {
   const { t } = useT();
   return (
-    <section className="py-24 px-6 lg:px-12 bg-secondary">
-      <div className="max-w-6xl mx-auto grid lg:grid-cols-2 gap-16 items-center">
+    <section className="relative py-24 px-6 lg:px-12 bg-secondary overflow-hidden">
+      <FloatingDecor variant="c" />
+      <div className="relative max-w-6xl mx-auto grid lg:grid-cols-2 gap-16 items-center">
         <Reveal>
           <div className="relative group">
             <img src={hero} alt="Interior" className="rounded-2xl shadow-[var(--shadow-soft)] w-full transition duration-700 group-hover:scale-[1.02]" />
@@ -703,8 +794,9 @@ function RealEstate() {
   const { t, lang } = useT();
   const icons = [Building2, Key, Handshake, TrendingUp];
   return (
-    <section id="real-estate" className="py-24 px-6 lg:px-12">
-      <div className="max-w-6xl mx-auto">
+    <section id="real-estate" className="relative py-24 px-6 lg:px-12 overflow-hidden">
+      <FloatingDecor variant="d" />
+      <div className="relative max-w-6xl mx-auto">
         <Reveal>
           <div className="max-w-2xl mb-16">
             <span className="text-xs uppercase tracking-[0.25em] text-primary mb-4 block">{t.realEstate.eyebrow}</span>
@@ -748,8 +840,9 @@ function Services() {
   const { t } = useT();
   const icons = [Home, Sparkles, Camera, Key];
   return (
-    <section id="servicios" className="py-24 px-6 lg:px-12 bg-secondary">
-      <div className="max-w-6xl mx-auto">
+    <section id="servicios" className="relative py-24 px-6 lg:px-12 bg-secondary overflow-hidden">
+      <FloatingDecor variant="a" />
+      <div className="relative max-w-6xl mx-auto">
         <Reveal>
           <div className="max-w-2xl mb-16">
             <span className="text-xs uppercase tracking-[0.25em] text-primary mb-4 block">{t.services.eyebrow}</span>
@@ -1041,9 +1134,11 @@ function Index() {
             : ["Home Staging", "Real Estate", "Personal Buyer", "Professional Photography", "Making Homes Bloom"]
         } />
         <AboutFounder />
+        <ParallaxDivider />
         <Company />
         <RealEstate />
         <Services />
+        <ParallaxDivider />
         <BeforeAfter />
         <Marquee variant="outline" items={[
           "Vilanova i la Geltrú",
