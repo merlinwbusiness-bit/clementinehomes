@@ -405,40 +405,39 @@ function Reveal({ children, delay = 0, className = "" }: { children: React.React
   );
 }
 
-/* ---------- Parallax ---------- */
-function useParallax(speed = 0.25) {
+/* ---------- Parallax (ref-driven, no React re-renders) ---------- */
+function Parallax({ children, speed = 0.2, className = "" }: { children: React.ReactNode; speed?: number; className?: string }) {
   const ref = useRef<HTMLDivElement | null>(null);
-  const [offset, setOffset] = useState(0);
   useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
     let raf = 0;
+    let visible = false;
+    const io = new IntersectionObserver(([e]) => { visible = e.isIntersecting; }, { rootMargin: "200px" });
+    io.observe(el);
     const update = () => {
-      const el = ref.current;
-      if (!el) return;
+      if (!visible) return;
       const rect = el.getBoundingClientRect();
       const vh = window.innerHeight || 1;
       const center = rect.top + rect.height / 2 - vh / 2;
-      setOffset(-center * speed);
+      el.style.transform = `translate3d(0, ${(-center * speed).toFixed(1)}px, 0)`;
     };
     const onScroll = () => {
-      cancelAnimationFrame(raf);
-      raf = requestAnimationFrame(update);
+      if (raf) return;
+      raf = requestAnimationFrame(() => { raf = 0; update(); });
     };
     update();
     window.addEventListener("scroll", onScroll, { passive: true });
     window.addEventListener("resize", onScroll);
     return () => {
+      io.disconnect();
       window.removeEventListener("scroll", onScroll);
       window.removeEventListener("resize", onScroll);
-      cancelAnimationFrame(raf);
+      if (raf) cancelAnimationFrame(raf);
     };
   }, [speed]);
-  return { ref, offset };
-}
-
-function Parallax({ children, speed = 0.2, className = "" }: { children: React.ReactNode; speed?: number; className?: string }) {
-  const { ref, offset } = useParallax(speed);
   return (
-    <div ref={ref} className={className} style={{ transform: `translate3d(0, ${offset}px, 0)`, willChange: "transform" }}>
+    <div ref={ref} className={className} style={{ willChange: "transform" }}>
       {children}
     </div>
   );
