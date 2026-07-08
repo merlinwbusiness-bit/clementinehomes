@@ -720,8 +720,9 @@ function Stats() {
 function AboutFounder() {
   const { t } = useT();
   return (
-    <section id="sobre-mi" className="py-24 px-6 lg:px-12 bg-background">
-      <div className="max-w-6xl mx-auto grid lg:grid-cols-12 gap-12 items-center">
+    <section id="sobre-mi" className="relative py-24 px-6 lg:px-12 bg-background overflow-hidden">
+      <FloatingDecor variant="b" />
+      <div className="relative max-w-6xl mx-auto grid lg:grid-cols-12 gap-12 items-center">
         <Reveal className="lg:col-span-5">
           <div className="relative">
             <div className="aspect-[4/5] rounded-2xl overflow-hidden shadow-[var(--shadow-soft)] relative" style={{ background: "var(--gradient-warm)" }}>
@@ -758,8 +759,9 @@ function AboutFounder() {
 function Company() {
   const { t } = useT();
   return (
-    <section className="py-24 px-6 lg:px-12 bg-secondary">
-      <div className="max-w-6xl mx-auto grid lg:grid-cols-2 gap-16 items-center">
+    <section className="relative py-24 px-6 lg:px-12 bg-secondary overflow-hidden">
+      <FloatingDecor variant="c" />
+      <div className="relative max-w-6xl mx-auto grid lg:grid-cols-2 gap-16 items-center">
         <Reveal>
           <div className="relative group">
             <img src={hero} alt="Interior" className="rounded-2xl shadow-[var(--shadow-soft)] w-full transition duration-700 group-hover:scale-[1.02]" />
@@ -792,8 +794,9 @@ function RealEstate() {
   const { t, lang } = useT();
   const icons = [Building2, Key, Handshake, TrendingUp];
   return (
-    <section id="real-estate" className="py-24 px-6 lg:px-12">
-      <div className="max-w-6xl mx-auto">
+    <section id="real-estate" className="relative py-24 px-6 lg:px-12 overflow-hidden">
+      <FloatingDecor variant="d" />
+      <div className="relative max-w-6xl mx-auto">
         <Reveal>
           <div className="max-w-2xl mb-16">
             <span className="text-xs uppercase tracking-[0.25em] text-primary mb-4 block">{t.realEstate.eyebrow}</span>
@@ -837,8 +840,9 @@ function Services() {
   const { t } = useT();
   const icons = [Home, Sparkles, Camera, Key];
   return (
-    <section id="servicios" className="py-24 px-6 lg:px-12 bg-secondary">
-      <div className="max-w-6xl mx-auto">
+    <section id="servicios" className="relative py-24 px-6 lg:px-12 bg-secondary overflow-hidden">
+      <FloatingDecor variant="a" />
+      <div className="relative max-w-6xl mx-auto">
         <Reveal>
           <div className="max-w-2xl mb-16">
             <span className="text-xs uppercase tracking-[0.25em] text-primary mb-4 block">{t.services.eyebrow}</span>
