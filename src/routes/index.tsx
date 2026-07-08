@@ -407,7 +407,6 @@ function Reveal({ children, delay = 0, className = "" }: { children: React.React
 
 /* ---------- Parallax ---------- */
 function useParallax(speed = 0.25) {
-  void 0;
   const ref = useRef<HTMLDivElement | null>(null);
   const [offset, setOffset] = useState(0);
   useEffect(() => {
