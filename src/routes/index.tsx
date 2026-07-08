@@ -472,6 +472,43 @@ function ParallaxDivider() {
   );
 }
 
+/* ---------- Text reveal (word-by-word stagger) ---------- */
+function RevealText({
+  as: Tag = "span",
+  text,
+  className = "",
+  delay = 0,
+  stagger = 55,
+}: {
+  as?: "h1" | "h2" | "h3" | "p" | "span";
+  text: string;
+  className?: string;
+  delay?: number;
+  stagger?: number;
+}) {
+  const { ref, visible } = useReveal<HTMLElement>();
+  const words = text.split(" ");
+  return (
+    <Tag ref={ref as never} className={className} aria-label={text}>
+      {words.map((w, i) => (
+        <span key={i} className="inline-block overflow-hidden align-bottom pb-[0.12em] mr-[0.28em]">
+          <span
+            className="inline-block will-change-transform"
+            style={{
+              transform: visible ? "translateY(0) rotate(0deg)" : "translateY(110%) rotate(4deg)",
+              opacity: visible ? 1 : 0,
+              filter: visible ? "blur(0)" : "blur(6px)",
+              transition: `transform 950ms cubic-bezier(0.22,1,0.36,1) ${delay + i * stagger}ms, opacity 700ms ease ${delay + i * stagger}ms, filter 700ms ease ${delay + i * stagger}ms`,
+            }}
+          >
+            {w}
+          </span>
+        </span>
+      ))}
+    </Tag>
+  );
+}
+
 function Counter({ to, suffix = "", duration = 1600, decimals = 0 }: { to: number; suffix?: string; duration?: number; decimals?: number }) {
   const [val, setVal] = useState(0);
   const { ref, visible } = useReveal<HTMLSpanElement>();
