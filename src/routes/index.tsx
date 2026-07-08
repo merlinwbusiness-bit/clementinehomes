@@ -1130,9 +1130,11 @@ function Index() {
             : ["Home Staging", "Real Estate", "Personal Buyer", "Professional Photography", "Making Homes Bloom"]
         } />
         <AboutFounder />
+        <ParallaxDivider />
         <Company />
         <RealEstate />
         <Services />
+        <ParallaxDivider />
         <BeforeAfter />
         <Marquee variant="outline" items={[
           "Vilanova i la Geltrú",
