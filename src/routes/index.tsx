@@ -24,6 +24,11 @@ import {
 } from "lucide-react";
 
 export const Route = createFileRoute("/")({
+  head: () => ({
+    links: [
+      { rel: "preload", as: "image", href: hero, fetchpriority: "high" } as never,
+    ],
+  }),
   component: Index,
 });
 
