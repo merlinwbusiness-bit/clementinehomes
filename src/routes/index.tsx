@@ -463,12 +463,10 @@ function FloatingDecor({ variant = "a" }: { variant?: "a" | "b" | "c" | "d" }) {
 
 function ParallaxDivider() {
   return (
-    <div className="relative h-40 md:h-56 overflow-hidden bg-background">
+    <div className="relative h-32 md:h-44 overflow-hidden bg-background">
       <FloatingDecor variant="a" />
       <Parallax speed={0.15} className="absolute inset-0 flex items-center justify-center">
-        <div className="font-display italic text-5xl md:text-7xl text-primary/15 tracking-tight select-none whitespace-nowrap">
-          Making Homes Bloom
-        </div>
+        <div className="h-px w-40 md:w-64 bg-gradient-to-r from-transparent via-primary/40 to-transparent" />
       </Parallax>
     </div>
   );
