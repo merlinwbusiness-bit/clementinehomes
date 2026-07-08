@@ -668,22 +668,31 @@ function ScrollProgress() {
 /* ---------- Hero ---------- */
 function Hero() {
   const { t, lang } = useT();
-  const [scrollY, setScrollY] = useState(0);
+  const bgRef = useRef<HTMLDivElement | null>(null);
+  const overlayRef = useRef<HTMLDivElement | null>(null);
   useEffect(() => {
     let raf = 0;
-    const on = () => {
-      cancelAnimationFrame(raf);
-      raf = requestAnimationFrame(() => setScrollY(window.scrollY));
+    let heroVisible = true;
+    const io = new IntersectionObserver(([e]) => { heroVisible = e.isIntersecting; }, { rootMargin: "100px" });
+    if (bgRef.current) io.observe(bgRef.current);
+    const update = () => {
+      raf = 0;
+      if (!heroVisible) return;
+      const y = window.scrollY;
+      if (bgRef.current) bgRef.current.style.transform = `translate3d(0, ${(y * 0.35).toFixed(1)}px, 0) scale(${(1.05 + y * 0.0004).toFixed(4)})`;
+      if (overlayRef.current) overlayRef.current.style.opacity = String(Math.min(1, 0.6 + y * 0.001));
     };
+    const on = () => { if (!raf) raf = requestAnimationFrame(update); };
+    update();
     window.addEventListener("scroll", on, { passive: true });
-    return () => { window.removeEventListener("scroll", on); cancelAnimationFrame(raf); };
+    return () => { io.disconnect(); window.removeEventListener("scroll", on); if (raf) cancelAnimationFrame(raf); };
   }, []);
   return (
     <header id="top" className="relative min-h-screen flex items-end overflow-hidden">
-      <div className="absolute inset-0" style={{ transform: `translate3d(0, ${scrollY * 0.35}px, 0) scale(${1.05 + scrollY * 0.0004})`, willChange: "transform" }}>
-        <img src={hero} alt="Interior elegante en el Garraf preparado por Clementine Homes" className="w-full h-[115%] object-cover animate-[heroZoom_18s_ease-out_forwards]" />
+      <div ref={bgRef} className="absolute inset-0" style={{ willChange: "transform" }}>
+        <img src={hero} alt="Interior elegante en el Garraf preparado por Clementine Homes" fetchPriority="high" decoding="async" className="w-full h-[115%] object-cover animate-[heroZoom_18s_ease-out_forwards]" />
       </div>
-      <div className="absolute inset-0 bg-gradient-to-b from-foreground/40 via-foreground/15 to-foreground/85" style={{ opacity: Math.min(1, 0.6 + scrollY * 0.001) }} />
+      <div ref={overlayRef} className="absolute inset-0 bg-gradient-to-b from-foreground/40 via-foreground/15 to-foreground/85" style={{ opacity: 0.6 }} />
       <div aria-hidden="true" className="pointer-events-none absolute inset-0">
         <div className="absolute top-24 right-10 w-64 h-64 rounded-full bg-primary/20 blur-3xl animate-[floatY_9s_ease-in-out_infinite]" />
         <div className="absolute bottom-40 left-20 w-80 h-80 rounded-full bg-[oklch(0.62_0.17_40)]/15 blur-3xl animate-[drift_16s_ease-in-out_infinite]" />
