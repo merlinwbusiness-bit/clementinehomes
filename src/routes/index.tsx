@@ -1071,7 +1071,7 @@ function Contact() {
       <div className="relative max-w-4xl mx-auto text-center text-primary-foreground">
         <Reveal>
           <span className="text-xs uppercase tracking-[0.25em] mb-6 block opacity-90">{t.contact.eyebrow}</span>
-          <h2 className="text-4xl md:text-6xl mb-6">{t.contact.title}</h2>
+          <RevealText as="h2" text={t.contact.title} className="text-4xl md:text-6xl mb-6 font-display block" />
           <p className="text-lg opacity-90 mb-12 max-w-2xl mx-auto">{t.contact.sub}</p>
         </Reveal>
         <Reveal delay={120}>
