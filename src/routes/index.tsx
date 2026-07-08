@@ -634,10 +634,26 @@ function ScrollProgress() {
 /* ---------- Hero ---------- */
 function Hero() {
   const { t, lang } = useT();
+  const [scrollY, setScrollY] = useState(0);
+  useEffect(() => {
+    let raf = 0;
+    const on = () => {
+      cancelAnimationFrame(raf);
+      raf = requestAnimationFrame(() => setScrollY(window.scrollY));
+    };
+    window.addEventListener("scroll", on, { passive: true });
+    return () => { window.removeEventListener("scroll", on); cancelAnimationFrame(raf); };
+  }, []);
   return (
     <header id="top" className="relative min-h-screen flex items-end overflow-hidden">
-      <img src={hero} alt="Interior elegante" className="absolute inset-0 w-full h-full object-cover scale-105 animate-[heroZoom_18s_ease-out_forwards]" />
-      <div className="absolute inset-0 bg-gradient-to-b from-foreground/40 via-foreground/15 to-foreground/85" />
+      <div className="absolute inset-0" style={{ transform: `translate3d(0, ${scrollY * 0.35}px, 0) scale(${1.05 + scrollY * 0.0004})`, willChange: "transform" }}>
+        <img src={hero} alt="Interior elegante en el Garraf preparado por Clementine Homes" className="w-full h-[115%] object-cover animate-[heroZoom_18s_ease-out_forwards]" />
+      </div>
+      <div className="absolute inset-0 bg-gradient-to-b from-foreground/40 via-foreground/15 to-foreground/85" style={{ opacity: Math.min(1, 0.6 + scrollY * 0.001) }} />
+      <div aria-hidden="true" className="pointer-events-none absolute inset-0">
+        <div className="absolute top-24 right-10 w-64 h-64 rounded-full bg-primary/20 blur-3xl animate-[floatY_9s_ease-in-out_infinite]" />
+        <div className="absolute bottom-40 left-20 w-80 h-80 rounded-full bg-[oklch(0.62_0.17_40)]/15 blur-3xl animate-[drift_16s_ease-in-out_infinite]" />
+      </div>
       <Nav />
       <div className="relative z-10 px-6 lg:px-12 pb-20 lg:pb-28 max-w-5xl">
         <span className="inline-flex items-center gap-2 text-background/90 text-xs uppercase tracking-[0.25em] mb-6 opacity-0 animate-[fadeUp_0.8s_0.1s_ease-out_forwards]">
