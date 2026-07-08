@@ -616,7 +616,7 @@ function Nav() {
   return (
     <nav className={`fixed top-0 left-0 right-0 z-40 px-6 lg:px-12 py-4 flex items-center justify-between transition-all duration-300 ${scrolled ? "bg-background/90 backdrop-blur-md shadow-[var(--shadow-soft)]" : "bg-transparent"}`}>
       <a href="#top" className="flex items-center gap-3">
-        <img src={logo} alt="Clementine Homes" className={`h-24 md:h-32 w-auto rounded-md p-1.5 transition ${scrolled ? "bg-transparent" : "bg-background/95"}`} />
+        <img src={logo} alt="Clementine Homes" className={`h-24 md:h-32 w-auto rounded-md p-1.5 transition ${scrolled ? "bg-transparent" : "bg-background/95"}`}  loading="lazy" decoding="async" />
       </a>
       <div className={`hidden lg:flex items-center gap-7 text-sm transition ${scrolled ? "text-foreground" : "text-background/90"}`}>
         {links.map((l) => (
@@ -773,7 +773,7 @@ function AboutFounder() {
         <Reveal className="lg:col-span-5">
           <div className="relative">
             <div className="aspect-[4/5] rounded-2xl overflow-hidden shadow-[var(--shadow-soft)] relative" style={{ background: "var(--gradient-warm)" }}>
-              <img src={portrait} alt="Clémentine Lanchier" className="absolute inset-0 w-full h-full object-contain object-bottom" />
+              <img src={portrait} alt="Clémentine Lanchier" className="absolute inset-0 w-full h-full object-contain object-bottom"  loading="lazy" decoding="async" />
               <div className="absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-foreground/55 to-transparent" />
               <div className="absolute bottom-5 left-5 right-5 text-background">
                 <div className="text-xs uppercase tracking-[0.25em] opacity-80 mb-1">Clémentine Lanchier</div>
@@ -792,8 +792,8 @@ function AboutFounder() {
           <div className="mt-10 pt-8 border-t border-border">
             <div className="text-xs uppercase tracking-[0.25em] text-primary mb-5">{t.about.memberOf}</div>
             <div className="flex flex-wrap items-center gap-8">
-              <img src={logoApi} alt="API · Agent Immobiliari" className="h-12 md:h-14 w-auto object-contain" />
-              <img src={logoWow} alt="Stagers WOW · Miembro VIP" className="h-16 md:h-20 w-auto object-contain" />
+              <img src={logoApi} alt="API · Agent Immobiliari" className="h-12 md:h-14 w-auto object-contain"  loading="lazy" decoding="async" />
+              <img src={logoWow} alt="Stagers WOW · Miembro VIP" className="h-16 md:h-20 w-auto object-contain"  loading="lazy" decoding="async" />
             </div>
           </div>
         </Reveal>
@@ -811,7 +811,7 @@ function Company() {
       <div className="relative max-w-6xl mx-auto grid lg:grid-cols-2 gap-16 items-center">
         <Reveal>
           <div className="relative group">
-            <img src={hero} alt="Interior" className="rounded-2xl shadow-[var(--shadow-soft)] w-full transition duration-700 group-hover:scale-[1.02]" />
+            <img src={hero} alt="Interior" className="rounded-2xl shadow-[var(--shadow-soft)] w-full transition duration-700 group-hover:scale-[1.02]"  loading="lazy" decoding="async" />
             <div className="absolute -bottom-6 -right-6 bg-background p-6 rounded-2xl shadow-[var(--shadow-soft)] hidden md:block">
               <div className="flex items-center gap-1 text-primary mb-1">
                 {[...Array(5)].map((_, i) => <Star key={i} className="w-4 h-4 fill-current" />)}
@@ -958,12 +958,12 @@ function BASlider({ before, after, beforeLabel, afterLabel }: { before: string; 
       onMouseDown={(e) => { dragging.current = true; updateFromClientX(e.clientX); }}
       onTouchStart={(e) => { dragging.current = true; updateFromClientX(e.touches[0].clientX); }}
     >
-      <img src={before} alt={beforeLabel} className="absolute inset-0 w-full h-full object-cover" draggable={false} />
+      <img src={before} alt={beforeLabel} className="absolute inset-0 w-full h-full object-cover" draggable={false}  loading="lazy" decoding="async" />
       <div className="absolute top-4 left-4 bg-foreground/70 text-background text-xs uppercase tracking-[0.25em] px-3 py-1.5 rounded-full backdrop-blur">
         {beforeLabel}
       </div>
       <div className="absolute inset-0 overflow-hidden" style={{ clipPath: `inset(0 0 0 ${pos}%)` }}>
-        <img src={after} alt={afterLabel} className="absolute inset-0 w-full h-full object-cover" draggable={false} />
+        <img src={after} alt={afterLabel} className="absolute inset-0 w-full h-full object-cover" draggable={false}  loading="lazy" decoding="async" />
         <div className="absolute top-4 right-4 bg-primary text-primary-foreground text-xs uppercase tracking-[0.25em] px-3 py-1.5 rounded-full">
           {afterLabel}
         </div>
@@ -1132,7 +1132,7 @@ function Footer() {
     <footer className="bg-foreground text-background/70 py-10 px-6 lg:px-12">
       <div className="max-w-6xl mx-auto flex flex-wrap items-center justify-between gap-4 text-sm">
         <div className="flex items-center gap-3">
-          <img src={logo} alt="Clementine" className="h-16 w-auto bg-background rounded p-1" />
+          <img src={logo} alt="Clementine" className="h-16 w-auto bg-background rounded p-1"  loading="lazy" decoding="async" />
           <span>© {new Date().getFullYear()} Clementine Homes · {t.footer}</span>
         </div>
         <div>Secteur Garraf – Barcelone</div>
