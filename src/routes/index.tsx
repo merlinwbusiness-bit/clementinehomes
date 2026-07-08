@@ -647,20 +647,24 @@ function Nav() {
 
 /* ---------- ScrollProgress ---------- */
 function ScrollProgress() {
-  const [p, setP] = useState(0);
+  const barRef = useRef<HTMLDivElement | null>(null);
   useEffect(() => {
-    const onScroll = () => {
+    let raf = 0;
+    const update = () => {
+      raf = 0;
       const h = document.documentElement;
       const total = h.scrollHeight - h.clientHeight;
-      setP(total > 0 ? (h.scrollTop / total) * 100 : 0);
+      const p = total > 0 ? (h.scrollTop / total) * 100 : 0;
+      if (barRef.current) barRef.current.style.width = `${p}%`;
     };
-    onScroll();
+    const onScroll = () => { if (!raf) raf = requestAnimationFrame(update); };
+    update();
     window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
+    return () => { window.removeEventListener("scroll", onScroll); if (raf) cancelAnimationFrame(raf); };
   }, []);
   return (
     <div className="fixed top-0 left-0 right-0 z-[55] h-[3px] bg-transparent pointer-events-none">
-      <div className="h-full bg-gradient-to-r from-primary via-[oklch(0.78_0.12_60)] to-primary transition-[width] duration-100" style={{ width: `${p}%` }} />
+      <div ref={barRef} className="h-full bg-gradient-to-r from-primary via-[oklch(0.78_0.12_60)] to-primary" style={{ width: "0%" }} />
     </div>
   );
 }
