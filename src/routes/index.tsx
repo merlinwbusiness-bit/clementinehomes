@@ -666,6 +666,10 @@ function Hero() {
         @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
         @keyframes heroZoom { from { transform: scale(1.15); } to { transform: scale(1.02); } }
         @keyframes pulseRing { 0% { box-shadow: 0 0 0 0 rgba(37,211,102,.55); } 70% { box-shadow: 0 0 0 18px rgba(37,211,102,0); } 100% { box-shadow: 0 0 0 0 rgba(37,211,102,0); } }
+        @keyframes floatY { 0%,100% { transform: translateY(0) translateX(0); } 50% { transform: translateY(-30px) translateX(10px); } }
+        @keyframes drift { 0%,100% { transform: translate(0,0) scale(1); } 33% { transform: translate(30px,-20px) scale(1.05); } 66% { transform: translate(-20px,20px) scale(0.97); } }
+        @keyframes spinSlow { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+        @keyframes shimmer { 0% { background-position: -200% 0; } 100% { background-position: 200% 0; } }
       `}</style>
     </header>
   );
