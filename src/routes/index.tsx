@@ -1,4 +1,4 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { createContext, useContext, useEffect, useRef, useState } from "react";
 import logoAsset from "@/assets/clementine-homes-logo.png.asset.json";
 import logoApiAsset from "@/assets/logo-api.jpg.asset.json";
@@ -1142,8 +1142,11 @@ function Footer() {
         </div>
         <div>Secteur Garraf – Barcelone</div>
       </div>
-      <div className="max-w-6xl mx-auto mt-6 text-center text-xs text-background/50">
-        Designed by Merlin Wiart
+      <div className="max-w-6xl mx-auto mt-6 flex flex-wrap items-center justify-center gap-x-5 gap-y-2 text-center text-xs text-background/50">
+        <Link to="/mentions-legales" className="hover:text-background/80 underline-offset-2 hover:underline">Mentions légales</Link>
+        <Link to="/politique-confidentialite" className="hover:text-background/80 underline-offset-2 hover:underline">Politique de confidentialité</Link>
+        <span className="text-background/30">·</span>
+        <span>Designed by Merlin Wiart</span>
       </div>
     </footer>
   );
