@@ -1,4 +1,4 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { createContext, useContext, useEffect, useRef, useState } from "react";
 import logoAsset from "@/assets/clementine-homes-logo.png.asset.json";
 import logoApiAsset from "@/assets/logo-api.jpg.asset.json";
