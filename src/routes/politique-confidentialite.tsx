@@ -136,6 +136,14 @@ const content: Record<Lang, { title: string; sections: { h: string; p: string[] 
           "We apply appropriate technical and organisational measures to protect your data against unauthorised access, loss or alteration.",
         ],
       },
+      {
+        h: "Cookies",
+        p: [
+          "We use essential cookies required for the site to work (selected language and record of your consent); these do not require prior authorisation.",
+          "With your consent, we may use analytics cookies (to understand which sections are of most interest) and marketing cookies (to show more relevant content and ads).",
+          "You can accept, reject or customise cookies from the banner shown on your first visit, and change your choice at any time via the cookie button at the bottom left of the screen. You can also delete cookies from your browser settings.",
+        ],
+      },
     ],
   },
   fr: {
