@@ -145,7 +145,7 @@ export default function CookieConsent() {
 
           <div className="flex items-center gap-3">
             <span className="grid h-11 w-11 place-items-center rounded-2xl bg-[#c98a5a]/12 text-[#c98a5a]">
-              <Cookie className="h-5 w-5 animate-[floatY_4s_ease-in-out_infinite]" />
+              <Cookie className="h-5 w-5" />
             </span>
             <div>
               <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-[#c98a5a]">
