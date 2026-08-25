@@ -78,6 +78,14 @@ const content: Record<Lang, { title: string; sections: { h: string; p: string[] 
           "Aplicamos medidas técnicas y organizativas apropiadas para proteger tus datos frente a acceso no autorizado, pérdida o alteración.",
         ],
       },
+      {
+        h: "Cookies",
+        p: [
+          "Utilizamos cookies esenciales, necesarias para el funcionamiento del sitio (idioma seleccionado y registro de tu consentimiento), que no requieren autorización previa.",
+          "Con tu consentimiento, podemos utilizar cookies de analítica (para entender qué secciones interesan más) y de marketing (para mostrar contenidos y anuncios más relevantes).",
+          "Puedes aceptar, rechazar o personalizar las cookies desde el banner que aparece en tu primera visita, y modificar tu elección en cualquier momento con el botón de cookies situado abajo a la izquierda de la pantalla. También puedes borrar las cookies desde la configuración de tu navegador.",
+        ],
+      },
     ],
   },
   en: {
@@ -128,6 +136,14 @@ const content: Record<Lang, { title: string; sections: { h: string; p: string[] 
           "We apply appropriate technical and organisational measures to protect your data against unauthorised access, loss or alteration.",
         ],
       },
+      {
+        h: "Cookies",
+        p: [
+          "We use essential cookies required for the site to work (selected language and record of your consent); these do not require prior authorisation.",
+          "With your consent, we may use analytics cookies (to understand which sections are of most interest) and marketing cookies (to show more relevant content and ads).",
+          "You can accept, reject or customise cookies from the banner shown on your first visit, and change your choice at any time via the cookie button at the bottom left of the screen. You can also delete cookies from your browser settings.",
+        ],
+      },
     ],
   },
   fr: {
@@ -176,6 +192,14 @@ const content: Record<Lang, { title: string; sections: { h: string; p: string[] 
         h: "Sécurité",
         p: [
           "Nous appliquons des mesures techniques et organisationnelles appropriées pour protéger vos données contre tout accès non autorisé, perte ou altération.",
+        ],
+      },
+      {
+        h: "Cookies",
+        p: [
+          "Nous utilisons des cookies essentiels, nécessaires au fonctionnement du site (langue choisie et enregistrement de votre consentement), qui ne requièrent pas d'autorisation préalable.",
+          "Avec votre consentement, nous pouvons utiliser des cookies de statistiques (pour comprendre quelles sections vous intéressent) et de marketing (pour proposer des contenus et publicités plus pertinents).",
+          "Vous pouvez accepter, refuser ou personnaliser les cookies depuis la bannière affichée lors de votre première visite, et modifier votre choix à tout moment via le bouton cookies situé en bas à gauche de l'écran. Vous pouvez également supprimer les cookies depuis les réglages de votre navigateur.",
         ],
       },
     ],
