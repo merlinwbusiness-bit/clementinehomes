@@ -194,6 +194,14 @@ const content: Record<Lang, { title: string; sections: { h: string; p: string[] 
           "Nous appliquons des mesures techniques et organisationnelles appropriées pour protéger vos données contre tout accès non autorisé, perte ou altération.",
         ],
       },
+      {
+        h: "Cookies",
+        p: [
+          "Nous utilisons des cookies essentiels, nécessaires au fonctionnement du site (langue choisie et enregistrement de votre consentement), qui ne requièrent pas d'autorisation préalable.",
+          "Avec votre consentement, nous pouvons utiliser des cookies de statistiques (pour comprendre quelles sections vous intéressent) et de marketing (pour proposer des contenus et publicités plus pertinents).",
+          "Vous pouvez accepter, refuser ou personnaliser les cookies depuis la bannière affichée lors de votre première visite, et modifier votre choix à tout moment via le bouton cookies situé en bas à gauche de l'écran. Vous pouvez également supprimer les cookies depuis les réglages de votre navigateur.",
+        ],
+      },
     ],
   },
 };
