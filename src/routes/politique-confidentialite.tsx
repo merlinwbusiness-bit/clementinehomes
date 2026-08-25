@@ -78,6 +78,14 @@ const content: Record<Lang, { title: string; sections: { h: string; p: string[] 
           "Aplicamos medidas técnicas y organizativas apropiadas para proteger tus datos frente a acceso no autorizado, pérdida o alteración.",
         ],
       },
+      {
+        h: "Cookies",
+        p: [
+          "Utilizamos cookies esenciales, necesarias para el funcionamiento del sitio (idioma seleccionado y registro de tu consentimiento), que no requieren autorización previa.",
+          "Con tu consentimiento, podemos utilizar cookies de analítica (para entender qué secciones interesan más) y de marketing (para mostrar contenidos y anuncios más relevantes).",
+          "Puedes aceptar, rechazar o personalizar las cookies desde el banner que aparece en tu primera visita, y modificar tu elección en cualquier momento con el botón de cookies situado abajo a la izquierda de la pantalla. También puedes borrar las cookies desde la configuración de tu navegador.",
+        ],
+      },
     ],
   },
   en: {
