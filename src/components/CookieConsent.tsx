@@ -53,13 +53,13 @@ function Toggle({ on, onChange, disabled }: { on: boolean; onChange?: (v: boolea
       disabled={disabled}
       onClick={() => onChange?.(!on)}
       aria-pressed={on}
-      className={`relative h-6 w-11 shrink-0 rounded-full transition-colors duration-300 ${
-        on ? "bg-[#c98a5a]" : "bg-[#2b2620]/20"
+      className={`relative h-6 w-11 shrink-0 rounded-full border transition-colors duration-300 ${
+        on ? "border-transparent bg-white" : "border-white/25 bg-white/10"
       } ${disabled ? "opacity-60" : "hover:opacity-90"}`}
     >
       <span
-        className={`absolute top-0.5 h-5 w-5 rounded-full bg-white shadow transition-transform duration-300 ${
-          on ? "translate-x-[22px]" : "translate-x-0.5"
+        className={`absolute top-0.5 h-5 w-5 rounded-full shadow transition-transform duration-300 ${
+          on ? "translate-x-[22px] bg-[#c98a5a]" : "translate-x-0.5 bg-white/80"
         }`}
       />
     </button>
@@ -121,116 +121,107 @@ export default function CookieConsent() {
 
   return (
     <div
-      className={`fixed bottom-0 left-0 right-0 z-50 flex justify-start p-4 sm:p-6 transition-all duration-700 ${
-        open ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0"
+      className={`fixed inset-0 z-50 flex items-center justify-center p-4 transition-all duration-500 ${
+        open ? "opacity-100" : "opacity-0 pointer-events-none"
       }`}
       role="dialog"
       aria-live="polite"
       aria-label={t.title}
     >
-      <div className="relative w-full max-w-md overflow-hidden rounded-[28px] border border-[#2b2620]/10 bg-[#f7f1ea]/95 shadow-[0_24px_60px_-20px_rgba(43,38,32,0.45)] backdrop-blur-xl">
-        {/* petal decor */}
-        <div className="pointer-events-none absolute -right-10 -top-12 h-40 w-40 rounded-full bg-[#c98a5a]/15 blur-2xl" />
-        <div className="pointer-events-none absolute -left-8 bottom-0 h-24 w-24 rounded-full bg-[#8a9a6b]/15 blur-2xl" />
-        <div className="h-1 w-full bg-gradient-to-r from-[#c98a5a] via-[#e0b48c] to-transparent" />
+      {/* backdrop */}
+      <div
+        className="absolute inset-0 bg-[#2b2620]/30 backdrop-blur-sm"
+        onClick={() => persist({ analytics: false, marketing: false })}
+      />
 
-        <div className="relative p-6">
+      <div
+        className={`relative w-full max-w-sm scale-95 transition-transform duration-500 ${
+          open ? "scale-100" : "scale-95"
+        }`}
+      >
+        <div className="rounded-3xl border border-white/30 bg-white/15 p-7 text-center shadow-[0_8px_40px_-12px_rgba(43,38,32,0.4)] backdrop-blur-2xl">
           <button
             onClick={() => persist({ analytics: false, marketing: false })}
             aria-label={t.reject}
-            className="absolute right-4 top-4 rounded-full p-1.5 text-[#2b2620]/40 transition hover:bg-[#2b2620]/5 hover:text-[#2b2620]"
+            className="absolute right-4 top-4 rounded-full p-1.5 text-white/50 transition hover:bg-white/10 hover:text-white"
           >
             <X className="h-4 w-4" />
           </button>
 
-          <div className="flex items-center gap-3">
-            <span className="grid h-11 w-11 place-items-center rounded-2xl bg-[#c98a5a]/12 text-[#c98a5a]">
-              <Cookie className="h-5 w-5" />
-            </span>
-            <div>
-              <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-[#c98a5a]">
-                {t.eyebrow}
-              </p>
-              <h2 className="font-[family-name:'Playfair_Display'] text-lg font-semibold text-[#2b2620]">
-                {t.title}
-              </h2>
-            </div>
-          </div>
+          <span className="mx-auto grid h-12 w-12 place-items-center rounded-2xl border border-white/20 bg-white/10 text-white backdrop-blur-md">
+            <Cookie className="h-5 w-5" />
+          </span>
 
-          <p className="mt-3 text-[13.5px] leading-relaxed text-[#5c544a]">{t.body}</p>
+          <h2 className="mt-4 font-[family-name:'Playfair_Display'] text-xl font-semibold text-white">
+            {t.title}
+          </h2>
+
+          <p className="mt-2 text-[13px] leading-relaxed text-white/75">{t.body}</p>
 
           <div
-            className={`grid transition-all duration-500 ${
+            className={`grid transition-all duration-400 ${
               expanded ? "mt-4 grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"
             }`}
           >
             <div className="overflow-hidden">
-              <div className="space-y-3 rounded-2xl border border-[#2b2620]/8 bg-white/60 p-4">
-                <div className="flex items-start justify-between gap-4">
-                  <div>
-                    <p className="text-sm font-medium text-[#2b2620]">{t.necessary}</p>
-                    <p className="text-xs text-[#5c544a]">{t.necessaryDesc}</p>
-                  </div>
-                  <span className="mt-1 rounded-full bg-[#8a9a6b]/15 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-wide text-[#6d7d50]">
+              <div className="space-y-2.5 rounded-2xl border border-white/15 bg-white/5 p-4 text-left backdrop-blur-md">
+                <div className="flex items-center justify-between gap-3">
+                  <p className="text-[13px] font-medium text-white">{t.necessary}</p>
+                  <span className="rounded-full bg-white/15 px-2 py-0.5 text-[9px] font-semibold uppercase tracking-wide text-white/80">
                     {t.always}
                   </span>
                 </div>
-                <div className="flex items-start justify-between gap-4 border-t border-[#2b2620]/8 pt-3">
-                  <div>
-                    <p className="text-sm font-medium text-[#2b2620]">{t.analytics}</p>
-                    <p className="text-xs text-[#5c544a]">{t.analyticsDesc}</p>
-                  </div>
+                <div className="flex items-center justify-between gap-3 border-t border-white/10 pt-2.5">
+                  <p className="text-[13px] text-white/90">{t.analytics}</p>
                   <Toggle on={prefs.analytics} onChange={(v) => setPrefs((p) => ({ ...p, analytics: v }))} />
                 </div>
-                <div className="flex items-start justify-between gap-4 border-t border-[#2b2620]/8 pt-3">
-                  <div>
-                    <p className="text-sm font-medium text-[#2b2620]">{t.marketing}</p>
-                    <p className="text-xs text-[#5c544a]">{t.marketingDesc}</p>
-                  </div>
+                <div className="flex items-center justify-between gap-3 border-t border-white/10 pt-2.5">
+                  <p className="text-[13px] text-white/90">{t.marketing}</p>
                   <Toggle on={prefs.marketing} onChange={(v) => setPrefs((p) => ({ ...p, marketing: v }))} />
                 </div>
               </div>
             </div>
           </div>
 
-          <div className="mt-5 flex flex-wrap items-center gap-2">
+          <div className="mt-5 flex flex-col gap-2">
             {expanded ? (
               <button
                 onClick={() => persist(prefs)}
-                className="inline-flex flex-1 items-center justify-center gap-2 rounded-full bg-[#2b2620] px-5 py-2.5 text-sm font-medium text-[#f7f1ea] transition hover:scale-[1.02]"
+                className="w-full rounded-full bg-white px-5 py-2.5 text-sm font-medium text-[#2b2620] transition hover:bg-white/90"
               >
-                <Check className="h-4 w-4" /> {t.save}
+                {t.save}
               </button>
             ) : (
               <button
                 onClick={() => persist({ analytics: true, marketing: true })}
-                className="inline-flex flex-1 items-center justify-center gap-2 rounded-full bg-[#c98a5a] px-5 py-2.5 text-sm font-medium text-white transition hover:scale-[1.02]"
+                className="w-full rounded-full bg-white px-5 py-2.5 text-sm font-medium text-[#2b2620] transition hover:bg-white/90"
               >
-                <Check className="h-4 w-4" /> {t.accept}
+                {t.accept}
               </button>
             )}
-            <button
-              onClick={() => persist({ analytics: false, marketing: false })}
-              className="rounded-full border border-[#2b2620]/15 px-4 py-2.5 text-sm text-[#2b2620] transition hover:bg-[#2b2620]/5"
-            >
-              {t.reject}
-            </button>
-            {!expanded && (
+            <div className="flex items-center justify-center gap-4">
               <button
-                onClick={() => setExpanded(true)}
-                className="inline-flex items-center gap-1.5 rounded-full px-3 py-2.5 text-sm text-[#c98a5a] transition hover:underline"
+                onClick={() => persist({ analytics: false, marketing: false })}
+                className="text-xs text-white/70 underline-offset-2 transition hover:text-white hover:underline"
               >
-                <Settings2 className="h-4 w-4" /> {t.customize}
+                {t.reject}
               </button>
-            )}
+              {!expanded && (
+                <button
+                  onClick={() => setExpanded(true)}
+                  className="inline-flex items-center gap-1 text-xs text-white/70 underline-offset-2 transition hover:text-white hover:underline"
+                >
+                  <Settings2 className="h-3 w-3" /> {t.customize}
+                </button>
+              )}
+              <a
+                href="/politique-confidentialite"
+                className="text-xs text-white/70 underline-offset-2 transition hover:text-white hover:underline"
+              >
+                {t.policy}
+              </a>
+            </div>
           </div>
-
-          <a
-            href="/politique-confidentialite"
-            className="mt-3 inline-block text-[11px] uppercase tracking-wide text-[#5c544a]/70 underline-offset-2 hover:text-[#c98a5a] hover:underline"
-          >
-            {t.policy}
-          </a>
         </div>
       </div>
     </div>
